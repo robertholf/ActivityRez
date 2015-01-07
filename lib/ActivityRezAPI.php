@@ -45,7 +45,7 @@ class ActivityRezAPI {
 		
 		if( 'secure' == $options['server']){
 			$this->server = AREZ_SERVER;
-			$this->base_url = AREZ_SERVER.$this->base_url;	
+			$this->base_url = AREZ_SERVER.$this->base_url;
 		}else{
 			$this->server = AREZ_SERVER_TRAINING;
 			$this->base_url = AREZ_SERVER_TRAINING.$this->base_url;

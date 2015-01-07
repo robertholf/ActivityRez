@@ -1,0 +1,1415 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ActivityRez Wordpress Web Booker Plugin\n"
+"POT-Creation-Date: 2015-01-06 13:24-0800\n"
+"PO-Revision-Date: 2015-01-06 13:25-0800\n"
+"Last-Translator: Rob Bertholf <rob@bertholf.com>\n"
+"Language-Team: Rob Bertholf <rob@bertholf.com>\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.8\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: lib/ActivityRezWB-Admin.php:54
+msgid "Activities"
+msgstr "Activities"
+
+#: lib/ActivityRezWB-Admin.php:56 lib/ActivityRezWB-App.php:221
+#: php/sidebar.php:133
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: lib/ActivityRezWB-App.php:24
+msgid "Add Web Booker"
+msgstr "Add Web Booker"
+
+#: lib/ActivityRezWB-App.php:25
+msgid "Add New Web Booker"
+msgstr "Add New Web Booker"
+
+#: lib/ActivityRezWB-App.php:26
+msgid "Edit"
+msgstr "Edit"
+
+#: lib/ActivityRezWB-App.php:27
+msgid "Edit Web Booker"
+msgstr "Edit Web Booker"
+
+#: lib/ActivityRezWB-App.php:28
+msgid "Web Bookers"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:29
+msgid "New Web Booker"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:30
+msgid "No Web Bookers found"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:31
+msgid "No Web Bookers found in trash"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:32
+msgid "Search Web Booker"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:33
+msgid "Web Booker"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:34
+msgid "View Web Bookers"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:35
+msgid "View Web Booker"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:193
+msgid "Webbooker Sidebar"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:195
+msgid "If you prefer to have your sidebar dynamic "
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:212 php/sidebar.php:124
+msgid "Travel Agents"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:219 php/sidebar.php:131
+msgid "Welcome back,"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:222 php/sidebar.php:134
+#: view/admin/dashboard.php:60
+msgid "Log Out"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:227 php/sidebar.php:139
+msgid "Travel Agent Log In"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:232 php/sidebar.php:144
+#: view/admin/dashboard.php:21 view/admin/dashboard.php:40
+msgid "Username"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:233 php/sidebar.php:145 php/signup.php:54
+#: view/admin/dashboard.php:22 view/admin/dashboard.php:198
+msgid "Password"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:234 php/sidebar.php:146
+#: view/admin/dashboard.php:25
+msgid "Forgot Password?"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:236 php/sidebar.php:148
+#: view/admin/dashboard.php:16 view/admin/dashboard.php:23
+msgid "Log In"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:237 lib/ActivityRezWB-App.php:241
+#: php/sidebar.php:149 php/sidebar.php:153 view/admin/dashboard.php:24
+#: view/admin/dashboard.php:29
+msgid "Sign Up"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:241 php/sidebar.php:153
+#: view/admin/dashboard.php:30
+msgid ""
+"Take advantage of our proprietary online booking technology and earn "
+"commissions."
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:241 php/sidebar.php:153
+#: view/admin/dashboard.php:30
+msgid "Learn more."
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:259 php/sidebar.php:76
+msgid "My Itinerary"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:261 php/checkout.php:17 php/sidebar.php:78
+msgid "Retrieve an itinerary from a previous sale."
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:261 php/checkout.php:17 php/sidebar.php:78
+msgid "Retrieve An Itinerary"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:266 php/sidebar.php:83
+msgid "You haven't added any activities yet."
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:271 php/sidebar.php:88
+msgid "Remove"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:274 lib/ActivityRezWB-App.php:324
+#: php/activity.php:139 php/mini-sidebar.php:10 php/search-static.php:190
+#: php/search.php:91 php/sidebar.php:20 php/sidebar.php:91
+msgid "Location"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:275 lib/ActivityRezWB-App.php:348
+#: php/sidebar.php:44 php/sidebar.php:92 view/admin/dashboard.php:137
+msgid "Date"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:276 php/sidebar.php:93
+msgid "Time"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:290 php/sidebar.php:107
+msgid "Ticket Total"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:295 php/sidebar.php:112
+msgid "Return to Activities"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:296 php/sidebar.php:113
+msgid "Customize itinerary and check out"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:296 php/sidebar.php:113
+msgid "Customize and Check Out"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:316 lib/ActivityRezWB-App.php:371
+#: php/sidebar.php:12 php/sidebar.php:66
+msgid "Search Activities"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:324 lib/ActivityRezWB-App.php:363
+#: php/sidebar.php:20 php/sidebar.php:59
+msgid "Hide"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:326 php/sidebar.php:22
+msgid "Choose a Destination"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:331 lib/ActivityRezWB-App.php:339
+#: lib/ActivityRezWB-App.php:348 php/sidebar.php:27 php/sidebar.php:35
+#: php/sidebar.php:44
+msgid "Show"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:331 php/sidebar.php:27
+msgid "Categories and Tags"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:333 php/sidebar.php:29
+msgid "Choose a category"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:334 php/sidebar.php:30
+msgid "Choose a tag"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:339 php/sidebar.php:35
+msgid "Moods"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:351 php/sidebar.php:47
+#: view/admin/dashboard.php:71
+msgid "From"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:355 php/sidebar.php:51
+#: view/admin/dashboard.php:75
+msgid "To"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:363 php/mini-sidebar.php:16 php/sidebar.php:59
+msgid "Keywords"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:370 php/sidebar.php:65
+msgid "Reset Filters"
+msgstr ""
+
+#: lib/ActivityRezWB-App.php:371 php/mini-sidebar.php:7
+#: php/mini-sidebar.php:17 php/sidebar.php:66
+msgid "Search"
+msgstr ""
+
+#: lib/ActivityRezWB-Data.php:16
+msgid "Invalid Username or Password, Try again"
+msgstr ""
+
+#: lib/ActivityRezWB-Data.php:41
+#, php-format
+msgid ""
+"Refreshing Server Settings for %s \n"
+"<br>"
+msgstr ""
+
+#: lib/ActivityRezWB-Init.php:95
+msgid "Almost done..."
+msgstr ""
+
+#: lib/ActivityRezWB-Init.php:95
+msgid "please uninstall on plugins page."
+msgstr ""
+
+#: lib/ActivityRezWB-Init.php:95
+msgid "Please click here to complete the uninstallation process"
+msgstr ""
+
+#: php/404.php:3
+msgid "Page Not Found"
+msgstr ""
+
+#: php/404.php:9
+msgid "We're sorry but the page you're trying to access cannot be found."
+msgstr ""
+
+#: php/aboutus.php:3
+msgid "About Us"
+msgstr ""
+
+#: php/activity.php:14
+msgid "Prices starting at "
+msgstr ""
+
+#: php/activity.php:30
+msgid "Click for prices"
+msgstr ""
+
+#: php/activity.php:79 php/activity.php:80 php/mini-cart.php:77
+msgid "Return to Search Results"
+msgstr ""
+
+#: php/activity.php:84
+msgid "Print This Page"
+msgstr ""
+
+#: php/activity.php:86 php/itinerary.php:88 php/reservations.php:27
+msgid "Print"
+msgstr ""
+
+#: php/activity.php:93
+msgid "No slideshow images to display."
+msgstr ""
+
+#: php/activity.php:132 php/search-static.php:191 php/search.php:92
+msgid "Duration"
+msgstr ""
+
+#: php/activity.php:134 php/search-static.php:192 php/search.php:93
+msgid "Days"
+msgstr ""
+
+#: php/activity.php:135 php/search.php:84
+msgid "Root Activity ID"
+msgstr ""
+
+#: php/activity.php:142
+msgid "Click here for map"
+msgstr ""
+
+#: php/activity.php:166 php/activity.php:193
+msgid "View Details"
+msgstr ""
+
+#: php/activity.php:180 php/itinerary.php:115
+msgid "Special Instructions"
+msgstr ""
+
+#: php/activity.php:206 php/checkout.php:156 php/checkout.php:195
+#: php/checkout.php:393 php/checkout.php:432 php/checkout.php:627
+#: php/checkout.php:668 php/checkout.php:725 php/checkout.php:759
+#: php/itinerary.php:101
+msgid "Address"
+msgstr ""
+
+#: php/activity.php:212
+msgid "Use your smartphone's QR reader to visit this activity page."
+msgstr ""
+
+#: php/checkout.php:15 php/mini-cart.php:78
+msgid "Check Out"
+msgstr ""
+
+#: php/checkout.php:27 php/confirmation.php:25
+msgid "Customize Itinerary"
+msgstr ""
+
+#: php/checkout.php:28 php/checkout.php:695 php/confirmation.php:26
+msgid "Payment Information"
+msgstr ""
+
+#: php/checkout.php:29 php/confirmation.php:15 php/confirmation.php:27
+msgid "Confirmation"
+msgstr ""
+
+#: php/checkout.php:34
+msgid "You don't have any activities added yet."
+msgstr ""
+
+#: php/checkout.php:40 php/checkout.php:587
+#, php-format
+msgid "All activities are managed by %s."
+msgstr ""
+
+#: php/checkout.php:41 php/checkout.php:588
+#, php-format
+msgid "The information you provide here is covered by the %s Privacy Policy."
+msgstr ""
+
+#: php/checkout.php:43 php/checkout.php:590
+msgid "View Privacy Policy"
+msgstr ""
+
+#: php/checkout.php:46
+msgid "Lead Guest Information"
+msgstr ""
+
+#: php/checkout.php:48
+msgid "The lead guest is the point of contact for the people in your group."
+msgstr ""
+
+#: php/checkout.php:51 php/checkout.php:63 php/checkout.php:284
+#: php/checkout.php:296 php/checkout.php:598 php/checkout.php:610
+#: php/checkout.php:699 php/checkout.php:711 php/signup.php:32
+#: view/admin/dashboard.php:172
+msgid "First Name"
+msgstr ""
+
+#: php/checkout.php:52 php/checkout.php:64 php/checkout.php:599
+#: php/checkout.php:611 php/checkout.php:701 php/checkout.php:713
+#: view/admin/dashboard.php:173
+msgid "Ex. &quot;John&quot;"
+msgstr ""
+
+#: php/checkout.php:57 php/checkout.php:290 php/checkout.php:604
+#: php/checkout.php:705 php/reservations.php:9 php/signup.php:36
+#: view/admin/dashboard.php:177
+msgid "Last Name"
+msgstr ""
+
+#: php/checkout.php:58 php/checkout.php:605 php/checkout.php:707
+#: view/admin/dashboard.php:178
+msgid "Ex. &quot;Doe&quot;"
+msgstr ""
+
+#: php/checkout.php:69 php/checkout.php:616
+msgid "Telephone Number"
+msgstr ""
+
+#: php/checkout.php:70 php/checkout.php:617 php/checkout.php:774
+msgid "Ex. &quot;(298) 555-2941&quot;"
+msgstr ""
+
+#: php/checkout.php:74 php/checkout.php:621 php/signup.php:45
+#: view/admin/dashboard.php:182
+msgid "E-mail Address"
+msgstr ""
+
+#: php/checkout.php:75 php/checkout.php:622 view/admin/dashboard.php:183
+msgid "Ex. &quot;jdoe@gmail.com&quot;"
+msgstr ""
+
+#: php/checkout.php:79
+msgid "Copy name to all guests"
+msgstr ""
+
+#: php/checkout.php:88
+msgid "Remove Activity"
+msgstr ""
+
+#: php/checkout.php:96 php/itinerary.php:97
+msgid "Date:"
+msgstr ""
+
+#: php/checkout.php:97 php/itinerary.php:98
+msgid "Time:"
+msgstr ""
+
+#: php/checkout.php:98 php/itinerary.php:99
+msgid "Location:"
+msgstr ""
+
+#: php/checkout.php:101
+msgid "This activity has mandatory fees per guest:"
+msgstr ""
+
+#: php/checkout.php:113 php/checkout.php:570
+msgid "Transportation"
+msgstr ""
+
+#: php/checkout.php:118
+msgid "Will your guests need transportation?"
+msgstr ""
+
+#: php/checkout.php:121 php/checkout.php:128 php/checkout.php:179
+#: php/checkout.php:324 php/checkout.php:357 php/checkout.php:416
+#: php/checkout.php:649 php/checkout.php:745 php/checkout.php:813
+#: php/checkout.php:818
+msgid "Choose..."
+msgstr ""
+
+#: php/checkout.php:122
+msgid "Yes, we need transportation."
+msgstr ""
+
+#: php/checkout.php:123
+msgid "No, we do not need transportation."
+msgstr ""
+
+#: php/checkout.php:127 php/checkout.php:363
+msgid "Please select which type of vehicle you would prefer."
+msgstr ""
+
+#: php/checkout.php:133 php/checkout.php:370
+msgid ""
+"We need to know where you're staying at so we can suggest the nearest "
+"transportation option."
+msgstr ""
+
+#: php/checkout.php:134 php/checkout.php:140 php/checkout.php:371
+#: php/checkout.php:377
+msgid "Hotel"
+msgstr ""
+
+#: php/checkout.php:135 php/checkout.php:372
+msgid "Local Address"
+msgstr ""
+
+#: php/checkout.php:142 php/checkout.php:379
+msgid "Type to search..."
+msgstr ""
+
+#: php/checkout.php:146 php/checkout.php:383
+msgid "Hotel Room/Confirmation Number"
+msgstr ""
+
+#: php/checkout.php:148 php/checkout.php:385
+msgid "Ex. &quot;1227&quot;"
+msgstr ""
+
+#: php/checkout.php:157 php/checkout.php:196 php/checkout.php:394
+#: php/checkout.php:433 php/checkout.php:628 php/checkout.php:669
+#: php/checkout.php:727 php/checkout.php:761
+msgid "Ex. &quot;742 Evergreen Terr.&quot;"
+msgstr ""
+
+#: php/checkout.php:161 php/checkout.php:190 php/checkout.php:398
+#: php/checkout.php:427 php/checkout.php:631 php/checkout.php:664
+#: php/checkout.php:730 php/checkout.php:754
+msgid "City"
+msgstr ""
+
+#: php/checkout.php:162 php/checkout.php:191 php/checkout.php:399
+#: php/checkout.php:428 php/checkout.php:632 php/checkout.php:665
+#: php/checkout.php:732 php/checkout.php:756
+msgid "Ex. &quot;Springfield&quot;"
+msgstr ""
+
+#: php/checkout.php:166 php/checkout.php:185 php/checkout.php:403
+#: php/checkout.php:422 php/checkout.php:647
+msgid "State/Province"
+msgstr ""
+
+#: php/checkout.php:167 php/checkout.php:186 php/checkout.php:404
+#: php/checkout.php:423
+msgid "Ex. &quot;West Virginia&quot;"
+msgstr ""
+
+#: php/checkout.php:172 php/checkout.php:409 php/checkout.php:637
+#: php/checkout.php:658 php/checkout.php:718 php/checkout.php:766
+msgid "Zip/Postal Code"
+msgstr ""
+
+#: php/checkout.php:173 php/checkout.php:410 php/checkout.php:638
+#: php/checkout.php:659 php/checkout.php:720 php/checkout.php:768
+msgid "Ex. &quot;31608&quot;"
+msgstr ""
+
+#: php/checkout.php:178 php/checkout.php:415 php/checkout.php:642
+#: php/checkout.php:736
+msgid "Country"
+msgstr ""
+
+#: php/checkout.php:202 php/checkout.php:439 php/checkout.php:515
+msgid "Apply"
+msgstr ""
+
+#: php/checkout.php:204 php/checkout.php:441
+msgid "Accept"
+msgstr ""
+
+#: php/checkout.php:210 php/checkout.php:447
+msgid "Please select a hotel."
+msgstr ""
+
+#: php/checkout.php:213 php/checkout.php:450
+msgid "Please enter a valid address."
+msgstr ""
+
+#: php/checkout.php:216 php/checkout.php:453
+msgid "Click accept if this looks good."
+msgstr ""
+
+#: php/checkout.php:223 php/checkout.php:460
+msgid "Transportation Pickup Location"
+msgstr ""
+
+#: php/checkout.php:224 php/checkout.php:461
+msgid "Showing the nearest pickup locations."
+msgstr ""
+
+#: php/checkout.php:226 php/checkout.php:463
+msgid "Show More"
+msgstr ""
+
+#: php/checkout.php:227 php/checkout.php:464
+msgid "Show Less"
+msgstr ""
+
+#: php/checkout.php:239 php/checkout.php:476
+msgid "miles from your location."
+msgstr ""
+
+#: php/checkout.php:248 php/checkout.php:485
+msgid "Instructions:"
+msgstr ""
+
+#: php/checkout.php:273
+msgid "Apply to all guests on this activity."
+msgstr ""
+
+#: php/checkout.php:275
+msgid "Remove Guest"
+msgstr ""
+
+#: php/checkout.php:285 php/checkout.php:297
+msgid "First name"
+msgstr ""
+
+#: php/checkout.php:291
+msgid "Last name"
+msgstr ""
+
+#: php/checkout.php:308
+msgid "Options"
+msgstr ""
+
+#: php/checkout.php:310
+msgid "Edit Guest Options"
+msgstr ""
+
+#: php/checkout.php:310
+msgid "Edit Options"
+msgstr ""
+
+#: php/checkout.php:333
+msgid "No options available for this activity."
+msgstr ""
+
+#: php/checkout.php:345
+msgid "Change transportation selection"
+msgstr ""
+
+#: php/checkout.php:345 php/main-webbooker.php:28
+msgid "Change"
+msgstr ""
+
+#: php/checkout.php:354
+msgid "Will this guest need transportation?"
+msgstr ""
+
+#: php/checkout.php:358
+msgid "Yes, I need transportation."
+msgstr ""
+
+#: php/checkout.php:359
+msgid "No, I do not need transportation."
+msgstr ""
+
+#: php/checkout.php:501
+msgid "Activity Subtotal:"
+msgstr ""
+
+#: php/checkout.php:508
+msgid "Discount or Promotion Code"
+msgstr ""
+
+#: php/checkout.php:509
+msgid "If you've got a discount or promotion code, enter it here."
+msgstr ""
+
+#: php/checkout.php:511
+msgid "Enter code..."
+msgstr ""
+
+#: php/checkout.php:514
+msgid "Verifying"
+msgstr ""
+
+#: php/checkout.php:519 php/itinerary.php:37
+msgid "Clear"
+msgstr ""
+
+#: php/checkout.php:524 php/itinerary.php:66
+msgid "Name:"
+msgstr ""
+
+#: php/checkout.php:525 php/confirmation.php:42 php/confirmation.php:59
+msgid "Amount:"
+msgstr ""
+
+#: php/checkout.php:530
+msgid "Sorry, that discount or promotion code isn't valid."
+msgstr ""
+
+#: php/checkout.php:535
+msgid "Summary"
+msgstr ""
+
+#: php/checkout.php:539
+msgid "Activity"
+msgstr ""
+
+#: php/checkout.php:540
+msgid "Subtotal"
+msgstr ""
+
+#: php/checkout.php:545 php/mini-cart.php:70
+msgid "Subtotal:"
+msgstr ""
+
+#: php/checkout.php:549
+msgid "Discount:"
+msgstr ""
+
+#: php/checkout.php:553
+msgid "Taxes:"
+msgstr ""
+
+#: php/checkout.php:557 view/admin/dashboard.php:145
+msgid "Total:"
+msgstr ""
+
+#: php/checkout.php:569
+msgid "Fees"
+msgstr ""
+
+#: php/checkout.php:580 php/checkout.php:676
+msgid "Continue"
+msgstr ""
+
+#: php/checkout.php:590
+msgid "View the privacy policy"
+msgstr ""
+
+#: php/checkout.php:594
+msgid ""
+"Please enter the contact information for the person making the reservations. "
+"Fields with an asterisk are required."
+msgstr ""
+
+#: php/checkout.php:652 php/checkout.php:748
+msgid "Ex. &quot;Alberta&quot;"
+msgstr ""
+
+#: php/checkout.php:675
+msgid "Go Back"
+msgstr ""
+
+#: php/checkout.php:683
+msgid "Please select which payment type you prefer."
+msgstr ""
+
+#: php/checkout.php:685
+msgid "Choose one..."
+msgstr ""
+
+#: php/checkout.php:689
+msgid "Pay with:"
+msgstr ""
+
+#: php/checkout.php:742
+msgid "State"
+msgstr ""
+
+#: php/checkout.php:772
+msgid "Phone Number"
+msgstr ""
+
+#: php/checkout.php:779
+msgid "Your card information will be collected on the next page."
+msgstr ""
+
+#: php/checkout.php:785
+msgid "Card Information"
+msgstr ""
+
+#: php/checkout.php:790
+msgid "Card Number"
+msgstr ""
+
+#: php/checkout.php:792
+msgid "Ex. &quot;1234567890123456&quot;"
+msgstr ""
+
+#: php/checkout.php:800
+msgid ""
+"The card number you entered might be incorrect or not one of our supported "
+"cards."
+msgstr ""
+
+#: php/checkout.php:811
+msgid "Expiration Month"
+msgstr ""
+
+#: php/checkout.php:816
+msgid "Expiration Year"
+msgstr ""
+
+#: php/checkout.php:821
+msgid "Security Code"
+msgstr ""
+
+#: php/checkout.php:823
+msgid "Ex. &quot;182&quot;"
+msgstr ""
+
+#: php/checkout.php:834
+msgid "Voucher value:"
+msgstr ""
+
+#: php/checkout.php:835
+msgid "Amount applied:"
+msgstr ""
+
+#: php/checkout.php:837
+msgid "Authorization Code:"
+msgstr ""
+
+#: php/checkout.php:847
+msgid "Payment Summary"
+msgstr ""
+
+#: php/checkout.php:851
+msgid "Payment Type"
+msgstr ""
+
+#: php/checkout.php:852
+msgid "Total"
+msgstr ""
+
+#: php/checkout.php:870
+msgid "I accept the"
+msgstr ""
+
+#: php/checkout.php:870
+msgid "View the terms and conditions"
+msgstr ""
+
+#: php/checkout.php:870
+msgid "terms and conditions"
+msgstr ""
+
+#: php/checkout.php:870
+msgid "."
+msgstr ""
+
+#: php/checkout.php:879
+msgid "Go back"
+msgstr ""
+
+#: php/checkout.php:880 php/signup.php:75 view/admin/dashboard.php:44
+#: view/admin/dashboard.php:213
+msgid "Submit"
+msgstr ""
+
+#: php/confirmation.php:15
+msgid "Payment Error"
+msgstr ""
+
+#: php/confirmation.php:32
+msgid ""
+"Thank you for booking your activities with us! Your payment has been "
+"successfully received and processed. The details are below."
+msgstr ""
+
+#: php/confirmation.php:35
+msgid "Notice:"
+msgstr ""
+
+#: php/confirmation.php:35
+msgid ""
+"The following activities are pending confirmation from the vendor. An agent "
+"will get back to you within 72 hours regarding this reservation."
+msgstr ""
+
+#: php/confirmation.php:37
+msgid "at"
+msgstr ""
+
+#: php/confirmation.php:39
+#, php-format
+msgid "You may call %s to inquire about them."
+msgstr ""
+
+#: php/confirmation.php:41 php/confirmation.php:58
+msgid "Reservation Number:"
+msgstr ""
+
+#: php/confirmation.php:44
+msgid "Payments:"
+msgstr ""
+
+#: php/confirmation.php:50
+msgid "Print Tickets and Itinerary"
+msgstr ""
+
+#: php/confirmation.php:50
+msgid "View Itinerary"
+msgstr ""
+
+#: php/confirmation.php:50
+msgid "Continue Browsing Activities"
+msgstr ""
+
+#: php/confirmation.php:56
+msgid ""
+"There was a problem processing your payment. Please call us at our Customer "
+"Support number to complete the sale. Have the following information ready "
+"when you call."
+msgstr ""
+
+#: php/contact.php:3
+msgid "Contact Us"
+msgstr ""
+
+#: php/dest-landing.php:28
+msgid "Activities in"
+msgstr ""
+
+#: php/dest-landing.php:33
+msgid "BEGIN CONTENT THAT NEEDS TO BE DYNAMIC"
+msgstr ""
+
+#: php/dest-landing.php:34
+msgid "Explore the activities "
+msgstr ""
+
+#: php/dest-landing.php:34
+msgid " has to offer."
+msgstr ""
+
+#: php/dest-landing.php:35
+msgid "Introduction text."
+msgstr ""
+
+#: php/dest-landing.php:36
+msgid "END CONTENT THAT NEEDS TO BE DYNAMIC"
+msgstr ""
+
+#: php/dest-landing.php:39
+msgid "Featured Activities in "
+msgstr ""
+
+#: php/dest-landing.php:49
+msgid " Activity Thumbnail Image"
+msgstr ""
+
+#: php/footer-webbooker.php:40
+msgid "Privacy Policy"
+msgstr ""
+
+#: php/footer-webbooker.php:44
+msgid "Close"
+msgstr ""
+
+#: php/footer-webbooker.php:51
+msgid "Terms and Conditions"
+msgstr ""
+
+#: php/footer-webbooker.php:57
+msgid "Cancel"
+msgstr ""
+
+#: php/footer-webbooker.php:58
+msgid "I Accept"
+msgstr ""
+
+#: php/footer-webbooker.php:64
+msgid "Processing Payment"
+msgstr ""
+
+#: php/footer-webbooker.php:67
+msgid "We are processing your payment information. Please wait a minute."
+msgstr ""
+
+#: php/footer-webbooker.php:68
+msgid "You might be redirected to a different website to finish your payment."
+msgstr ""
+
+#: php/home.php:20
+msgid "Activity Thumbnail Image URL"
+msgstr ""
+
+#: php/itinerary.php:14
+msgid "Window was blocked from opening. Please check your settings."
+msgstr ""
+
+#: php/itinerary.php:19 php/mini-sidebar.php:6
+msgid "Itinerary"
+msgstr ""
+
+#: php/itinerary.php:28
+msgid ""
+"To retrieve your itinerary, please enter the reservation number and the e-"
+"mail address associated with the reservation."
+msgstr ""
+
+#: php/itinerary.php:29
+msgid "Reservation Number*"
+msgstr ""
+
+#: php/itinerary.php:32
+msgid "E-mail Address*"
+msgstr ""
+
+#: php/itinerary.php:36
+msgid "Retrieve"
+msgstr ""
+
+#: php/itinerary.php:44
+msgid "Finding Your Itinerary"
+msgstr ""
+
+#: php/itinerary.php:49
+msgid "Error"
+msgstr ""
+
+#: php/itinerary.php:56
+msgid "Reservation"
+msgstr ""
+
+#: php/itinerary.php:57
+msgid "Sale Date"
+msgstr ""
+
+#: php/itinerary.php:59
+msgid "Payments"
+msgstr ""
+
+#: php/itinerary.php:70 php/itinerary.php:80
+msgid "Address:"
+msgstr ""
+
+#: php/itinerary.php:71 php/itinerary.php:79
+msgid "City:"
+msgstr ""
+
+#: php/itinerary.php:72 php/itinerary.php:78
+msgid "State:"
+msgstr ""
+
+#: php/itinerary.php:73 php/itinerary.php:77
+msgid "Postal/Zip Code:"
+msgstr ""
+
+#: php/itinerary.php:75
+msgid "Country:"
+msgstr ""
+
+#: php/itinerary.php:84
+msgid "Phone:"
+msgstr ""
+
+#: php/itinerary.php:85
+msgid "E-mail Address:"
+msgstr ""
+
+#: php/itinerary.php:102
+msgid "Click here to get directions."
+msgstr ""
+
+#: php/itinerary.php:102
+msgid "(opens new window)"
+msgstr ""
+
+#: php/itinerary.php:106
+msgid "Guest Summary"
+msgstr ""
+
+#: php/itinerary.php:121
+msgid "Transportation Pickup"
+msgstr ""
+
+#: php/main-webbooker.php:13 php/mini-sidebar.php:4 php/sidebar.php:7
+msgid "Home"
+msgstr ""
+
+#: php/main-webbooker.php:25 php/main-webbooker.php:29
+msgid "Language"
+msgstr ""
+
+#: php/main-webbooker.php:31
+msgid "Currency"
+msgstr ""
+
+#: php/main-webbooker.php:64
+msgid "Image Loader"
+msgstr ""
+
+#: php/main-webbooker.php:65
+msgid "Loading..."
+msgstr ""
+
+#: php/mini-cart.php:3 php/search-static.php:173 php/search.php:45
+msgid "Prices start at"
+msgstr ""
+
+#: php/mini-cart.php:5
+msgid "Select a date"
+msgstr ""
+
+#: php/mini-cart.php:12
+msgid "Select time"
+msgstr ""
+
+#: php/mini-cart.php:16
+msgid ""
+"This activity is currently not available for booking at the selected date "
+"and time."
+msgstr ""
+
+#: php/mini-cart.php:17
+msgid "Please choose another date and time or contact an agent at: "
+msgstr ""
+
+#: php/mini-cart.php:21
+msgid "No pricing information was found for this activity."
+msgstr ""
+
+#: php/mini-cart.php:30
+msgid "Decrement"
+msgstr ""
+
+#: php/mini-cart.php:31
+msgid "Increment"
+msgstr ""
+
+#: php/mini-cart.php:61
+msgid "No commission found."
+msgstr ""
+
+#: php/mini-cart.php:75
+msgid "Activities in Cart:"
+msgstr ""
+
+#: php/mini-cart.php:77
+msgid "Add another Activity"
+msgstr ""
+
+#: php/mini-sidebar.php:5
+msgid "Agency"
+msgstr ""
+
+#: php/not-ready.php:22
+msgid "Oh Noes!"
+msgstr ""
+
+#: php/not-ready.php:23
+msgid ""
+"It looks like you haven't set up your payment options for this web booker! "
+"You won't be able to view it until you do."
+msgstr ""
+
+#: php/password-reset.php:9
+msgid "Request New Password"
+msgstr ""
+
+#: php/password-reset.php:14
+msgid "Please provide your email or login name to reset your password."
+msgstr ""
+
+#: php/password-reset.php:16
+msgid "Login/Email: "
+msgstr ""
+
+#: php/password-reset.php:18
+msgid "Request Reset"
+msgstr ""
+
+#: php/password-reset.php:27 view/admin/dashboard.php:34
+msgid "Reset Password"
+msgstr ""
+
+#: php/password-reset.php:32
+msgid "Password: "
+msgstr ""
+
+#: php/password-reset.php:34
+msgid "Re-Type Password: "
+msgstr ""
+
+#: php/password-reset.php:37
+msgid "Change Password"
+msgstr ""
+
+#: php/reservations.php:3
+msgid "View Excursion Reservations"
+msgstr ""
+
+#: php/reservations.php:7
+msgid ""
+"Please enter the following information to view your excursion reservation "
+"for your Aulani vacation."
+msgstr ""
+
+#: php/reservations.php:15
+msgid "Excursion Order Number"
+msgstr ""
+
+#: php/reservations.php:21
+msgid "Find Reservation"
+msgstr ""
+
+#: php/reservations.php:24
+msgid ""
+"For questions or to modify or update your Disney Aulani Vacation, contact "
+"us, or call"
+msgstr ""
+
+#: php/reservations.php:27
+msgid "Print Page"
+msgstr ""
+
+#: php/reservations.php:27
+msgid "Print Icon"
+msgstr ""
+
+#: php/reservations.php:31
+msgid "Searching for your reservation"
+msgstr ""
+
+#: php/reservations.php:34
+msgid "There are no reservations that match your search. Please call"
+msgstr ""
+
+#: php/search-static.php:73
+msgid "Prev"
+msgstr ""
+
+#: php/search-static.php:76
+msgid "Next"
+msgstr ""
+
+#: php/search-static.php:89 php/search.php:17
+msgid "Search Results"
+msgstr ""
+
+#: php/search-static.php:96
+msgid "Results"
+msgstr ""
+
+#: php/search-static.php:104 php/search.php:33
+msgid "Your activity search returned no results."
+msgstr ""
+
+#: php/search-static.php:177 php/search.php:54
+msgid "View Activity Details"
+msgstr ""
+
+#: php/search-static.php:177 php/search.php:54
+msgid "Details"
+msgstr ""
+
+#: php/search-static.php:180 php/search.php:83
+msgid "Click to View Event Details"
+msgstr ""
+
+#: php/search-static.php:183 php/search.php:86
+msgid "Activity Thumbnail"
+msgstr ""
+
+#: php/search.php:27
+msgid "Sort by"
+msgstr ""
+
+#: php/search.php:37
+msgid "Loading activities..."
+msgstr ""
+
+#: php/search.php:50
+msgid "Click to see Prices"
+msgstr ""
+
+#: php/search.php:102
+msgid "Loading"
+msgstr ""
+
+#: php/search.php:103
+msgid "Load More"
+msgstr ""
+
+#: php/signup.php:20
+msgid "New User Registration Form"
+msgstr ""
+
+#: php/signup.php:59 view/admin/dashboard.php:203
+msgid "Verify Password"
+msgstr ""
+
+#: php/signup.php:67 view/admin/dashboard.php:187
+msgid "ARC Number"
+msgstr ""
+
+#: php/signup.php:79
+msgid "Proceeding..."
+msgstr ""
+
+#: view/admin/dashboard.php:38
+msgid "Your password has expired. Please reset it."
+msgstr ""
+
+#: view/admin/dashboard.php:41
+msgid "Old Password"
+msgstr ""
+
+#: view/admin/dashboard.php:42
+msgid "New Password"
+msgstr ""
+
+#: view/admin/dashboard.php:43
+msgid "Confirm Password"
+msgstr ""
+
+#: view/admin/dashboard.php:49
+msgid "Password Reset Successfully"
+msgstr ""
+
+#: view/admin/dashboard.php:53
+msgid "Your password has been successfully reset. Please login to the left."
+msgstr ""
+
+#: view/admin/dashboard.php:58
+msgid "Travel Agent Dashboard"
+msgstr ""
+
+#: view/admin/dashboard.php:66
+msgid "Welcome to the Travel Agent Dashboard."
+msgstr ""
+
+#: view/admin/dashboard.php:69
+msgid "Recent Sales and Commissions"
+msgstr ""
+
+#: view/admin/dashboard.php:78
+msgid "Refresh"
+msgstr ""
+
+#: view/admin/dashboard.php:79
+msgid "CSV"
+msgstr ""
+
+#: view/admin/dashboard.php:83
+msgid "No data found for this chart."
+msgstr ""
+
+#: view/admin/dashboard.php:87
+msgid "Commissions Legend"
+msgstr ""
+
+#: view/admin/dashboard.php:96
+msgid ">15%"
+msgstr ""
+
+#: view/admin/dashboard.php:106
+msgid "11-15%"
+msgstr ""
+
+#: view/admin/dashboard.php:115
+msgid "6-10%"
+msgstr ""
+
+#: view/admin/dashboard.php:123
+msgid "3-5%"
+msgstr ""
+
+#: view/admin/dashboard.php:130
+msgid "1-2%"
+msgstr ""
+
+#: view/admin/dashboard.php:135
+msgid "Commissions by sale"
+msgstr ""
+
+#: view/admin/dashboard.php:137
+msgid "Sale ID"
+msgstr ""
+
+#: view/admin/dashboard.php:137
+msgid "Commission"
+msgstr ""
+
+#: view/admin/dashboard.php:143
+msgid "No data to display."
+msgstr ""
+
+#: view/admin/dashboard.php:153
+msgid "Travel Agent Dashboard - Reports"
+msgstr ""
+
+#: view/admin/dashboard.php:157
+msgid "Welcome to the travel agent dashboard reports."
+msgstr ""
+
+#: view/admin/dashboard.php:163
+msgid "Travel Agent Signup"
+msgstr ""
+
+#: view/admin/dashboard.php:169
+msgid "Welcome to the travel agent signup page."
+msgstr ""
+
+#: view/admin/dashboard.php:188
+msgid "Ex. &quot;12345678&quot;"
+msgstr ""
+
+#: view/admin/dashboard.php:192
+msgid "Username (no spaces or special characters)"
+msgstr ""
+
+#: view/admin/dashboard.php:193
+msgid "Ex. &quot;jdoe&quot;"
+msgstr ""
+
+#: view/admin/dashboard.php:214
+msgid "Reset"
+msgstr ""
+
+#: view/admin/dashboard.php:220
+msgid "Sign-up Successful"
+msgstr ""
+
+#: view/admin/dashboard.php:224
+msgid "Congratulations!"
+msgstr ""
+
+#: view/admin/dashboard.php:224
+msgid ""
+"Your travel agent sign up is complete. Log in to view and earn commissions."
+msgstr ""

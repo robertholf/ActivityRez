@@ -1,215 +1,117 @@
 <?php
+
 /*
-Plugin Name: ActivityRez Wordpress Web Booker Plugin
-Plugin URI: http://www.activityrez.com/features/booking-engine/
-Description: ActivityRez plugin to show your ActivityRez booking engine on your site
-Version: 2.5.2
-Author: ActivityRez LLC
-Author URI: http://ActivityRez.com/
+ * ActivityRezWB_App Class
+ *
+ * These are application specific functions
+ */
 
-Copyright 2014 ActivityRez LLC
-*/
-
-define( 'ACTIVITYREZWB_PLUGIN_PATH', plugin_dir_url(__FILE__) );
-define( 'ACTIVITYREZWB_PLUGIN_DIR', plugin_dir_path(__FILE__) );
-define( 'AREZ_SERVER', 'https://secure.activityrez.com' );
-define( 'AREZ_SERVER_TRAINING', 'https://training.activityrez.com' );
+class ActivityRezWB_App {
 
 
-add_action('init', 'setWBEnv');
-function setWBEnv() {
-	//If it is remote plugin, load the api
-	if( !defined( 'FAPI_PLUGIN_DIR' ) ) {
-		if(!defined('WB_REMOTE') ) define( 'WB_REMOTE', true );
-	} else {
-		if(!defined('WB_REMOTE') ) define( 'WB_REMOTE', false );
-	}
-	include_once( ACTIVITYREZWB_PLUGIN_DIR . 'php/lib/arez.api.php' );
-}
+	// *************************************************************************************************** //
 
-register_activation_hook(__FILE__, 'arez_webboker_activation');
-add_action('arez_webbooker_update_check', 'arez_update_webbookers');
+	/*
+	 * Custom Post Type Taxonomy
+	 */
 
-function arez_webboker_activation() {
-	if(!defined('WB_REMOTE')){
-		setWBEnv();
-	}
-	if( WB_REMOTE ){
-		$options = get_option( 'arez_plugin' );
-		if( !isset($options['server']) ){
-			$options['server'] = 'secure';
-			update_option('arez_plugin',$options);
-			$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1 ) );
-			foreach( $webbookers as $wb ){
-				$wbMeta = get_post_meta($wb->ID);
-				if( !isset($wbMeta['include_header']) ){
-					update_post_meta($wb->ID,'include_header',1);
-				}
-				if( !isset($wbMeta['include_footer']) ){
-					update_post_meta($wb->ID,'include_footer',1);
-				}
+		public function post_type() {
+
+		/* Taxonomy */
+
+			// Define Labels 
+			$labels = array(
+				'add_new' => _('Add Web Booker'),
+				'add_new_item' => __('Add New Web Booker'),
+				'edit' => _('Edit'),
+				'edit_item' => __('Edit Web Booker'),
+				'name' => __('Web Bookers'),
+				'new_item' => __('New Web Booker'),
+				'not_found' => __('No Web Bookers found'),
+				'not_found_in_trash' => __('No Web Bookers found in trash'),
+				'search_items' => __('Search Web Booker'),
+				'singular_name' => __('Web Booker'),
+				'view' => __('View Web Bookers'),
+				'view_item' => __('View Web Booker')
+			);
+
+			// Register Post Types
+			$args = array(
+				'public' => true,
+				'show_ui' => true,
+				'show_in_menu'=>'arez',
+				'exclude_from_search'=>true,
+				'capability_type' => 'post',
+				'hierarchical' => true,
+				'rewrite' => array('slug'=>'wb', 'with_front'=>true),
+				'labels' => $labels,
+				'supports' => array('title')
+			);
+
+			register_post_type( 'webBooker', $args );
+
+		}
+
+
+	/*
+	 * Custom Paths
+	 */
+
+		public function rewrite_slugs() {
+
+			// Establish Slugs
+			add_rewrite_tag( '%activity_destination%', '([^&]+)' );
+			add_rewrite_tag( '%search_destination%', '([^&]+)' );
+			add_rewrite_tag( '%search_category%', '([^&]+)' );
+			add_rewrite_tag( '%search_mood%', '([^&]+)' );
+			add_rewrite_tag( '%search_tag%', '([^&]+)' );
+			add_rewrite_tag( '%activitySlug%', '([^&]+)' );
+
+			// Establish Base Path
+			$arezwbSlug = get_post_type_object('webbooker')->rewrite['slug'];
+
+			// Destination
+			add_rewrite_rule( $arezwbSlug.'/([^/]+)/destination/([^/]+)/?$',
+				'index.php?post_type=webbooker&webbooker=$matches[1]&search_destination=$matches[2]', 'top' );
+
+			// Category
+			add_rewrite_rule( $arezwbSlug.'/([^/]+)/category/([^/]+)/?$',
+				'index.php?post_type=webbooker&webbooker=$matches[1]&search_category=$matches[2]', 'top' );
+
+			// Mood
+			add_rewrite_rule( $arezwbSlug.'/([^/]+)/mood/([^/]+)/?$',
+				'index.php?post_type=webbooker&webbooker=$matches[1]&search_mood=$matches[2]', 'top' );
+
+			// Tag
+			add_rewrite_rule( $arezwbSlug.'/([^/]+)/tag/([^/]+)/?$',
+				'index.php?post_type=webbooker&webbooker=$matches[1]&search_tag=$matches[2]', 'top' );
+
+			// 3 arguments destination, activity
+			add_rewrite_rule( $arezwbSlug.'/([^/]+)/([^/]+)/([^/]+)/?$',
+				'index.php?post_type=webbooker&webbooker=$matches[1]&activity_destination=$matches[2]&activitySlug=$matches[3]', 'top' );
+
+			// Check
+			$rules = get_option( 'rewrite_rules' );
+			if ( 
+				!isset( $rules[$arezwbSlug.'/([^/]+)/([^/]+)/([^/]+)/?$'] ) ||
+				!isset( $rules[$arezwbSlug.'/([^/]+)/tag/([^/]+)/?$'] ) ||
+				!isset( $rules[$arezwbSlug.'/([^/]+)/mood/([^/]+)/?$'] ) ||
+				!isset( $rules[$arezwbSlug.'/([^/]+)/category/([^/]+)/?$'] ) ||
+				!isset( $rules[$arezwbSlug.'/([^/]+)/destination/([^/]+)/?$'] )
+			) {
+				global $wp_rewrite;
+				$wp_rewrite->flush_rules();
 			}
+
 		}
-		wp_schedule_event( time(), 'hourly', 'arez_webbooker_update_check');
-	}
-}
 
-register_deactivation_hook(__FILE__, 'arez_webboker_deactivation');
-function arez_webboker_deactivation() {
-	wp_clear_scheduled_hook('arez_webbooker_update_check');
-}
+	// *************************************************************************************************** //
 
 
-/**
-* This is a functions file for use in the webBooker
-*/
-add_action( 'init', 'web_booker_post_type' );
-function web_booker_post_type() {
-	// register taxonomies
-	$labels = array(
-		'add_new' => _('Add Web Booker'),
-		'add_new_item' => __('Add New Web Booker'),
-		'edit' => _('Edit'),
-		'edit_item' => __('Edit Web Booker'),
-		'name' => __('Web Bookers'),
-		'new_item' => __('New Web Booker'),
-		'not_found' => __('No Web Bookers found'),
-		'not_found_in_trash' => __('No Web Bookers found in trash'),
-		'search_items' => __('Search Web Booker'),
-		'singular_name' => __('Web Booker'),
-		'view' => __('View Web Bookers'),
-		'view_item' => __('View Web Booker')
-	);
 
-	$args = array(
-		'public' => true,
-		'show_ui' => true,
-		'show_in_menu'=>'arez',
-		'exclude_from_search'=>true,
-		'capability_type' => 'post',
-		'hierarchical' => true,
-		'rewrite' => array('slug'=>'wb', 'with_front'=>true),
-		'labels' => $labels,
-		'supports' => array('title')
-	);
 
-	register_post_type( 'webBooker', $args );
-	add_rewrite_tag( '%activity_destination%', '([^&]+)' );
-	add_rewrite_tag( '%search_destination%', '([^&]+)' );
-	add_rewrite_tag( '%search_category%', '([^&]+)' );
-	add_rewrite_tag( '%search_mood%', '([^&]+)' );
-	add_rewrite_tag( '%search_tag%', '([^&]+)' );
-	add_rewrite_tag( '%activitySlug%', '([^&]+)' );
 
-	//arezLog('debug',"register_web_booker_urls: trying to save permalinks.".print_r($post,1));
-	/**
-	 * This will create the url rewrite rules to get things
-	 * like category and product information from the web booker.  This is used mostly for
-	 * seo & permalinks
-	*/
-	$wbSlug = get_post_type_object('webbooker')->rewrite['slug'];
-	
-	//now do a rewrite rule for all searches with destination
-	add_rewrite_rule( $wbSlug.'/([^/]+)/destination/([^/]+)/?$',
-	'index.php?post_type=webbooker&webbooker=$matches[1]&search_destination=$matches[2]', 'top' );
-	
-	//now do a rewrite rule for searches with category
-	add_rewrite_rule( $wbSlug.'/([^/]+)/category/([^/]+)/?$',
-	'index.php?post_type=webbooker&webbooker=$matches[1]&search_category=$matches[2]', 'top' );
 
-	//now do a rewrite rule for searches with mood
-	add_rewrite_rule( $wbSlug.'/([^/]+)/mood/([^/]+)/?$',
-	'index.php?post_type=webbooker&webbooker=$matches[1]&search_mood=$matches[2]', 'top' );
-
-	//now do a rewrite rule for searches with tag
-	add_rewrite_rule( $wbSlug.'/([^/]+)/tag/([^/]+)/?$',
-	'index.php?post_type=webbooker&webbooker=$matches[1]&search_tag=$matches[2]', 'top' );
-
-	//this is saying to add url rewrite rules that include 3 arguments destination, activity
-	add_rewrite_rule( $wbSlug.'/([^/]+)/([^/]+)/([^/]+)/?$',
-	'index.php?post_type=webbooker&webbooker=$matches[1]&activity_destination=$matches[2]&activitySlug=$matches[3]', 'top' );
-
-	$rules = get_option( 'rewrite_rules' );
-	if ( 
-		!isset( $rules[$wbSlug.'/([^/]+)/([^/]+)/([^/]+)/?$'] ) ||
-		!isset( $rules[$wbSlug.'/([^/]+)/tag/([^/]+)/?$'] ) ||
-		!isset( $rules[$wbSlug.'/([^/]+)/mood/([^/]+)/?$'] ) ||
-		!isset( $rules[$wbSlug.'/([^/]+)/category/([^/]+)/?$'] ) ||
-		!isset( $rules[$wbSlug.'/([^/]+)/destination/([^/]+)/?$'] )
-	) {
-		global $wp_rewrite;
-		$wp_rewrite->flush_rules();
-	}
-}
-
-function add_webBooker_to_dropdown( $pages, $r )
-{
-	
-	if('page_on_front' == $r['name'])
-	{
-		//die("Get_Pages:".print_r($r,1));
-		$args = array(
-			'post_type' => 'webBooker',
-			'post_parent'=>0,
-			'posts_per_page'=>-1,
-			'post_status'=>'publish',
-			'meta_query' => array(
-				array(
-					'key' => 'webBookerID'
-				)
-			)
-		);
-		$items = get_posts($args);
-		$pages = array_merge($pages, $items);
-	}
-
-	return $pages;
-}
-add_filter( 'get_pages', 'add_webBooker_to_dropdown',10,2 );
-
-function enable_front_page_webBooker( $query )
-{
-	if(( !isset($query->query_vars['post_type']) || '' == $query->query_vars['post_type'] ) && 0 != $query->query_vars['page_id']){
-		$query->query_vars['post_type'] = array( 'page', 'webBooker' );
-	}
-}
-add_action( 'pre_get_posts', 'enable_front_page_webBooker' );
-
-//Steal the call to single-webbooker here!
-add_filter( 'template_include', 'arezWBTemplate', 1, 1 );
-function arezWBTemplate( $template ) {
-	global $post,$l10n,$wp_query, $query;
-	if ( $post->post_type == 'webbooker' ) {
-		$single_webbooker = ACTIVITYREZWB_PLUGIN_DIR . '/php/single-webbooker.php';
-		return $single_webbooker;
-	}
-	return $template;
-}
-
-add_filter( 'wbTemplate', 'includeDefaultWBTemplate', 10, 2 );
-
-function includeDefaultWBTemplate( $wb_include=false, $wb=false ) {
-	if ( !$wb ) {
-		return;
-	} else if ( $wb_include ) {
-		return $wb_include;
-	} else {
-		return ACTIVITYREZWB_PLUGIN_DIR . '/php/bootstrap.php';
-	}
-}
-
-add_filter( 'plugins_loaded', 'wbAdmin' );
-
-function wbAdmin() {
-	if( is_admin() ){
-		if(!defined('WB_REMOTE')){
-			setWBEnv();
-		}
-		if( WB_REMOTE == true ) {
-			include_once( ACTIVITYREZWB_PLUGIN_DIR . '/php/wp-admin/wp_admin.views.php' );
-		}
-	}
-}
 
 //Define Short Code and options
 add_shortcode( 'arezWebBooker', 'arezWebBookerShortCode' );
@@ -272,159 +174,143 @@ $wbCacheFields = array(
 );
 
 
-// fetch and cache all weboker data
-function arez_update_webbookers( $webbookerID = null){
-	$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1 ) );
-	//get into main server
-	$options = get_option( 'arez_plugin' );
-	$arezApi = ActivityRezAPI::instance();
-	$resp = $arezApi->r_authArez( $options['username'], $options['password'] );
-	
-	//cache values
-	global $wbCacheFields;
-	$msg = '';
-	if( !empty($webbookers) && is_array($webbookers)){
-		$wbs = array();
-		foreach( $webbookers as $wb ){
-			$wbID = get_post_meta($wb->ID,'webBookerID',true);
-			if( !is_null($webbookerID)){//update a specific webbooker
-				if( $wbID != $webbookerID) continue;
-			}
-			
-			$wbs[] = $wbID;
-			$CurlResult = $arezApi->getWebBooker($wbID);//cache wb data
-			$msg .= sprintf(__("Refreshing Server Settings for %s \n<br>",'arez'),$wb->post_title);
-			foreach( $wbCacheFields as $field ){
-				if(isset($CurlResult['data'][$field])){
-					update_post_meta($wb->ID,$field,$CurlResult['data'][$field]);
-				}
-			}
+
+
+
+
+/*
+
+
+	// *************************************************************************************************** //
+	// TODO REFACTOR
+	// *************************************************************************************************** //
+
+
+	//Steal the call to single-webbooker here!
+	add_filter( 'template_include', 'arezWBTemplate', 1, 1 );
+	function arezWBTemplate( $template ) {
+		global $post,$l10n,$wp_query, $query;
+		if ( $post->post_type == 'webbooker' ) {
+			$single_webbooker = ACTIVITYREZWB_PLUGIN_DIR . '/php/single-webbooker.php';
+			return $single_webbooker;
 		}
-		arez_get_translationFiles($wbs);//update po files
+		return $template;
 	}
-	return $msg;
-}
 
-
-function arez_get_translationFiles($wbids=array()){
-	foreach( $wbids as $wbID){
-		$arezApi = ActivityRezAPI::instance();
-		$CurlResult = $arezApi->fetchTranslations($wbID);//update translation files
-		$tmp_zip = tempnam ("/tmp", 'translations_');
-		if($tmp_zip){
-			file_put_contents( $tmp_zip,  $CurlResult);
-			$base = WP_CONTENT_DIR;
-			chdir($base);
-			$cmd = 'cd '.$base.' && /usr/bin/unzip '.$tmp_zip;
-			exec($cmd);
-			unlink($tmp_zip);
+	add_filter( 'wbTemplate', 'includeDefaultWBTemplate', 10, 2 );
+	function includeDefaultWBTemplate( $wb_include=false, $wb=false ) {
+		if ( !$wb ) {
+			return;
+		} else if ( $wb_include ) {
+			return $wb_include;
+		} else {
+			return ACTIVITYREZWB_PLUGIN_DIR . '/php/bootstrap.php';
 		}
-	}	
-}
+	}
 
- 
-/**
- *	function that sorts countries/languages by i18n(RFC 3066) in ascending order.
+
+
+	function arez_get_translationFiles($wbids=array()){
+		foreach( $wbids as $wbID){
+			$arezApi = ActivityRezAPI::instance();
+			$CurlResult = $arezApi->fetchTranslations($wbID);//update translation files
+			$tmp_zip = tempnam ("/tmp", 'translations_');
+			if($tmp_zip){
+				file_put_contents( $tmp_zip,  $CurlResult);
+				$base = WP_CONTENT_DIR;
+				chdir($base);
+				$cmd = 'cd '.$base.' && /usr/bin/unzip '.$tmp_zip;
+				exec($cmd);
+				unlink($tmp_zip);
+			}
+		}
+	}
+
+
+
+
+	function add_webBooker_to_dropdown( $pages, $r )
+	{
+		
+		if('page_on_front' == $r['name'])
+		{
+			//die("Get_Pages:".print_r($r,1));
+			$args = array(
+				'post_type' => 'webBooker',
+				'post_parent'=>0,
+				'posts_per_page'=>-1,
+				'post_status'=>'publish',
+				'meta_query' => array(
+					array(
+						'key' => 'webBookerID'
+					)
+				)
+			);
+			$items = get_posts($args);
+			$pages = array_merge($pages, $items);
+		}
+
+		return $pages;
+	}
+	add_filter( 'get_pages', 'add_webBooker_to_dropdown',10,2 );
+
+
+
+	function enable_front_page_webBooker( $query )
+	{
+		if(( !isset($query->query_vars['post_type']) || '' == $query->query_vars['post_type'] ) && 0 != $query->query_vars['page_id']){
+			$query->query_vars['post_type'] = array( 'page', 'webBooker' );
+		}
+	}
+	add_action( 'pre_get_posts', 'enable_front_page_webBooker' );
+
+
+
+*/
+
+/*
+ * Design Templates
  */
-function countrySort( $co, $i18n, $lang = false ) {
-	$k = $lang ? 'title' : 'name';	// set array key name
-	
-	// avoid no enhanced functions - depends on PHP server
-	if( function_exists('collator_create') && function_exists('collator_sort_with_sort_keys') ) {
-		$old = array();
-		foreach( $co as $c ) {
-			$old[] = $c[$k];
-		}
-		$coll = collator_create( $i18n );
-		$ns = collator_sort_with_sort_keys( $coll, $old );
 
-		if( $ns ) {
-			$new = array();
-			foreach( $old as $o ) {
-				foreach( $co as $c ) {
-					if( $c[$k] == $o ) {
-						$new[] = $c;
-					}
-				}
-			}
-			if( !$lang && $i18n == 'ja' )	$new = countrySortByJP( $new );
-			$co = $new;
+	// TODO: Add Templates
+
+	function arez_include( $template ){
+		global $wb;
+		$path = get_template_directory().'/wb/'.$template;
+		if( file_exists($path) ){
+			include( $path );
+		}else{
+			include( ACTIVITYREZWB_PLUGIN_DIR . '/view/php/' . $template );
 		}
 	}
-	
-	if( !$lang ) $co = setTopCountry( $co, $i18n );
-	return $co;
-}
 
- 
-/**
- *	function that sorts countries mixed Chinese and Kana characters for Japanese.
+
+
+
+// *************************************************************************************************** //
+
+/*
+ * Handle Styles
  */
-function countrySortByJP( $co ) {
-	// insert position
-	$pos = array( 'PT', 'QA', 'NE', 'SC', 'TH', 'TC', 'TD', 'CF', 'TN', 'BD', 'FM', 'ZA', 'NA', 'RU', 'KH');
-	
-	// find 'HK' as the first row of the kanji group
-	for( $i = count( $co )- 1; $i >= 0; $i-- ) {
-		if( $co[$i]['alpha-2'] == 'HK' ) break;
-	}
-	$co_kana  = array_slice( $co, 0,  $i); 
-	$co_kanji = array_slice( $co, (count( $co ) - $i)*-1 );
 
-	for( $i = 0; $i < count( $co_kanji ); $i++ ) {
-		$add[0] = $co_kanji[$i];
-		for( $j = 0; $j < count( $co_kana ); $j++ ) {
-			if( $co_kana[$j]['alpha-2'] == $pos[$i] ) {
-				$a = array_slice( $co_kana, 0, $j+1 );
-				$b = array_slice( $co_kana, $j+1 );
-				$co_kana = array_merge( $a, array( $co_kanji[$i] ), $b );
-				break;
+
+	// Public Facing Head Section 
+	add_action('wp_head', 'ActivityRezWB_site_head');
+		function ActivityRezWB_site_head() {
+			// Ensure we are NOT in the admin section of wordpress
+			if( !is_admin() ) {
+				// TODO
 			}
 		}
-	}
-	return $co_kana;
-}
 
- 
-/**
- *	function that sets top country as a preference.
- */
-function setTopCountry( $co, $i18n ) {
-	//set the preference
-	switch( $i18n ) {
-		case 'ja'		: $pr = 'JP'; break;
-		case 'in_IN'	: $pr = 'ID'; break;
-		case 'vi'		: $pr = 'VN'; break;
-		default			: $pr = strtoupper( substr( $i18n, -2 ));
-	}
-
-	// pick up the preference position
-	for( $i = count( $co )- 1; $i >= 0; $i-- ) {
-		if( $co[$i]['alpha-2'] == $pr ) break;
-	}
-	
-	// change order
-	$a  = array_slice( $co, 0,  $i); 
-	if( count( $co ) - $i -1 > 0 ) {
-		$b  = array_slice( $co, (count( $co ) - $i -1)*-1 );
-	} else {
-		$b  = array();
-	}
-	$co = array_merge( array( $co[$i] ), $a, $b);
-	
-	return $co;
-}
+	// Add Custom Body Class
+	add_filter("body_class", "ActivityRezWB_site_bodyclass");
+		function ActivityRezWB_site_bodyclass($classes) {
+			// TODO
+		}
 
 
-function arez_include( $template ){
-	global $wb;
-	$path = get_template_directory().'/wb/'.$template;
-	if( file_exists($path) ){
-		include( $path );
-	}else{
-		include( ACTIVITYREZWB_PLUGIN_DIR . '/php/' . $template );
-	}
-}
+
 
 
 
