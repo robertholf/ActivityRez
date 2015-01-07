@@ -5,7 +5,6 @@ Plugin URI: http://www.activityrez.com/features/booking-engine/
 Description: ActivityRez plugin to show your ActivityRez booking engine on your site
 Author: ActivityRez LLC
 Author URI: http://ActivityRez.com/
-Text Domain: arezwb
 Version: 3.0
 */
 $ACTIVITYREZWB_VERSION = "3.0";
@@ -47,7 +46,8 @@ If You do not agree to the terms of this License, do not install or use the Soft
 	// Paths
 	define( 'ACTIVITYREZWB_PLUGIN_PATH', plugin_dir_url(__FILE__) );
 	define( 'ACTIVITYREZWB_PLUGIN_DIR', plugin_dir_path(__FILE__) );
-	define( 'ACTIVITYREZWB_TEXTDOMAIN', 'arezwb' );
+	define( 'ACTIVITYREZWB_SLUG', plugin_basename(__FILE__) );
+	define( 'ACTIVITYREZWB_TEXTDOMAIN', ACTIVITYREZWB_SLUG );
 
 	// Define Destinations
 	define( 'ACTIVITYREZWB_REMOTE', true );  // Let's just assume that we are remote shall we?
