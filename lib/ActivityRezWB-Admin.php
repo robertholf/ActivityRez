@@ -14,7 +14,7 @@ class ActivityRezWB_Admin {
 	 * Initialize
 	 */
 
-		public function admin_init(){
+		public static function admin_init(){
 
 			// Check if Admin
 			if ( is_admin() ){
@@ -138,7 +138,7 @@ class ActivityRezWB_Admin {
 	 * Define Admin Styles
 	 */
 
-		function ActivityRezWB_admin_head() {
+		public static function ActivityRezWB_admin_head() {
 			// Ensure we are in the admin section of wordpress
 			if( is_admin() ) {
 

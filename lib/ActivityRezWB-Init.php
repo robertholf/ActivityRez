@@ -15,7 +15,7 @@ class ActivityRezWB_Init {
 	 * 
 	 */
 
-		public function init(){
+		public static function init(){
 
 			/*
 			 * Internationalization
