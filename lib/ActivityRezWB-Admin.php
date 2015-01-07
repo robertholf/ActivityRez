@@ -130,7 +130,7 @@ class ActivityRezWB_Admin {
 
 		// Settings Page View
 		public static function menu_settings(){
-			//include_once('view/admin/settings.php');
+			 include_once(ACTIVITYREZWB_PLUGIN_DIR .'view/admin/settings.php');
 		}
 
 
