@@ -23,15 +23,11 @@ class ActivityRezWB_Init {
 
 				// Identify Folder for PO files
 				load_plugin_textdomain( ACTIVITYREZWB_TEXTDOMAIN, false, basename( dirname( __FILE__ ) ) . '/assets/languages/' );
-				// Register Settings
-				add_action('admin_init', array('ActivityRezWB_Init', 'do_register_settings') );
-
+				
 
 		}
 
-		public static function do_register_settings() {
-			register_setting('arez-settings-group', 'arez_options'); 
-		}
+		
 			
 
 	// *************************************************************************************************** //
