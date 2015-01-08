@@ -23,12 +23,11 @@ class ActivityRezWB_Init {
 
 				// Identify Folder for PO files
 				load_plugin_textdomain( ACTIVITYREZWB_TEXTDOMAIN, false, basename( dirname( __FILE__ ) ) . '/assets/languages/' );
-				
+
 
 		}
 
-		
-			
+
 
 	// *************************************************************************************************** //
 
@@ -49,6 +48,8 @@ class ActivityRezWB_Init {
 				// Set Default Options
 				$arez_options_arr = array(
 					"api_key" => "",
+					"username" => "",
+					"password" => ""
 				);
 
 				// Update Options
@@ -166,13 +167,3 @@ class ActivityRezWB_Init {
 
 
 }
-
-
-
-			// Requires 3.2 or greater
-			// TODO CLEANUP
-			if ( ! isset($GLOBALS['wp_version']) || version_compare($GLOBALS['wp_version'], '3.2', '<=') ) { // if less than 3.2
-				echo "<div class=\"error\" style=\"margin-top:30px;\"><p>This plugin requires WordPress version 3.2 or newer.</p></div>";
-				return;
-			}
-
