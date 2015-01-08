@@ -15,7 +15,7 @@ class ActivityRezWB_Init {
 	 * 
 	 */
 
-		public function init(){
+		public static function init(){
 
 			/*
 			 * Internationalization
@@ -23,11 +23,12 @@ class ActivityRezWB_Init {
 
 				// Identify Folder for PO files
 				load_plugin_textdomain( ACTIVITYREZWB_TEXTDOMAIN, false, basename( dirname( __FILE__ ) ) . '/assets/languages/' );
-
+				
 
 		}
 
-
+		
+			
 
 	// *************************************************************************************************** //
 

@@ -14,7 +14,11 @@ class ActivityRezWB_Admin {
 	 * Initialize
 	 */
 
+<<<<<<< HEAD
 		public function init(){
+=======
+		public static function admin_init(){
+>>>>>>> FETCH_HEAD
 
 			// Check if Admin
 			if ( is_admin() ){
@@ -26,20 +30,30 @@ class ActivityRezWB_Admin {
 				add_action( 'admin_menu', array('ActivityRezWB_Admin', 'menu_addlinkto_settings') );
 
 				// Add Styles to Admin Head Section 
+<<<<<<< HEAD
 				add_action( 'admin_head', array('ActivityRezWB_Admin', 'admin_head') );
+=======
+				add_action('admin_head', array('ActivityRezWB_Admin', 'ActivityRezWB_admin_head') );
+
+				// Add Link to Plugin Page
+				//add_action('plugin_action_links', array('ActivityRezWB_Admin', 'menu_addlinkto_plugin'),10,2);
+
+				// Register Settings
+				add_action('admin_init', array('ActivityRezWB_Admin', 'do_register_settings') );
+>>>>>>> FETCH_HEAD
 
 
 				/*
-				TODO:
+					TODO:
 
-				// Load Shortcode Generator
-				add_action('admin_menu', array('Activities', 'shortcode_display_generator'));
+					// Load Shortcode Generator
+					add_action('admin_menu', array('Activities', 'shortcode_display_generator'));
 
-				// Add Link to Plugin Page
-				add_action('plugin_action_links', array('Activities', 'menu_addlinkto_plugin'),10,2);
+					// Add Link to Plugin Page
+					add_action('plugin_action_links', array('Activities', 'menu_addlinkto_plugin'),10,2);
 
-				// Register Settings
-				add_action('admin_init', array('RBAgency', 'do_register_settings') );
+					// Register Settings
+					add_action('admin_init', array('RBAgency', 'do_register_settings') );
 
 				*/
 
@@ -60,6 +74,13 @@ class ActivityRezWB_Admin {
 			register_setting('arez_options_group', 'arez_options');
 		}
 
+	/*
+	 * Register settings 
+	 */
+		public static function do_register_settings() {
+				register_setting('arez-settings-group', 'arez_options'); 
+		}
+
 
 	/*
 	 * Administrative Menu's
@@ -68,10 +89,16 @@ class ActivityRezWB_Admin {
 		// Add Admin Menu
 		public static function menu_admin(){
 
-			add_menu_page( __('Activities', ACTIVITYREZWB_TEXTDOMAIN), __('Activities', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez', array('ActivityRezWB_Admin', 'menu_dashboard'), 'div', 4);
+			add_menu_page(
+				 __('Activities', ACTIVITYREZWB_TEXTDOMAIN), 
+				 __('Activities', ACTIVITYREZWB_TEXTDOMAIN), 
+				 	'edit_pages', 
+				 		  'arez-plugin', array('ActivityRezWB_Admin', 'menu_dashboard'), 
+				 		   plugins_url( 'assets/activityrez_icon_grey.png',dirname(__FILE__)), 
+				 		  	      5);
 
-				add_submenu_page( 'arez', __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez', array('ActivityRezWB_Admin', 'menu_dashboard') );
-				add_submenu_page( 'arez', __('Settings', ACTIVITYREZWB_TEXTDOMAIN), __('Settings', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez_menu_settings', array('ActivityRezWB_Admin', 'menu_settings') );
+				add_submenu_page( 'arez-plugin', __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez-plugin', array('ActivityRezWB_Admin', 'menu_dashboard') );
+				add_submenu_page( 'arez-plugin', __('Settings', ACTIVITYREZWB_TEXTDOMAIN), __('Settings', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez-menu-settings', array('ActivityRezWB_Admin', 'menu_settings') );
 
 		}
 
@@ -82,7 +109,31 @@ class ActivityRezWB_Admin {
 			if ( !current_user_can('edit_posts') )
 				return;
 
+<<<<<<< HEAD
 			add_options_page( 'ActivityRez', 'ActivityRez', "manage_options", "arez_options", array('ActivityRezWB_Admin', 'menu_settings'));
+=======
+			add_options_page( 'ActivityRez', 'ActivityRez', "manage_options", "arez-plugin-settings", array('ActivityRezWB_Admin', 'menu_settings'));
+		}
+
+				// Add Link to Settings Page
+		public static function menu_addlinkto_plugin( $links, $file ) {
+			static $this_plugin;
+
+			if (!$this_plugin) {
+				$this_plugin = plugin_basename(__FILE__);
+			}
+
+			// check to make sure we are on the correct plugin
+			if ($file == $this_plugin) {
+
+				// Create Link for Settings Page
+				$settings_link = '<a href="' . admin_url("admin.php") . '?page=rb_agency_settings">Settings</a>';
+				// Add link to List
+				array_unshift($links, $settings_link);
+			}
+
+			return $links;
+>>>>>>> FETCH_HEAD
 		}
 
 /*
@@ -149,7 +200,7 @@ class ActivityRezWB_Admin {
 
 		// Settings Page View
 		public static function menu_settings(){
-			//include_once('view/admin/settings.php');
+			 include_once(ACTIVITYREZWB_PLUGIN_DIR .'view/admin/settings.php');
 		}
 
 
@@ -158,7 +209,11 @@ class ActivityRezWB_Admin {
 	 * Define Admin Styles
 	 */
 
+<<<<<<< HEAD
 		function admin_head() {
+=======
+		public static function ActivityRezWB_admin_head() {
+>>>>>>> FETCH_HEAD
 			// Ensure we are in the admin section of wordpress
 			if( is_admin() ) {
 
