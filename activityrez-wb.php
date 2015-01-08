@@ -65,11 +65,11 @@ If You do not agree to the terms of this License, do not install or use the Soft
 	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Init.php'); // WP Related
 		add_action( 'init', array('ActivityRezWB_Init', 'init') ); // Menu/Internationalization etc.
 
-	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Common.php'); // Common Functions
+	//require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Common.php'); // Common Functions
 
 
 	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Admin.php'); // Admin Specific
-		add_action( 'init', array('ActivityRezWB_Admin', 'admin_init') ); // Menu/Internationalization etc.
+		add_action( 'init', array('ActivityRezWB_Admin', 'init') ); // Menu/Internationalization etc.
 
 /*
 	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-App.php'); // App Specific

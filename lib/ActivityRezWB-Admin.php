@@ -14,7 +14,7 @@ class ActivityRezWB_Admin {
 	 * Initialize
 	 */
 
-		public function admin_init(){
+		public function init(){
 
 			// Check if Admin
 			if ( is_admin() ){
@@ -26,8 +26,7 @@ class ActivityRezWB_Admin {
 				add_action( 'admin_menu', array('ActivityRezWB_Admin', 'menu_addlinkto_settings') );
 
 				// Add Styles to Admin Head Section 
-				add_action('admin_head', array('ActivityRezWB_Admin', 'ActivityRezWB_admin_head') );
-
+				add_action( 'admin_head', array('ActivityRezWB_Admin', 'admin_head') );
 
 
 				/*
@@ -46,6 +45,19 @@ class ActivityRezWB_Admin {
 
 			}
 
+			// Register Settings
+			add_action( 'admin_init', array('ActivityRezWB_Admin', 'register_settings') );
+
+		}
+
+
+
+	/*
+	 * Register Settings
+	 */
+
+		public static function register_settings() {
+			register_setting('arez_options_group', 'arez_options');
 		}
 
 
@@ -70,7 +82,7 @@ class ActivityRezWB_Admin {
 			if ( !current_user_can('edit_posts') )
 				return;
 
-			add_options_page( 'ActivityRez', 'ActivityRez', "manage_options", "arez_plugin", array('ActivityRezWB_Admin', 'menu_settings'));
+			add_options_page( 'ActivityRez', 'ActivityRez', "manage_options", "arez_options", array('ActivityRezWB_Admin', 'menu_settings'));
 		}
 
 /*
@@ -125,7 +137,14 @@ class ActivityRezWB_Admin {
 
 		// Admin Dashboard View
 		public static function menu_dashboard(){
-			include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/dashboard.php');
+			$options = get_option( 'arez_plugin' );
+			// If API key is not present then prompt setup
+			if( empty( $options['api_key'] ) ){
+				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');
+			} else {
+
+				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/dashboard.php');
+			}
 		}
 
 		// Settings Page View
@@ -134,11 +153,12 @@ class ActivityRezWB_Admin {
 		}
 
 
+
 	/*
 	 * Define Admin Styles
 	 */
 
-		function ActivityRezWB_admin_head() {
+		function admin_head() {
 			// Ensure we are in the admin section of wordpress
 			if( is_admin() ) {
 

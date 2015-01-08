@@ -7,7 +7,7 @@
 
 	function remoteAuth(){
 		global $flashError;
-		$options = get_option( 'arez_plugin' );
+		$options = get_option( 'arez_options' );
 
 		include_once(ACTIVITYREZWB_PLUGIN_DIR . '/php/lib/arez.api.php');
 		$arezApi = ActivityRezAPI::instance();
@@ -21,7 +21,7 @@
 	function arez_update_webbookers( $webbookerID = null){
 		$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1 ) );
 		//get into main server
-		$options = get_option( 'arez_plugin' );
+		$options = get_option( 'arez_options' );
 		$arezApi = ActivityRezAPI::instance();
 		$resp = $arezApi->r_authArez( $options['username'], $options['password'] );
 		

@@ -10,7 +10,7 @@
  *	function that sorts countries/languages by i18n(RFC 3066) in ascending order.
  */
 function countrySort( $co, $i18n, $lang = false ) {
-	$k = $lang ? 'title' : 'name';	// set array key name
+	$k = $lang ? 'title' : 'name'; // set array key name
 	
 	// avoid no enhanced functions - depends on PHP server
 	if( function_exists('collator_create') && function_exists('collator_sort_with_sort_keys') ) {

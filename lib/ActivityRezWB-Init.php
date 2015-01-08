@@ -41,16 +41,32 @@ class ActivityRezWB_Init {
 			// Required for all WordPress database manipulations
 			global $wpdb;
 
+
+			// Initialize Options
+			if(!get_option("arez_options")) {
+
+				// Set Default Options
+				$arez_options_arr = array(
+					"api_key" => "",
+				);
+
+				// Update Options
+				update_option("arez_options",$arez_options_arr);
+
+			}
+
+
 			// Does the user have permission to activate the plugin
 			if ( !current_user_can('activate_plugins') )
 				return;
 
+
 			// If Remote Update Web booker Houlry
 			if ( ACTIVITYREZWB_REMOTE ){
-				$options = get_option( 'arez_plugin' );
+				$options = get_option( 'arez_options' );
 				if( !isset($options['server']) ){
 					$options['server'] = 'secure';
-					update_option('arez_plugin',$options);
+					update_option('arez_options',$options);
 					$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1 ) );
 					foreach( $webbookers as $wb ){
 						$wbMeta = get_post_meta($wb->ID);
@@ -89,7 +105,7 @@ class ActivityRezWB_Init {
 		public function uninstall(){
 
 			// Delete Saved Settings
-			delete_option('arez_plugin');
+			delete_option('arez_options');
 
 			// Redirect back to Plugins
 			echo "<div style=\"padding:50px;font-weight:bold;\"><p>". __("Almost done...", ACTIVITYREZWB_TEXTDOMAIN) ."</p><h1>". __("please uninstall on plugins page.", ACTIVITYREZWB_TEXTDOMAIN) ."</h1><a href=\"plugins.php?deactivate=true\">". __("Please click here to complete the uninstallation process", ACTIVITYREZWB_TEXTDOMAIN) ."</a></h1></div>";

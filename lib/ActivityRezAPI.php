@@ -37,12 +37,12 @@ class ActivityRezAPI {
 
 	// sets up some stuff since we dont have a constructor
 	public function init(){
-		$options = get_option('arez_plugin');
+		$options = get_option('arez_options');
 		if( !isset($options['server']) ){
 			$options['server'] = 'secure';
 			if(function_exists('update_options')) update_options($options);
 		}
-		
+
 		if( 'secure' == $options['server']){
 			$this->server = AREZ_SERVER;
 			$this->base_url = AREZ_SERVER.$this->base_url;
@@ -51,8 +51,9 @@ class ActivityRezAPI {
 			$this->base_url = AREZ_SERVER_TRAINING.$this->base_url;
 		}
 	}
+
 	public function init_view(){
-		$options = get_option('arez_plugin');
+		$options = get_option('arez_options');
 		if(WB_REMOTE && !isset( $options['api_key'] ) ){
 			die("Missing API Key, Please Contact Support");
 		}
@@ -81,7 +82,7 @@ class ActivityRezAPI {
 		curl_close($c);
 		return $con;
 	}
-	
+
 	public function raw($url,$params,$type=HTTP_POST){
 		try{
 			$ch = curl_init();
@@ -96,7 +97,7 @@ class ActivityRezAPI {
 				curl_setopt($ch, CURLOPT_POST, 1);
 				if($params) curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 			}
-	
+
 			curl_setopt($ch, CURLOPT_URL,$url);
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
 			curl_setopt($ch, CURLOPT_FORBID_REUSE, false);
@@ -116,9 +117,9 @@ class ActivityRezAPI {
 				// Handle the useragent like we are Google Chrome
 				curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.X.Y.Z Safari/525.13.');
 			}
-	
+
 			$result=curl_exec($ch);
-	
+
 			$header_size = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
 			$header = substr($result, 0, $header_size);
 			$body = substr($result, $header_size);
@@ -127,11 +128,11 @@ class ActivityRezAPI {
 			return $body;
 		}catch (Exception $e) {
 			error_log($e->getMessage(),1);
-		    die('Caught exception: '.print_r($e->getMessage(),1) );
+			die('Caught exception: '.print_r($e->getMessage(),1) );
 		}
 
 	}
-	
+
 	public function request($service,$action,$params = null){
 		$params = array('data'=>$params);
 		$nonce = $this->nonce;
@@ -140,7 +141,7 @@ class ActivityRezAPI {
 			if( isset($_COOKIE['ACTIVITYREZ']) && !empty($_COOKIE['ACTIVITYREZ']) ){
 				$nonce = $_COOKIE['ACTIVITYREZ'];
 			}else{
-				$nonce = 'NEW';				
+				$nonce = 'NEW';
 			}
 			$params['api_key'] = $this->api_key;
 		}
@@ -153,9 +154,9 @@ class ActivityRezAPI {
 
 	//actual api wrappers follow
 	public function bootstrap($args){
-	 	if(is_null($args['webBookerID'])) return false;
+		if(is_null($args['webBookerID'])) return false;
 
-	 	$args['remote'] = 'true';
+		$args['remote'] = 'true';
 		$result = $this->request('webBooker','bootStrap',$args);
 		$result['data']['langPath'] = WP_CONTENT_DIR.'/client-content/'.$result['data']['agencyID'].'/languages/'.$result['data']['webBookerID'];
 		return $result;
@@ -173,11 +174,11 @@ class ActivityRezAPI {
 		}
 		return $resp;
 	}
-	
+
 	public function fetchApiKey(){
 		return $this->request('webBooker','fetchApiKey');
 	}
-	
+
 	public function fetchTranslations($webbookerID){
 		if(is_null($webbookerID)) return false;
 		$nonce = $this->nonce;
@@ -193,21 +194,21 @@ class ActivityRezAPI {
 
 		return $this->raw($this->base_url,$params,HTTP_GET);
 	}
-	
+
 	public function importWebbookers(){
 		return $this->request('webBooker','getWebBookers');
 	}
-	
+
 	public function getWebBooker($webbookerID=null){
-	 	if(is_null($webbookerID)) return false;
+		if(is_null($webbookerID)) return false;
 
 		return $this->request('webBooker','bootStrap',array('webBookerID'=>$webbookerID));
 	}
-	
+
 	public function searchCatalog($params) {
 		if(!isset($params['webBookerID'])) return false;
 		$params['showInWB'] = $params['webBookerID'];
 		return $this->request('lookup', 'activities', $params);
 	}
-	
+
 }

@@ -40,8 +40,8 @@ if ( WB_REMOTE == true ) {
 	//die("wb:".print_r($wb,1));
 	$wb = $wb['data'];
 	
-	$options = get_option( 'arez_plugin' );
-	$wb['webbooker_settings'] = admin_url( 'options-general.php?page=arez_plugin', 'https' );
+	$options = get_option( 'arez_options' );
+	$wb['webbooker_settings'] = admin_url( 'options-general.php?page=arez_options', 'https' );
 	if( isset($options['server']) && 'training' == $options['server'] ){
 		$wb['server']='training';
 	}else{
