@@ -25,9 +25,6 @@
 	// Check username and password against database
 	function remoteAuth(){
 
-		// Erorr
-		global $flashError;
-
 		// Check for saved credentials
 		$options = get_option( 'arez_options' );
 			$username = $options['username'];
@@ -121,8 +118,11 @@
 		return $status;
 	}
 
-
-
+	// Get Web Bookers Count
+	function webbooker_count(){
+		$webbookers = new WP_Query( 'post_type=webBooker&post_status=publish' );
+		return $webbookers->found_posts;
+	}
 
 	// Get Web Bookers
 	function webbooker_fetch(){
@@ -165,18 +165,47 @@
 	}
 
 
+	// Import Web Bookers
+	function webbooker_import( $wbIDrequest = null ){
+
+		//finish import job based off user selection
+		$_webbookers = json_decode(get_option( 'arez_webbooker_import' ),1);
+		$wbImportCount = 0;
+		foreach( $_webbookers as $wb ){
+			if($wb['post_status'] != 'publish') continue;
+			if( !in_array($wb['ID'],$wbIDrequest) ) continue;
+			$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1, 'meta_key'=>'webBookerID','meta_value'=>$wb['ID'] ) );
+			if( !$webbookers || empty($webbookers)){
+				$post = array('post_status'=>'publish','post_title'=>$wb['post_title'],'post_type'=>'webBooker');
+				$post_id = wp_insert_post($post);
+				update_post_meta($post_id,'webBookerID',$wb['ID']);
+				update_post_meta($post_id,'include_header',1);
+				update_post_meta($post_id,'include_footer',1);
+				$wbImportCount++;
+			} else {
+				// Already been imported, skip this
+				continue;
+			}
+		}
+		// Clean up
+		delete_option('arez_webbooker_import');
+
+		// Return the number imported
+		return $wbImportCount;
+	}
 
 
-
-
-	function arez_update_webbookers( $webbookerID = null){
+	function webbooker_update( $webbookerID = null ){
 		$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1 ) );
-		//get into main server
+		// Get into main server
 		$options = get_option( 'arez_options' );
+
+		// Call the ActivityRez API
+		include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
 		$arezApi = ActivityRezAPI::instance();
 		$resp = $arezApi->r_authArez( $options['username'], $options['password'] );
 		
-		//cache values
+		// Cache values
 		global $wbCacheFields;
 		$msg = '';
 		if( !empty($webbookers) && is_array($webbookers)){
@@ -196,8 +225,27 @@
 					}
 				}
 			}
-			arez_get_translationFiles($wbs);//update po files
+			webbooker_translation($wbs);//update po files
 		}
 		return $msg;
 	}
 
+
+	function webbooker_translation($wbids=array()){
+		// Call the ActivityRez API
+		include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
+
+		foreach( $wbids as $wbID){
+			$arezApi = ActivityRezAPI::instance();
+			$CurlResult = $arezApi->fetchTranslations($wbID);//update translation files
+			$tmp_zip = tempnam ("/tmp", 'translations_');
+			if($tmp_zip){
+				file_put_contents( $tmp_zip,  $CurlResult);
+				$base = WP_CONTENT_DIR;
+				chdir($base);
+				$cmd = 'cd '.$base.' && /usr/bin/unzip '.$tmp_zip;
+				exec($cmd);
+				unlink($tmp_zip);
+			}
+		}
+	}

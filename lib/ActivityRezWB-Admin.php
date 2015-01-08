@@ -167,11 +167,14 @@ class ActivityRezWB_Admin {
 				$username = $options['username'];
 				$password = $options['password'];
 				$api_key = $options['api_key'];
-				$setup = $options['setup'];
+
+			// Check if Web Bookers Exist
+			$webbookers_count = webbooker_count();
+
 			// Check where we are at
-			if( $options['authorized'] != true || isset($_GET['settings-updated'])  && $_GET['settings-updated'] == true) {
+			if( $options['authorized'] != true ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
-			} elseif( !empty( $options['api_key']) && $options['setup'] != true  ) {
+			} elseif( !empty( $options['api_key'] && $webbookers_count = 0 ) ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');
 			} else {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/dashboard.php');

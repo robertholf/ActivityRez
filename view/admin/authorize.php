@@ -1,8 +1,14 @@
 <?php
+
+/* Run Tasks */
+
 	// Reset Session if needed
 	if ($_GET["action"] == 'unlink') {
 		remoteAuthLogout();
 	}
+
+
+/* Check Data */
 
 	// Get Posted Values
 	$options = get_option( 'arez_options' );
@@ -10,6 +16,16 @@
 		$username = $options['username'];
 		$password = $options['password'];
 		$api_key = $options['api_key'];
+
+	// Are there webbookers already loaded?
+	$webbookers_count = webbooker_count();
+		if( $webbookers_count > 0){
+			$haswebbookers = true;
+		} else {
+			$haswebbookers = false;
+		}
+
+
 ?>
 
 	<div class="arez-content">
