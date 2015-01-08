@@ -38,7 +38,6 @@
 			// Call the ActivityRez API
 			include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
 			$arezApi = ActivityRezAPI::instance();
-
 			// Attempt to Authorize
 			$response = $arezApi->r_authArez( $username, $password );
 

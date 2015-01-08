@@ -168,9 +168,8 @@ class ActivityRezWB_Admin {
 				$password = $options['password'];
 				$api_key = $options['api_key'];
 				$setup = $options['setup'];
-
 			// Check where we are at
-			if( $options['authorized'] != true ) {
+			if( $options['authorized'] != true || isset($_GET['settings-updated'])  && $_GET['settings-updated'] == true) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
 			} elseif( !empty( $options['api_key']) && $options['setup'] != true  ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');

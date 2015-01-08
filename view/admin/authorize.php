@@ -26,7 +26,7 @@
 			</div><!-- .header -->
 			<div class="wrapper">
 			<?php 
-			if( $_GET["action"] == "authorize" || !empty($username) ){
+			if( $_GET["action"] == "authorize" || !empty($username) || isset($_GET['settings-updated']) &&  $_GET['settings-updated'] == true){
 				// Check Status
 				if( $_GET['settings-updated'] == true ){
 					$status_auth = remoteAuth();
