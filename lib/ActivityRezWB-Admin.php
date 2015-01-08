@@ -172,7 +172,7 @@ class ActivityRezWB_Admin {
 			// Check where we are at
 			if( $options['authorized'] != true ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
-			} elseif( !empty( $options['api_key'] && $options['setup'] != true ) ) {
+			} elseif( !empty( $options['api_key']) && $options['setup'] != true  ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');
 			} else {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/dashboard.php');
