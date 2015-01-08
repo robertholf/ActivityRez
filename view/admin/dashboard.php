@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <div class="arez-content">
 	<div class="arez-frame">
 		<div class="header">
@@ -21,15 +20,3 @@
 
 
 <div class="clear"></div></div>
-=======
-<?php 
-  global $wpdb;
-  $arez_options_arr = get_option('arez_options');
-   			
-
-?>
-<div class="wrap">
-<h2>Dashboard</h2>
-
-</div>
->>>>>>> FETCH_HEAD

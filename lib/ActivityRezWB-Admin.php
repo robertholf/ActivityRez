@@ -159,12 +159,25 @@ class ActivityRezWB_Admin {
 
 		// Admin Dashboard View
 		public static function menu_dashboard(){
-			$options = get_option( 'arez_plugin' );
-			// If API key is not present then prompt setup
-			if( empty( $options['api_key'] ) ){
-				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');
-			} else {
+			$options = get_option( 'arez_options' );
 
+			// Get Posted Values
+			$options = get_option( 'arez_options' );
+				$authorized = $options['authorized'];
+				$username = $options['username'];
+				$password = $options['password'];
+				$api_key = $options['api_key'];
+
+				echo "<strong>". $username ." (". $password .")</strong><br />";
+				echo "<strong>". $api_key ."</strong><br />";
+				echo "<strong>Auth: ". $authorized ."</strong><br />";
+
+			// Check where we are at
+			if( $options['authorized'] != true ) {
+				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
+			} elseif( empty( $options['api_key'] ) ) {
+				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php'); // TODO: setup.php
+			} else {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/dashboard.php');
 			}
 		}

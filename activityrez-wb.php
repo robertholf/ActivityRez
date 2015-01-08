@@ -68,6 +68,9 @@ If You do not agree to the terms of this License, do not install or use the Soft
 	//require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Common.php'); // Common Functions
 
 
+	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Data.php'); // API & Data Specific
+
+
 	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Admin.php'); // Admin Specific
 		add_action( 'init', array('ActivityRezWB_Admin', 'init') ); // Menu/Internationalization etc.
 
