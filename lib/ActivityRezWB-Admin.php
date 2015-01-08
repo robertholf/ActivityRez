@@ -167,16 +167,13 @@ class ActivityRezWB_Admin {
 				$username = $options['username'];
 				$password = $options['password'];
 				$api_key = $options['api_key'];
-
-				echo "<strong>". $username ." (". $password .")</strong><br />";
-				echo "<strong>". $api_key ."</strong><br />";
-				echo "<strong>Auth: ". $authorized ."</strong><br />";
+				$setup = $options['setup'];
 
 			// Check where we are at
 			if( $options['authorized'] != true ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
-			} elseif( empty( $options['api_key'] ) ) {
-				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php'); // TODO: setup.php
+			} elseif( !empty( $options['api_key'] && $options['setup'] != true ) ) {
+				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');
 			} else {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/dashboard.php');
 			}

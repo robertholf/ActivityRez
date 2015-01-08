@@ -50,7 +50,8 @@ class ActivityRezWB_Init {
 					"api_key" => "",
 					"authorized" => false,
 					"username" => "",
-					"password" => ""
+					"password" => "",
+					"setup" => false,
 				);
 
 				// Update Options

@@ -109,12 +109,64 @@
 
 				// Success
 				$status = "success";
-			}else{
+			} else {
 				// Better luck next time
 				$status = "error";
 			}
+		} else {
+			// Better luck next time
+			$status = "error";
 		}
+
+		// Output Response
+		return $status;
 	}
+
+
+
+
+	// Get Web Bookers
+	function webbooker_fetch(){
+		// Check for saved key
+		$options = get_option( 'arez_options' );
+
+		// Is API Key valid?
+		if( isset( $options['api_key'] ) ){
+			//need the api key, go get it
+
+			// Call the ActivityRez API
+			include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
+			$arezApi = ActivityRezAPI::instance();
+
+			// Attempt to Authorize
+			$auth = $arezApi->r_authArez( $options['username'], $options['password'] );
+
+			$ResultString = $arezApi->importWebbookers();
+			
+			if( isset($ResultString['status']) && $ResultString['status'] == '1' ){
+
+				//Store the wb list and prompt the user wich ones they want to import
+				$_webbookers = $ResultString['webBookers'];
+				// Save Web Bookers
+				update_option('arez_webbooker_import',json_encode($_webbookers) );
+
+				// Success
+				$status = "success";
+			} else {
+				// Better luck next time
+				$status = "error";
+			}
+		} else {
+			// Better luck next time
+			$status = "error";
+		}
+
+		// Output Response
+		return $status;
+	}
+
+
+
 
 
 

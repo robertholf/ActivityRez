@@ -8,7 +8,12 @@
 
 <form method="post" action="options.php">
 <?php 
-	settings_fields( 'arez_options_group' ); 
+	// Get Posted Values
+	$options = get_option( 'arez_options' );
+		echo "<br />Is Authorized?". $options['authorized'];
+		echo "<br />User: ". $options['username'];
+		echo "<br />Pass: ". $options['password'];
+		echo "<br />API Key". $options['api_key'];
 ?>
 <table class="form-table">
 	<tbody>
@@ -30,3 +35,17 @@
 </form>
 
 </div>
+
+<?php 
+	// Attempt to download web bookers
+	$webbookers_temp = get_option( 'arez_webbooker_import' );
+	if ( !empty($webbookers_temp) ) {
+		echo "<h1>Temp Web Booker Data</h1>";
+		print_r($webbookers_temp);
+		echo "<a href='?page=arez-settings&action=purgetempdata'>Purge Temp Data</a>";
+	}
+	if ($_GET["action"] == 'purgetempdata') {
+		delete_option('arez_webbooker_import');
+	}
+
+?>

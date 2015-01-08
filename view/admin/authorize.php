@@ -1,7 +1,6 @@
 <?php
 	// Reset Session if needed
 	if ($_GET["action"] == 'unlink') {
-		echo "TESTING REMOVE";
 		remoteAuthLogout();
 	}
 
@@ -40,19 +39,23 @@
 
 						// User Auth Success!  Check for API Key
 						$status_key = remoteKey();
-						echo $status_key;
 
 
 						if ( $status_key == "success" ) {
+							// Key Returned.
 							?>
 							<div class="alertbox success">
-								<h4><?php echo __("WE HAVE KEY", ACTIVITYREZWB_TEXTDOMAIN); ?></h4>
+								<h4><?php echo __("Success!  Connection established.", ACTIVITYREZWB_TEXTDOMAIN); ?></h4>
 							</div>
+
+							<a href="?page=arez" class="cta">Continue</a>
+
 							<?php
 						} else {
+							// Connected but no key returned.
 							?>
-							<div class="alertbox success">
-								<h4><?php echo __("Connected,.... no key", ACTIVITYREZWB_TEXTDOMAIN); ?></h4>
+							<div class="alertbox warning">
+								<h4><?php echo __("No key returned.  Please contact ActivityRez Support.", ACTIVITYREZWB_TEXTDOMAIN); ?></h4>
 							</div>
 							<?php
 						}

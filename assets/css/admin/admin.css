@@ -279,3 +279,9 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	background:#e3f7fc url('../../../assets/images/notice.png') no-repeat 10px 50% !important;
 	border:1px solid #8ed9f6;
 }
+
+
+
+#webbookers { 
+	margin: 0px auto 20px auto;
+}
