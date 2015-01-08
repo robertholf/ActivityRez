@@ -184,7 +184,7 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	margin: auto;
 }
 
-#login input {
+#login fieldset input {
 	border: none;
 	font-family: 'Open Sans', Arial, sans-serif;
 	font-size: 14px;
@@ -209,7 +209,7 @@ ul#adminmenu a.toplevel_page_jetpack:after {
   clear: both;
 }
 
-#step1 #login form span {
+#step1 #login form fieldset span {
 	background-color: #f1f1f1;
 	border-radius: 3px 0px 0px 3px;
 	color: #c0c0c0;
@@ -221,11 +221,11 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	width: 100px;
 }
 
-#step1 #login form input {
+#step1 #login form fieldset input {
 	height: 50px;
 }
 
-#step1 #login form input[type="text"], #step1 #login input[type="password"] {
+#step1 #login form fieldset input[type="text"], #step1 #login input[type="password"] {
 	background-color: #f1f1f1;
 	border-radius: 0px 3px 3px 0px;
 	color: #606468;
@@ -234,7 +234,7 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	width: 230px;
 }
 
-#step1 #login form input[type="submit"] {
+#step1 #login form fieldset input[type="submit"] {
 	border-radius: 3px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -247,7 +247,7 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	cursor:pointer;
 }
 
-#step1 #login form input[type="submit"]:hover {
+#step1 #login form fieldset input[type="submit"]:hover {
 	color: #fff;
 }
 
@@ -259,6 +259,9 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	padding-left: 5px;
 }
 
+.unlink { float: right; margin-right: 30px;}
+.white { color: #fff; line-height: 20px;}
+.white a { text-decoration: none; color: #fff; }
 
 /* ----- */
 
@@ -270,6 +273,7 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	margin: 10px auto 20px auto !important;
 	padding: 10px !important;
 	border-radius: 3px;
+	border: 0px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
 	background-color: #dadada;
@@ -281,8 +285,7 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	text-decoration: none
 }
 
-
-.arez-content .btn-success {
+.arez-content .btn-primary {
 	background-color: #428bca;
 	color: #f1f1f1;
 }
@@ -317,4 +320,66 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 
 #webbookers { 
 	margin: 0px auto 20px auto;
+}
+
+
+
+
+/* Switch */
+.onofflabel { 
+	float: left;
+	color: #fff;
+	font-size: 18px;
+	margin-left: 20px;
+	margin-right: 20px;
+	line-height: 24px;
+}
+
+.onoffswitch {
+	float: left;
+	position: relative; width: 151px;
+	-webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.onoffswitch-checkbox {
+	display: none !important;
+}
+.onoffswitch-label {
+	display: block; overflow: hidden; cursor: pointer;
+	border: 1px solid #fff; border-radius: 50px;
+}
+.onoffswitch-inner {
+	display: block; width: 200%; margin-left: -100%;
+	-moz-transition: margin 0.3s ease-in 0s; -webkit-transition: margin 0.3s ease-in 0s;
+	-o-transition: margin 0.3s ease-in 0s; transition: margin 0.3s ease-in 0s;
+}
+.onoffswitch-inner:before, .onoffswitch-inner:after {
+	display: block; float: left; width: 50%; height: 24px !important; padding: 0; line-height: 24px !important;
+	font-size: 18px; color: white; font-family: Trebuchet, Arial, sans-serif; 
+	-moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box;
+}
+.onoffswitch-inner:before {
+	content: "Production";
+	padding-left: 12px;
+	text-align: left;
+	background-color: #81A844; color: #FFFFFF;
+}
+.onoffswitch-inner:after {
+	content: "Training";
+	padding-right: 12px;
+	background-color: #EEEEEE; color: #999999;
+	text-align: right;
+}
+.onoffswitch-switch {
+	display: block; width: 31px; margin: -3.5px;
+	background: #FFFFFF;
+	border: 1px solid #999999; border-radius: 50px;
+	position: absolute; top: 0; bottom: 0; right: 123px;
+	-moz-transition: all 0.3s ease-in 0s; -webkit-transition: all 0.3s ease-in 0s;
+	-o-transition: all 0.3s ease-in 0s; transition: all 0.3s ease-in 0s; 
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+	margin-left: 0;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-switch {
+	right: 0px; 
 }

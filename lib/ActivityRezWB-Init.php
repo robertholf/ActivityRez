@@ -48,6 +48,7 @@ class ActivityRezWB_Init {
 				// Set Default Options
 				$arez_options_arr = array(
 					"api_key" => "",
+					"server" => "",
 					"authorized" => false,
 					"username" => "",
 					"password" => "",

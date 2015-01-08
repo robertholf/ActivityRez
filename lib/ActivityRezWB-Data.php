@@ -5,17 +5,25 @@
  */
 
 	// Form to get username and password
-	function remoteAuth_form($username, $password){
+	function remoteAuth_form($username, $password, $server){
 		?>
 		<div id="login">
 			<form method="post" action="options.php">
 			<?php 
 			settings_fields( 'arez_options_group' );
 			?>
+			<div class="onofflabel">Environment:</div>
+			<div class="onoffswitch">
+				<input type="checkbox" name="arez_options[server]" value='1' class="onoffswitch-checkbox" id="myonoffswitch" <?php echo checked(isset($server)?$server:0, 1, false); ?> >
+				<label class="onoffswitch-label" for="myonoffswitch">
+					<span class="onoffswitch-inner"></span>
+					<span class="onoffswitch-switch"></span>
+				</label>
+			</div>
 			<fieldset class="clearfix">
 				<p><span>Username</span><input type="text" name='arez_options[username]' value='<?php echo $username; ?>' placeholder="Username" required></p>
 				<p><span>Password</span><input type="password" name='arez_options[password]' value='<?php echo $password; ?>'  placeholder="Password" required></p>
-				<p><input type="submit" value="Connect"></p>
+			<p><input type="submit" value="Connect"></p>
 			</fieldset>
 			</form>
 		</div> <!-- end login -->
@@ -196,27 +204,31 @@
 
 
 	function webbooker_update( $webbookerID = null ){
+		// Get Web Bookers
 		$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1 ) );
-		// Get into main server
-		$options = get_option( 'arez_options' );
 
 		// Call the ActivityRez API
 		include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
 		$arezApi = ActivityRezAPI::instance();
+
+		// Authenticate
+		$options = get_option( 'arez_options' );
 		$resp = $arezApi->r_authArez( $options['username'], $options['password'] );
-		
+
 		// Cache values
 		global $wbCacheFields;
 		$msg = '';
 		if( !empty($webbookers) && is_array($webbookers)){
-			$wbs = array();
+			// Loop
 			foreach( $webbookers as $wb ){
 				$wbID = get_post_meta($wb->ID,'webBookerID',true);
 				if( !is_null($webbookerID)){//update a specific webbooker
 					if( $wbID != $webbookerID) continue;
 				}
-				
-				$wbs[] = $wbID;
+
+				// Update Translation
+				webbooker_translation($wbID);//update po files
+
 				$CurlResult = $arezApi->getWebBooker($wbID);//cache wb data
 				$msg .= sprintf(__("Refreshing Server Settings for %s \n<br>",'arez'),$wb->post_title);
 				foreach( $wbCacheFields as $field ){
@@ -225,19 +237,25 @@
 					}
 				}
 			}
-			webbooker_translation($wbs);//update po files
 		}
 		return $msg;
 	}
 
 
-	function webbooker_translation($wbids=array()){
-		// Call the ActivityRez API
-		include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
+	function webbooker_translation( $webbookerID = null ){
 
-		foreach( $wbids as $wbID){
+		if ($webbookerID) {
+
+			// Call the ActivityRez API
+			include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
 			$arezApi = ActivityRezAPI::instance();
-			$CurlResult = $arezApi->fetchTranslations($wbID);//update translation files
+
+			// Authenticate
+			$options = get_option( 'arez_options' );
+			$resp = $arezApi->r_authArez( $options['username'], $options['password'] );
+
+			// Update translation files
+			$CurlResult = $arezApi->fetchTranslations($webbookerID);
 			$tmp_zip = tempnam ("/tmp", 'translations_');
 			if($tmp_zip){
 				file_put_contents( $tmp_zip,  $CurlResult);
@@ -246,6 +264,15 @@
 				$cmd = 'cd '.$base.' && /usr/bin/unzip '.$tmp_zip;
 				exec($cmd);
 				unlink($tmp_zip);
+
+				$status = "success";
 			}
+			$status = "error";
+		} else {
+			// Better luck next time
+			$status = "error";
 		}
+
+		// Output Response
+		return $status;
 	}

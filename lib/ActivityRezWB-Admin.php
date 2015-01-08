@@ -72,7 +72,7 @@ class ActivityRezWB_Admin {
 
 		// Add Admin Menu
 		public static function menu_admin(){
-			add_menu_page( __('Activities', ACTIVITYREZWB_TEXTDOMAIN), __('Activities', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez', array('ActivityRezWB_Admin', 'menu_dashboard'), 'div', 5);
+			add_menu_page( __('Activities', ACTIVITYREZWB_TEXTDOMAIN), __('Activities', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez', array('ActivityRezWB_Admin', 'menu_dashboard'), 'div', 4);
 				add_submenu_page( 'arez', __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez', array('ActivityRezWB_Admin', 'menu_dashboard') );
 				add_submenu_page( 'arez', __('Settings', ACTIVITYREZWB_TEXTDOMAIN), __('Settings', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez-settings', array('ActivityRezWB_Admin', 'menu_settings') );
 		}
@@ -172,9 +172,9 @@ class ActivityRezWB_Admin {
 			$webbookers_count = webbooker_count();
 
 			// Check where we are at
-			if( $options['authorized'] != true || isset($_GET['settings-updated'])  && $_GET['settings-updated'] == true) {
+			if( $options['authorized'] != true ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
-			} elseif( !empty( $options['api_key'] && $webbookers_count = 0 ) ) {
+			} elseif( $webbookers_count == 0 ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');
 			} else {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/dashboard.php');

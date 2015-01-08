@@ -55,7 +55,7 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" class="btn" data-bind="click: WebBooker.Checkout.unsetAgreement"><?php _e('Cancel','arez'); ?></a>
-			<a href="#" class="btn btn-success-primary" data-bind="click: WebBooker.Checkout.setAgreement"><?php _e('I Accept','arez'); ?></a>
+			<a href="#" class="btn btn-primary-primary" data-bind="click: WebBooker.Checkout.setAgreement"><?php _e('I Accept','arez'); ?></a>
 		</div>
 	</div>
 

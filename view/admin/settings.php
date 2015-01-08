@@ -7,12 +7,43 @@
 		remoteAuthLogout();
 	}
 
+	// Get Translations
+	if ( $_GET["action"] == 'translate' && isset($_GET["wb"]) ) {
+		$webbookerID = $_GET["wb"];
+		// Process
+		$status_translation = webbooker_translation($webbookerID);
+	}
+
+	// Update
+	if ( $_GET["action"] == 'update' ) {
+		// Process
+		$status_update = webbooker_update();
+	}
+
+
+/* Clean Data */
+
+	// Delete Web Booker
+	if ($_GET["action"] == 'delete' && isset($_GET["wb"]) ) {
+		$deadpostwalking = get_posts( array( 'post_type'=>'webBooker', 'meta_value' => 'webBookerID', 'meta_value' =>$_GET["wb"]) );
+		foreach( $deadpostwalking as $post ) {
+		// Delete's each post.
+			wp_delete_post( $post->ID, true);
+		}
+	}
+
+	// Delete Temporary Data
+	if ($_GET["action"] == 'purgetempdata') {
+		delete_option('arez_webbooker_import');
+	}
+
 
 /* Check Data */
 
 	// Get Posted Values
 	$options = get_option( 'arez_options' );
 		$authorized = $options['authorized'];
+		$server = $options['server'];
 		$username = $options['username'];
 		$password = $options['password'];
 		$api_key = $options['api_key'];
@@ -24,6 +55,7 @@
 		} else {
 			$haswebbookers = false;
 		}
+
 
 ?>
 <div class="arez-content">
@@ -46,11 +78,12 @@
 					if ($authorized) {
 						echo '<h3><span>You are connected!</span></h3>';
 						echo 'Connected as <strong>'. $username .'</strong><br />';
-						echo 'With key as <strong>'. $api_key .'</strong><br />';
+						echo 'with key <strong>'. $api_key .'</strong>';
+						if ($server) { echo ' on production server.'; } else { echo ' on training server.'; }
 						echo '<br /><a href="'. $_SERVER['REQUEST_URI'] .'&action=unlink" class="btn">Unlink</a>';
 					} else {
 						echo "You are not yet authenticated.  Please start the setup process.";
-						echo '<br /><a href="'. admin_url( 'admin.php?page=arez&action=authorize' ) .'" class="btn btn-success">Start Setup</a>';
+						echo '<br /><a href="'. admin_url( 'admin.php?page=arez&action=authorize' ) .'" class="btn btn-primary">Start Setup</a>';
 					}
 					?>
 				</div>
@@ -65,6 +98,16 @@
 							<h3><span>You have the following web bookers:</span></h3>
 							<div class="inside">
 							<?php
+							if ($_GET["action"] == 'translate' && $status_translation == "error") {
+								echo '<div class="alertbox warning">';
+								echo '<h4>'. __("Error in updating translation", ACTIVITYREZWB_TEXTDOMAIN) .'</h4>';
+								echo '</div>';
+							} elseif ($_GET["action"] == 'translate' && $status_translation == "sucess") {
+								echo '<div class="alertbox success">';
+								echo '<h4>'. __("Translation updated successfully", ACTIVITYREZWB_TEXTDOMAIN) .'</h4>';
+								echo '</div>';
+							}
+
 							// Get Webbookers
 							$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1, 'post_status'=>'publish' ) );
 
@@ -75,31 +118,24 @@
 								if(isset($meta['webBookerID'])){
 									$webbooker_id = $meta['webBookerID'][0];
 								}
-								?>
-								<div>
-									<em><small><?php echo $webbooker_id; ?></small></em>
-									<?php echo $wb->post_title; ?>
-									<a href="post.php?post=<?php echo $wb->ID;?>&action=edit">Preview</a> | 
-									<a class="" href="options-general.php?page=arez_plugin&translate[]=<?php echo $webbooker_id;?>"><?php _e("Fetch Translations",'arez');?></a>
-								</div>
-							<?php
+								echo "<div>";
+								echo "  <em><small><?php echo $webbooker_id; ?></small></em>";
+								echo "  ". $wb->post_title ."";
+								echo "  <a href='post.php?post=". $wb->ID ."&action=edit'>Preview</a> | ";
+								echo "  <a href='". admin_url( 'admin.php?page=arez-settings&action=translate&wb='.$webbooker_id ) ."'>". __('Fetch Translations', ACTIVITYREZWB_TEXTDOMAIN) ."</a>  | ";
+								echo "  <a href='". admin_url( 'admin.php?page=arez-settings&action=delete&wb='.$webbooker_id ) ."' style='color: red;'>". __('Delete',ACTIVITYREZWB_TEXTDOMAIN) ."</a>";
+								echo "</div>";
 							}
+							echo "<br />";
+							echo "  <a class='btn btn-primary' href='". admin_url( 'admin.php?page=arez-settings&action=update' ) ."'>". __('Update WebBookers',ACTIVITYREZWB_TEXTDOMAIN) ."</a>";
+
 							?>
-							<br/>
-							<a class="btn btn-success" href="options-general.php?page=arez_plugin&a=update">
-								<?php _e("Update WebBookers",'arez');?>
-							</a>
 							</div>
 						</div>
 						<?php
 					}
 
 
-				// Temporary Data
-
-					if ($_GET["action"] == 'purgetempdata') {
-						delete_option('arez_webbooker_import');
-					}
 					// Check temporary data
 					$webbookers_temp = get_option( 'arez_webbooker_import' );
 					if ( !empty($webbookers_temp) ) {

@@ -13,6 +13,7 @@
 	// Get Posted Values
 	$options = get_option( 'arez_options' );
 		$authorized = $options['authorized'];
+		$server = $options['server'];
 		$username = $options['username'];
 		$password = $options['password'];
 		$api_key = $options['api_key'];
@@ -35,7 +36,7 @@
 					<div class="activityrez-logo">
 						<a href="http://activityrez.com" target="_blank" title="Home" class="current"><img src="<?php echo ACTIVITYREZWB_PLUGIN_PATH; ?>assets/images/activityrez-logo-white.png"></a>
 						<?php if ($authorized) {?>
-							(<a href="<?php echo $_SERVER['REQUEST_URI'] .'&action=unlink'; ?>">Unlink</a>)
+							<span class="white unlink">(<a href="<?php echo $_SERVER['REQUEST_URI'] .'&action=unlink'; ?>">Unlink</a>)<span>
 						<?php } ?>
 					</div>
 				</nav>
@@ -87,13 +88,13 @@
 						<?php
 
 						// Show Form
-						remoteAuth_form($username, $password);
+						remoteAuth_form($username, $password, $server);
 
 					} elseif ( !isset( $_GET['settings-updated'] ) ) {
 						?><h1>Enter your ActivityRez credentials to get started</h1><?php
 
 						// Show Form
-						remoteAuth_form($username, $password);
+						remoteAuth_form($username, $password, $server);
 
 					}
 					?>

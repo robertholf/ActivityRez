@@ -117,7 +117,7 @@ $wb['activity'] = array_merge($activityDefault,$wb['activity']);
 			    <!-- /ko -->
 		  </div>
 		  <!-- Carousel nav -->
-			<a id="activityFullScreen" class="btn btn-success" data-toggle="modal" data-target="#imageModal" data-local="#activityCarouselFullScreen" data-bind="click: ActivityView.viewFullSize">
+			<a id="activityFullScreen" class="btn btn-primary" data-toggle="modal" data-target="#imageModal" data-local="#activityCarouselFullScreen" data-bind="click: ActivityView.viewFullSize">
 				<i class="icon-fullscreen icon-white"></i>
 			</a>		  
 		  <a class="carousel-control left" href="#activityCarousel" data-slide="prev">&lsaquo;</a>

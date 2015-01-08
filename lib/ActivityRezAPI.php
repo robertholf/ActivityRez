@@ -30,7 +30,7 @@ class ActivityRezAPI {
 		return self::$instance;
 	}
 
-	private $base_url = "/wp-content/plugins/flash-api/wsrv.php";
+	private $base_url = "/wp-content/plugins/flash-api/wsrv.php";  // TODO Is FLASH API a required plugin? Or is this hosted elsewhere?
 	private $server;
 	private $nonce;
 	private $api_key;
@@ -192,6 +192,7 @@ class ActivityRezAPI {
 		$params['nonce'] = $nonce;
 		$params['data']['webBookerID'] = $webbookerID;
 
+		// TODO: This is returning bool(false)
 		return $this->raw($this->base_url,$params,HTTP_GET);
 	}
 

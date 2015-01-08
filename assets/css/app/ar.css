@@ -251,7 +251,7 @@ a.buttonRed:hover {
   top: 0; }
 
 /* Buttons */
-.btn-success-primary {
+.btn-primary-primary {
   background-color: #156c89 !important;
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#20a3cf", endColorstr="#156b88");
