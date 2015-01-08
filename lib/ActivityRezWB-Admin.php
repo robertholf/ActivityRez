@@ -72,9 +72,9 @@ class ActivityRezWB_Admin {
 
 		// Add Admin Menu
 		public static function menu_admin(){
-			add_menu_page( __('Activities', ACTIVITYREZWB_TEXTDOMAIN), __('Activities', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez-plugin', array('ActivityRezWB_Admin', 'menu_dashboard'), 'div', 5);
-				add_submenu_page( 'arez-plugin', __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez-plugin', array('ActivityRezWB_Admin', 'menu_dashboard') );
-				add_submenu_page( 'arez-plugin', __('Settings', ACTIVITYREZWB_TEXTDOMAIN), __('Settings', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez-menu-settings', array('ActivityRezWB_Admin', 'menu_settings') );
+			add_menu_page( __('Activities', ACTIVITYREZWB_TEXTDOMAIN), __('Activities', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez', array('ActivityRezWB_Admin', 'menu_dashboard'), 'div', 5);
+				add_submenu_page( 'arez', __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), __('Dashboard', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez', array('ActivityRezWB_Admin', 'menu_dashboard') );
+				add_submenu_page( 'arez', __('Settings', ACTIVITYREZWB_TEXTDOMAIN), __('Settings', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez-settings', array('ActivityRezWB_Admin', 'menu_settings') );
 		}
 
 		// Add Menu Item to Settings Dropdown

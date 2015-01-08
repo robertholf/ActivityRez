@@ -1,13 +1,11 @@
-// ==========================================================================
-// Menu Icons
-// ==========================================================================
+/* Menu */
 
 #toplevel_page_arez {}
-#toplevel_page_arez.opensub div.wp-menu-image { background:transparent url(../../../assets/activityrez_icon.png) no-repeat scroll; }
 #toplevel_page_arez.wp-has-current-submenu div.wp-menu-image,
 #toplevel_page_arez.current div.wp-menu-image { background: transparent url(../../../assets/activityrez_icon.png) no-repeat scroll; }
 #toplevel_page_arez div.wp-menu-image { background:transparent url(../../../assets/activityrez_icon_grey.png) no-repeat scroll; }
 ul#adminmenu #toplevel_page_arez a.wp-has-current-submenu:after, ul#adminmenu>li#toplevel_page_arez.current>a.current:after { border-right-color: #81a844;}
+#toplevel_page_arez.opensub div.wp-menu-image { background:transparent url(../../../assets/activityrez_icon.png) no-repeat scroll; }
 
 
 // ==========================================================================
