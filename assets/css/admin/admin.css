@@ -123,6 +123,9 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	user-select: none;
 }
 
+
+
+
 // Sets box-sizing default to border-box on all elements
 *,
 *:before,
@@ -173,7 +176,6 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	cursor: pointer;
 	color: #fff;
 }
-
 
 
 /* ---------- LOGIN ---------- */
@@ -259,7 +261,33 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 
 
 /* ----- */
-.alertbox {
+
+.postbox { padding: 20px;}
+
+.arez-content .btn {
+	display: block;
+	width: 200px;
+	margin: 10px auto 20px auto !important;
+	padding: 10px !important;
+	border-radius: 3px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	background-color: #dadada;
+	color: #c0c0c0;
+	font-weight: bold;
+	text-transform: uppercase;
+	cursor:pointer;
+	height: auto !important;
+	text-decoration: none
+}
+
+
+.arez-content .btn-success {
+	background-color: #428bca;
+	color: #f1f1f1;
+}
+
+.arez-content .alertbox {
 	display: block;
 	color: #555;
 	border-radius:10px;
@@ -268,19 +296,19 @@ ul#adminmenu a.toplevel_page_jetpack:after {
 	width: 60% !important;
 }
 
-.error {
+.arez-content .error {
 	background:#ffecec url('../../../assets/images/error.png') no-repeat 10px 50% !important;
 	border:1px solid #f5aca6;
 }
-.success {
+.arez-content .success {
 	background:#e9ffd9 url('../../../assets/images/success.png') no-repeat 10px 50% !important;
 	border:1px solid #a6ca8a;
 }
-.warning {
+.arez-content .warning {
 	background:#fff8c4 url('../../../assets/images/warning.png') no-repeat 10px 50% !important;
 	border:1px solid #f2c779;
 }
-.notice {
+.arez-content .notice {
 	background:#e3f7fc url('../../../assets/images/notice.png') no-repeat 10px 50% !important;
 	border:1px solid #8ed9f6;
 }

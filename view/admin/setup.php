@@ -100,7 +100,7 @@
 					<div id="webbookers" class="postbox" style="width: 50%">
 						<h3><span>Please select the webbooker you would like to import:</span></h3>
 						<div class="inside">
-							<form action="<?php echo admin_url(); ?>admin.php?page=arez&action=import" method="post">
+							<form action="<?php echo admin_url( 'admin.php?page=arez&action=import' ); ?>" method="post">
 							<?php
 
 							// Manage current web bookers

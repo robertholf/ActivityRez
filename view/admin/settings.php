@@ -47,16 +47,20 @@
 						echo '<h3><span>You are connected!</span></h3>';
 						echo 'Connected as <strong>'. $username .'</strong><br />';
 						echo 'With key as <strong>'. $api_key .'</strong><br />';
-						echo '<br /><a href="'. $_SERVER['REQUEST_URI'] .'&action=unlink" class="button">Unlink</a>';
+						echo '<br /><a href="'. $_SERVER['REQUEST_URI'] .'&action=unlink" class="btn">Unlink</a>';
+					} else {
+						echo "You are not yet authenticated.  Please start the setup process.";
+						echo '<br /><a href="'. admin_url( 'admin.php?page=arez&action=authorize' ) .'" class="btn btn-success">Start Setup</a>';
 					}
 					?>
 				</div>
 
-				<h1>Web Bookers</h1>
 					<?php
 					// Are we already setup?
-					if ($haswebbookers) {
+					if ($haswebbookers && $authorized) {
 						?>
+						<h1>Web Bookers</h1>
+
 						<div id="webbookers" class="postbox"  style="width: 50%">
 							<h3><span>You have the following web bookers:</span></h3>
 							<div class="inside">
@@ -73,16 +77,16 @@
 								}
 								?>
 								<div>
-									<a href="post.php?post=<?php echo $wb->ID;?>&action=edit"><?php echo $wb->post_title; ?></a> <em><small><?php echo $webbooker_id; ?></small></em>
-									<a class="button secondary-button" href="options-general.php?page=arez_plugin&translate[]=<?php echo $webbooker_id;?>">
-										<?php _e("Fetch Translations",'arez');?>
-									</a>
+									<em><small><?php echo $webbooker_id; ?></small></em>
+									<?php echo $wb->post_title; ?>
+									<a href="post.php?post=<?php echo $wb->ID;?>&action=edit">Preview</a> | 
+									<a class="" href="options-general.php?page=arez_plugin&translate[]=<?php echo $webbooker_id;?>"><?php _e("Fetch Translations",'arez');?></a>
 								</div>
 							<?php
 							}
 							?>
 							<br/>
-							<a class="button button-primary" href="options-general.php?page=arez_plugin&a=update">
+							<a class="btn btn-success" href="options-general.php?page=arez_plugin&a=update">
 								<?php _e("Update WebBookers",'arez');?>
 							</a>
 							</div>

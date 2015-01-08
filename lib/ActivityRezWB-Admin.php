@@ -172,7 +172,7 @@ class ActivityRezWB_Admin {
 			$webbookers_count = webbooker_count();
 
 			// Check where we are at
-			if( $options['authorized'] != true ) {
+			if( $options['authorized'] != true || isset($_GET['settings-updated'])  && $_GET['settings-updated'] == true) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
 			} elseif( !empty( $options['api_key'] && $webbookers_count = 0 ) ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');
