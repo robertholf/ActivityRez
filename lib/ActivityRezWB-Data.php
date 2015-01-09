@@ -9,7 +9,7 @@
 class ActivityRezWB_Data {
 
 	// Form to get username and password
-	function remoteAuth_form($username, $password, $server){
+	public static function remoteAuth_form($username, $password, $server){
 		?>
 		<div id="login">
 			<form method="post" action="options.php">
@@ -35,7 +35,7 @@ class ActivityRezWB_Data {
 	}
 
 	// Check username and password against database
-	function remoteAuth(){
+	public static function remoteAuth(){
 
 		// Check for saved credentials
 		$options = get_option( 'arez_options' );
@@ -71,7 +71,7 @@ class ActivityRezWB_Data {
 
 
 	// Log Out
-	function remoteAuthLogout(){
+	public static function remoteAuthLogout(){
 
 		// Check for saved key
 		$options = get_option( 'arez_options' );
@@ -96,7 +96,7 @@ class ActivityRezWB_Data {
 
 
 	// Get API key
-	function remoteKey(){
+	public static function remoteKey(){
 
 		// Check for saved key
 		$options = get_option( 'arez_options' );
@@ -131,13 +131,13 @@ class ActivityRezWB_Data {
 	}
 
 	// Get Web Bookers Count
-	function webbooker_count(){
+	public static function webbooker_count(){
 		$webbookers = new WP_Query( 'post_type=webBooker&post_status=publish' );
 		return $webbookers->found_posts;
 	}
 
 	// Get Web Bookers
-	function webbooker_fetch(){
+	public static function webbooker_fetch(){
 		// Check for saved key
 		$options = get_option( 'arez_options' );
 
@@ -178,7 +178,7 @@ class ActivityRezWB_Data {
 
 
 	// Import Web Bookers
-	function webbooker_import( $wbIDrequest = null ){
+	public static function webbooker_import( $wbIDrequest = null ){
 
 		//finish import job based off user selection
 		$_webbookers = json_decode(get_option( 'arez_webbooker_import' ),1);
@@ -207,7 +207,7 @@ class ActivityRezWB_Data {
 	}
 
 
-	function webbooker_update( $webbookerID = null ){
+	public static function webbooker_update( $webbookerID = null ){
 		// Get Web Bookers
 		$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1 ) );
 
@@ -246,7 +246,7 @@ class ActivityRezWB_Data {
 	}
 
 
-	function webbooker_translation( $webbookerID = null ){
+	public static function webbooker_translation( $webbookerID = null ){
 
 		if ($webbookerID) {
 

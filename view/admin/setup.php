@@ -1,4 +1,8 @@
-<div class="loader">Loading</div>
+<div id="preloader">
+	<div id="spinner_container">
+		<img id="spinner" src="http://bradsknutson.com/wp-content/uploads/2013/04/page-loader.gif" alt="" />
+	</div>
+</div>
 <?php
 
 /* Run Tasks */
