@@ -1,10 +1,15 @@
+<div id="preloader">
+	<div id="spinner_container">
+		<img id="spinner" src="http://bradsknutson.com/wp-content/uploads/2013/04/page-loader.gif" alt="" />
+	</div>
+</div>
 <?php
 
 /* Run Tasks */
 
 	// Reset Session if needed
 	if ($_GET["action"] == 'unlink') {
-		remoteAuthLogout();
+		ActivityRezWB_Data::remoteAuthLogout();
 	}
 
 
@@ -19,7 +24,7 @@
 		$api_key = $options['api_key'];
 
 	// Are there webbookers already loaded?
-	$webbookers_count = webbooker_count();
+	$webbookers_count = ActivityRezWB_Data::webbooker_count();
 		if( $webbookers_count > 0){
 			$haswebbookers = true;
 		} else {
@@ -46,7 +51,7 @@
 			if( $_GET["action"] == "authorize" || !empty($username) || isset($_GET['settings-updated']) &&  $_GET['settings-updated'] == true){
 				// Check Status
 				if( $_GET['settings-updated'] == true ){
-					$status_auth = remoteAuth();
+					$status_auth = ActivityRezWB_Data::remoteAuth();
 				}
 				?>
 				<div id="step1" class="masthead">
@@ -55,7 +60,7 @@
 					if( $_GET['settings-updated'] == true && $status_auth == "success" ) { // Error Check 
 
 						// User Auth Success!  Check for API Key
-						$status_key = remoteKey();
+						$status_key = ActivityRezWB_Data::remoteKey();
 
 
 						if ( $status_key == "success" ) {
@@ -88,13 +93,13 @@
 						<?php
 
 						// Show Form
-						remoteAuth_form($username, $password, $server);
+						ActivityRezWB_Data::remoteAuth_form($username, $password, $server);
 
 					} elseif ( !isset( $_GET['settings-updated'] ) ) {
 						?><h1>Enter your ActivityRez credentials to get started</h1><?php
 
 						// Show Form
-						remoteAuth_form($username, $password, $server);
+						ActivityRezWB_Data::remoteAuth_form($username, $password, $server);
 
 					}
 					?>

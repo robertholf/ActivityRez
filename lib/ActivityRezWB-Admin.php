@@ -169,7 +169,7 @@ class ActivityRezWB_Admin {
 				$api_key = $options['api_key'];
 
 			// Check if Web Bookers Exist
-			$webbookers_count = webbooker_count();
+			$webbookers_count = ActivityRezWB_Data::webbooker_count();
 
 			// Check where we are at
 			if( $options['authorized'] != true ) {
@@ -200,7 +200,17 @@ class ActivityRezWB_Admin {
 				// Get Styles
 				wp_register_style( 'ActivityRezWBadmin', ACTIVITYREZWB_PLUGIN_PATH .'assets/css/admin/admin.css' );
 				wp_enqueue_style( 'ActivityRezWBadmin' );
+?>
+		<script>
+$(window).load(function(){
 
+    $('#preloader').fadeOut(100, function() {
+               $('body').css('overflow','auto');
+               $(this).remove();
+    });
+});
+        </script>
+        <?php
 				// Get Scripts
 				//wp_enqueue_script( 'jquery-ui-datepicker' );
 

@@ -1,16 +1,17 @@
+<div class="loader">Loading</div>
 <?php
 
 /* Run Tasks */
 
 	// Reset Session if needed
 	if ($_GET["action"] == 'unlink') {
-		remoteAuthLogout();
+		ActivityRezWB_Data::remoteAuthLogout();
 	}
 
 	// Import Web Bookers
 	if ($_GET["action"] == 'import') {
 		$wbID = $_POST['wbID'];
-		webbooker_import($wbID);
+		ActivityRezWB_Data::webbooker_import($wbID);
 	}
 
 
@@ -22,7 +23,7 @@
 		$api_key = $options['api_key'];
 
 	// Are there webbookers already loaded?
-	$webbookers_count = webbooker_count();
+	$webbookers_count = ActivityRezWB_Data::webbooker_count();
 		if( $webbookers_count > 0){
 			$haswebbookers = true;
 		} else {
@@ -33,7 +34,7 @@
 /* Fetch Data */
 
 	// Attempt to download web bookers
-	webbooker_fetch();
+	ActivityRezWB_Data::webbooker_fetch();
 	if ( !get_option( 'arez_webbooker_import' ) ) {
 	} else {
 		// Get WebBookers

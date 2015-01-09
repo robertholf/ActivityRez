@@ -65,25 +65,20 @@ If You do not agree to the terms of this License, do not install or use the Soft
 	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Init.php'); // WP Related
 		add_action( 'init', array('ActivityRezWB_Init', 'init') ); // Menu/Internationalization etc.
 
-	//require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Common.php'); // Common Functions
+	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Common.php'); // Common Functions
 
 
 	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Data.php'); // API & Data Specific
+		add_action('webbooker_update_check', 'webbooker_update'); // Refresh Data
 
 
 	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Admin.php'); // Admin Specific
 		add_action( 'init', array('ActivityRezWB_Admin', 'init') ); // Menu/Internationalization etc.
 
-/*
 	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-App.php'); // App Specific
 		add_action( 'init', array('ActivityRezWB_App', 'post_type') ); // Define Post Type
 		add_action( 'init', array('ActivityRezWB_App', 'rewrite_slugs') ); // Define Paths
 
-
-	// DATA
-	// TODO
-		//add_action('arez_webbooker_update_check', 'arez_update_webbookers');
-*/
 
 /*
  * Hooks

@@ -1,23 +1,24 @@
+<div class="loader">Loading</div>
 <?php
 
 /* Run Tasks */
 
 	// Reset Session if needed
 	if ($_GET["action"] == 'unlink') {
-		remoteAuthLogout();
+		ActivityRezWB_Data::remoteAuthLogout();
 	}
 
 	// Get Translations
 	if ( $_GET["action"] == 'translate' && isset($_GET["wb"]) ) {
 		$webbookerID = $_GET["wb"];
 		// Process
-		$status_translation = webbooker_translation($webbookerID);
+		$status_translation = ActivityRezWB_Data::webbooker_translation($webbookerID);
 	}
 
 	// Update
 	if ( $_GET["action"] == 'update' ) {
 		// Process
-		$status_update = webbooker_update();
+		$status_update = ActivityRezWB_Data::webbooker_update();
 	}
 
 
@@ -49,7 +50,7 @@
 		$api_key = $options['api_key'];
 
 	// Are there webbookers already loaded?
-	$webbookers_count = webbooker_count();
+	$webbookers_count = ActivityRezWB_Data::webbooker_count();
 		if( $webbookers_count > 0){
 			$haswebbookers = true;
 		} else {

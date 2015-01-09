@@ -83,7 +83,7 @@ class ActivityRezWB_Init {
 						}
 					}
 				}
-				// TODO RESTORE // wp_schedule_event( time(), 'hourly', 'arez_webbooker_update_check');
+				wp_schedule_event( time(), 'hourly', array('ActivityRezWB_Data', 'webbooker_update') );
 			}
 		}
 
@@ -96,7 +96,7 @@ class ActivityRezWB_Init {
 		public function deactivation(){
 
 			// Release Scheduled Checks
-			wp_clear_scheduled_hook('arez_webbooker_update_check');
+			wp_clear_scheduled_hook( array('ActivityRezWB_Data', 'webbooker_update') );
 
 		}
 

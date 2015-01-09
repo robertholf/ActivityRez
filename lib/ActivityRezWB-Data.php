@@ -1,8 +1,12 @@
 <?php
 
 /*
+ * ActivityRezWB_Data Class
+ *
  * Fetch and cache all weboker data
  */
+
+class ActivityRezWB_Data {
 
 	// Form to get username and password
 	function remoteAuth_form($username, $password, $server){
@@ -227,7 +231,7 @@
 				}
 
 				// Update Translation
-				webbooker_translation($wbID);//update po files
+				ActivityRezWB_Data::webbooker_translation($wbID);//update po files
 
 				$CurlResult = $arezApi->getWebBooker($wbID);//cache wb data
 				$msg .= sprintf(__("Refreshing Server Settings for %s \n<br>",'arez'),$wb->post_title);
@@ -276,3 +280,5 @@
 		// Output Response
 		return $status;
 	}
+
+}

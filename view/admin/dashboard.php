@@ -1,3 +1,4 @@
+<div class="loader"></div>
 <div class="arez-content">
 	<div class="arez-frame">
 		<div class="header">

@@ -21,25 +21,25 @@ class ActivityRezWB_App {
 
 			// Define Labels 
 			$labels = array(
-				'add_new' => _('Add Web Booker'),
-				'add_new_item' => __('Add New Web Booker'),
-				'edit' => _('Edit'),
-				'edit_item' => __('Edit Web Booker'),
-				'name' => __('Web Bookers'),
-				'new_item' => __('New Web Booker'),
-				'not_found' => __('No Web Bookers found'),
-				'not_found_in_trash' => __('No Web Bookers found in trash'),
-				'search_items' => __('Search Web Booker'),
-				'singular_name' => __('Web Booker'),
-				'view' => __('View Web Bookers'),
-				'view_item' => __('View Web Booker')
+				'add_new' => _('Add Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
+				'add_new_item' => __('Add New Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
+				'edit' => _('Edit', ACTIVITYREZWB_TEXTDOMAIN),
+				'edit_item' => __('Edit Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
+				'name' => __('Web Bookers', ACTIVITYREZWB_TEXTDOMAIN),
+				'new_item' => __('New Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
+				'not_found' => __('No Web Bookers found', ACTIVITYREZWB_TEXTDOMAIN),
+				'not_found_in_trash' => __('No Web Bookers found in trash', ACTIVITYREZWB_TEXTDOMAIN),
+				'search_items' => __('Search Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
+				'singular_name' => __('Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
+				'view' => __('View Web Bookers', ACTIVITYREZWB_TEXTDOMAIN),
+				'view_item' => __('View Web Booker', ACTIVITYREZWB_TEXTDOMAIN)
 			);
 
 			// Register Post Types
 			$args = array(
 				'public' => true,
 				'show_ui' => true,
-				'show_in_menu'=>'arez',
+				'show_in_menu'=>'', // arez
 				'exclude_from_search'=>true,
 				'capability_type' => 'post',
 				'hierarchical' => true,
@@ -106,7 +106,7 @@ class ActivityRezWB_App {
 		}
 
 	// *************************************************************************************************** //
-
+}
 
 
 
@@ -321,32 +321,35 @@ $wbCacheFields = array(
  */
 
  
- function arez_webbooker_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Webbooker Sidebar', 'arez' ),
-		'id'            => 'webbooker-sidebar',
-		'description'   => __( 'If you prefer to have your sidebar dynamic ', 'arez' ),
-		'before_widget' => '',
-		'after_widget'  => '',
-		'before_title'  => '',
-		'after_title'   => '',
-	) );
-}
 add_action( 'widgets_init', 'arez_webbooker_widgets_init' );
- 
+	function arez_webbooker_widgets_init() {
+		register_sidebar( array(
+			'name'			=> __( 'Webbooker Sidebar', ACTIVITYREZWB_TEXTDOMAIN ),
+			'id'			=> 'webbooker-sidebar',
+			'description'	=> __( 'If you prefer to have your sidebar dynamic ', ACTIVITYREZWB_TEXTDOMAIN ),
+			'before_widget'	=> '',
+			'after_widget'	=> '',
+			'before_title'	=> '',
+			'after_title'	=> '',
+		) );
+	}
+
+
+
+
 function arez_travel_agent_login($args) {
 	global $wb;
 	if(!$wb) return;
 	extract($args);
 ?>
-        <?php echo $before_widget; ?>
+	<?php echo $before_widget; ?>
 	<div id="agents-sidebar" class="sidebar-container" data-bind="with: WebBooker.Agent">
 		<div class="header gradient-light">
 			<h3><?php _e('Travel Agents','arez'); ?></h3>
 		</div>
 		<div class="cb"></div>
 		<div class="ribbonFold"></div>
-	
+
 		<div class="content">
 			<div data-bind="visible: user_id() > 0">
 				<p><strong><?php _e('Welcome back,','arez'); ?> <span class="agent-name" data-bind="html: name"></span>!</strong></p>
@@ -440,7 +443,7 @@ register_sidebar_widget('Webbooker Cart Widget', 'arez_cart_widget');
 
 function arez_catalog_search_widget($args) {
 	global $wb;
-	if(!$wb) return;	
+	if(!$wb) return
 	extract($args);
 ?>
         <?php echo $before_widget; ?>
