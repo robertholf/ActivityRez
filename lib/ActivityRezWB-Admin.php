@@ -200,20 +200,11 @@ class ActivityRezWB_Admin {
 				// Get Styles
 				wp_register_style( 'ActivityRezWBadmin', ACTIVITYREZWB_PLUGIN_PATH .'assets/css/admin/admin.css' );
 				wp_enqueue_style( 'ActivityRezWBadmin' );
-?>
-		<script>
-$(window).load(function(){
 
-    $('#preloader').fadeOut(100, function() {
-               $('body').css('overflow','auto');
-               $(this).remove();
-    });
-});
-        </script>
-        <?php
 				// Get Scripts
-				//wp_enqueue_script( 'jquery-ui-datepicker' );
+				wp_enqueue_script( 'jquery' );
 
+				wp_enqueue_script( 'custom-script', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/admin/loader.js', array( 'jquery' ), false );
 			}
 		}
 
