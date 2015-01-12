@@ -41,18 +41,44 @@ If You do not agree to the terms of this License, do not install or use the Soft
 
 	// Version
 	define( 'ACTIVITYREZWB_VERSION', $ACTIVITYREZWB_VERSION ); // e.g. 3.0
+
 	// WordPress Version
+	if (!defined('ACTIVITYREZWB_VERSION_WP_MIN'))
 	define( 'ACTIVITYREZWB_VERSION_WP_MIN', '3.2' );
+
+	// Paths TODO:
+	if (!defined('ACTIVITYREZWB_PLUGIN_PATH'))
+		define( 'ACTIVITYREZWB_PLUGIN_PATH', plugin_dir_url(__FILE__) );
+
+	if (!defined('ACTIVITYREZWB_PLUGIN_DIR'))
+		define( 'ACTIVITYREZWB_PLUGIN_DIR', plugin_dir_path(__FILE__) );
+
 	// Paths
-	define( 'ACTIVITYREZWB_PLUGIN_PATH', plugin_dir_url(__FILE__) );
-	define( 'ACTIVITYREZWB_PLUGIN_DIR', plugin_dir_path(__FILE__) );
-	define( 'ACTIVITYREZWB_SLUG', plugin_basename(__FILE__) );
-	define( 'ACTIVITYREZWB_TEXTDOMAIN', ACTIVITYREZWB_SLUG );
+	if (!defined('ACTIVITYREZWB_THEME_DIR'))
+		define('ACTIVITYREZWB_THEME_DIR', ABSPATH . 'wp-content/themes/' . get_template());
+
+	if (!defined('ACTIVITYREZWB_PLUGIN_NAME'))
+		define('ACTIVITYREZWB_PLUGIN_NAME', trim(dirname(plugin_basename(__FILE__)), '/'));
+
+	if (!defined('ACTIVITYREZWB_PLUGIN_DIR'))
+		define('ACTIVITYREZWB_PLUGIN_DIR', WP_PLUGIN_DIR . '/' . ACTIVITYREZWB_PLUGIN_NAME);
+
+	if (!defined('ACTIVITYREZWB_PLUGIN_URL'))
+		define('ACTIVITYREZWB_PLUGIN_URL', WP_PLUGIN_URL . '/' . ACTIVITYREZWB_PLUGIN_NAME);
+
+	// Define Text Domain
+	if (!defined('ACTIVITYREZWB_TEXTDOMAIN'))
+		define( 'ACTIVITYREZWB_TEXTDOMAIN', ACTIVITYREZWB_PLUGIN_NAME );
 
 	// Define Destinations
-	define( 'ACTIVITYREZWB_REMOTE', true );  // Let's just assume that we are remote shall we?
-	define( 'AREZ_SERVER', 'https://secure.activityrez.com' );
-	define( 'AREZ_SERVER_TRAINING', 'https://training.activityrez.com' );
+	if (!defined('ACTIVITYREZWB_REMOTE'))
+		define( 'ACTIVITYREZWB_REMOTE', true );  // Let's just assume that we are remote shall we?
+
+	if (!defined('AREZ_SERVER'))
+		define( 'AREZ_SERVER', 'https://secure.activityrez.com' );
+
+	if (!defined('AREZ_SERVER_TRAINING'))
+		define( 'AREZ_SERVER_TRAINING', 'https://training.activityrez.com' );
 
 
 // *************************************************************************************************** //
@@ -62,20 +88,22 @@ If You do not agree to the terms of this License, do not install or use the Soft
  */
 
 	// Call Classes
-	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Init.php'); // WP Related
+	include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Init.php'); // WP Related
 		add_action( 'init', array('ActivityRezWB_Init', 'init') ); // Menu/Internationalization etc.
 
-	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Common.php'); // Common Functions
+	// Common Functions
+	include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Common.php');
 
-
-	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Data.php'); // API & Data Specific
+	// API & Data Specific
+	include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Data.php');
 		add_action('webbooker_update_check', 'webbooker_update'); // Refresh Data
 
-
-	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Admin.php'); // Admin Specific
+	// Admin Specific
+	include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Admin.php');
 		add_action( 'init', array('ActivityRezWB_Admin', 'init') ); // Menu/Internationalization etc.
 
-	require_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-App.php'); // App Specific
+	// App Specific
+	include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-App.php');
 		add_action( 'init', array('ActivityRezWB_App', 'post_type') ); // Define Post Type
 		add_action( 'init', array('ActivityRezWB_App', 'rewrite_slugs') ); // Define Paths
 

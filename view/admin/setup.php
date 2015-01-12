@@ -100,9 +100,16 @@
 								<?php
 								$i++;
 							}
+
+							// Check we got soemthing.
+							if ($i > 0) { ?>
+								<br/>
+								<input type="submit" class="btn btn-primary" value="Import WebBookers">
+							<?php
+							} else {
+								echo "Error in retrieving web bookers, please try again.";
+							}
 							?>
-							<br/>
-							<input type="submit" class="btn btn-primary" value="Import WebBookers">
 							</form>
 						</div>
 					</div>

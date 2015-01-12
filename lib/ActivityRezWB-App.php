@@ -15,15 +15,15 @@ class ActivityRezWB_App {
 	 * Custom Post Type Taxonomy
 	 */
 
-		public function post_type() {
+		public static function post_type() {
 
 		/* Taxonomy */
 
 			// Define Labels 
 			$labels = array(
-				'add_new' => _('Add Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
+				'add_new' => __('Add Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
 				'add_new_item' => __('Add New Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
-				'edit' => _('Edit', ACTIVITYREZWB_TEXTDOMAIN),
+				'edit' => __('Edit', ACTIVITYREZWB_TEXTDOMAIN),
 				'edit_item' => __('Edit Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
 				'name' => __('Web Bookers', ACTIVITYREZWB_TEXTDOMAIN),
 				'new_item' => __('New Web Booker', ACTIVITYREZWB_TEXTDOMAIN),
@@ -57,7 +57,7 @@ class ActivityRezWB_App {
 	 * Custom Paths
 	 */
 
-		public function rewrite_slugs() {
+		public static function rewrite_slugs() {
 
 			// Establish Slugs
 			add_rewrite_tag( '%activity_destination%', '([^&]+)' );
@@ -381,7 +381,7 @@ function arez_travel_agent_login($args) {
         <?php echo $after_widget; ?>
 <?php
 }
-register_sidebar_widget('Travel Agent Login', 'arez_travel_agent_login');
+wp_register_sidebar_widget('arezwb_widget_talogin', 'Travel Agent Login', 'arez_travel_agent_login');
 
 
 function arez_cart_widget($args) {
@@ -437,7 +437,7 @@ function arez_cart_widget($args) {
         <?php echo $after_widget; ?>
 <?php
 }
-register_sidebar_widget('Webbooker Cart Widget', 'arez_cart_widget');
+wp_register_sidebar_widget('arezwb_widget_cart', 'Webbooker Cart Widget', 'arez_cart_widget');
 
 
 
@@ -513,4 +513,4 @@ function arez_catalog_search_widget($args) {
         <?php echo $after_widget; ?>
 <?php
 }
-register_sidebar_widget('Webboker Catalog Search', 'arez_catalog_search_widget');
+wp_register_sidebar_widget('arezwb_widget_search', 'Webboker Catalog Search', 'arez_catalog_search_widget');

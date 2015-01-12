@@ -147,7 +147,7 @@ class ActivityRezWB_Init {
 			} else {
 				// Version Exists, but is it out of date?
 				if(get_option("rb_agency_version") <> rb_agency_VERSION){
-					require_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/upgrade.php");
+					include_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/upgrade.php");
 				} else {
 					// Namaste, version is number is correct
 				}
@@ -162,7 +162,7 @@ class ActivityRezWB_Init {
 
 		public function check_upgrade_available(){
 			//if(!class_exists("RBAgency_Update"))
-				//require_once("update.php");
+				//include_once("update.php");
 
 			//return RBAgency_Update::check_version($update_plugins_option, true);
 		}
