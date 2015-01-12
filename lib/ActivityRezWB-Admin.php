@@ -25,7 +25,10 @@ class ActivityRezWB_Admin {
 				add_action( 'admin_menu', array('ActivityRezWB_Admin', 'menu_addlinkto_settings') );
 
 				// Add Styles to Admin Head Section 
-				add_action( 'admin_head', array('ActivityRezWB_Admin', 'admin_head') );
+				add_action( 'admin_head', array('ActivityRezWB_Admin', 'admin_head_style') );
+
+				// Add Scripts to Admin Head Section 
+				add_action( 'admin_head', array('ActivityRezWB_Admin', 'admin_head_scripts') );
 
 				// Add Link to Plugin Page
 				//add_action('plugin_action_links', array('ActivityRezWB_Admin', 'menu_addlinkto_plugin'),10,2);
@@ -192,7 +195,7 @@ class ActivityRezWB_Admin {
 	 * Define Admin Styles
 	 */
 
-		public static function admin_head() {
+		public static function admin_head_style() {
 
 			// Ensure we are in the admin section of wordpress
 			if( is_admin() ) {
@@ -201,11 +204,23 @@ class ActivityRezWB_Admin {
 				wp_register_style( 'ActivityRezWBadmin', ACTIVITYREZWB_PLUGIN_PATH .'assets/css/admin/admin.css' );
 				wp_enqueue_style( 'ActivityRezWBadmin' );
 
-				// Get Scripts
-				wp_enqueue_script( 'jquery' );
-
-				wp_enqueue_script( 'custom-script', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/admin/loader.js', array( 'jquery' ), false );
 			}
+			?>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script type='text/javascript' src='http://activityrez.dev:8888/wp-content/plugins/activityrez-wb/assets/js/admin/loader.js?ver=4.1'></script>
+
+			<?php
+		}
+
+		public static function admin_head_scripts() {
+
+			// Ensure we are in the admin section of wordpress
+			//if( is_admin() ) {
+				// Get Scripts
+				//wp_enqueue_script( 'jquery' );
+
+				//wp_enqueue_script( 'custom-script', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/admin/loader.js', array( 'jquery' ), '', false );
+			//}
 		}
 
 }
