@@ -77,6 +77,7 @@ class ActivityRezWB_Admin {
 				add_submenu_page( 'arez', __('Help', ACTIVITYREZWB_TEXTDOMAIN), __('Help', ACTIVITYREZWB_TEXTDOMAIN), 'edit_pages', 'arez-help', array('ActivityRezWB_Admin', 'menu_help') );
 		}
 
+
 		// Add Menu Item to Settings Dropdown
 		public static function menu_addlinkto_settings() {
 
@@ -86,6 +87,7 @@ class ActivityRezWB_Admin {
 
 			add_options_page( 'ActivityRez', 'ActivityRez', "manage_options", "arez_options", array('ActivityRezWB_Admin', 'menu_settings'));
 		}
+
 
 		// Add Link to Settings Page
 		public static function menu_addlinkto_plugin( $links, $file ) {
@@ -160,10 +162,12 @@ class ActivityRezWB_Admin {
 			}
 		}
 
+
 		// Settings Page View
 		public static function menu_settings(){
 			include_once(ACTIVITYREZWB_PLUGIN_DIR .'view/admin/settings.php');
 		}
+
 
 		// Help Page View
 		public static function menu_help(){
@@ -188,6 +192,7 @@ class ActivityRezWB_Admin {
 			}
 
 		}
+
 
 		// Get Scripts
 		public static function admin_head_scripts() {

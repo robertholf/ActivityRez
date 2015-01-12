@@ -8,7 +8,7 @@
 /* Run Tasks */
 
 	// Reset Session if needed
-	if ($_GET["action"] == 'unlink') {
+	if (isset($_GET["action"]) && $_GET["action"] == 'unlink') {
 		ActivityRezWB_Data::remoteAuthLogout();
 	}
 
@@ -48,16 +48,16 @@
 			</div><!-- .header -->
 			<div class="wrapper">
 			<?php 
-			if( $_GET["action"] == "authorize" || !empty($username) || isset($_GET['settings-updated']) &&  $_GET['settings-updated'] == true){
+			if( isset($_GET["action"]) && $_GET["action"] == "authorize" || !empty($username) || isset($_GET['settings-updated']) &&  $_GET['settings-updated'] == true){
 				// Check Status
-				if( $_GET['settings-updated'] == true ){
+				if( isset($_GET["settings-updated"]) && $_GET['settings-updated'] == true ){
 					$status_auth = ActivityRezWB_Data::remoteAuth();
 				}
 				?>
 				<div id="step1" class="masthead">
 
 					<?php
-					if( $_GET['settings-updated'] == true && $status_auth == "success" ) { // Error Check 
+					if( isset($_GET["settings-updated"]) && $_GET['settings-updated'] == true && $status_auth == "success" ) { // Error Check 
 
 						// User Auth Success!  Check for API Key
 						$status_key = ActivityRezWB_Data::remoteKey();
@@ -84,7 +84,7 @@
 
 
 
-					} elseif( $_GET['settings-updated'] == true && $status_auth == "error" ) {
+					} elseif( isset($_GET["settings-updated"]) && $_GET['settings-updated'] == true && $status_auth == "error" ) {
 						?>
 						<h1>Please confirm your ActivityRez credentials</h1>
 						<div class="alertbox error">

@@ -142,11 +142,12 @@ class ActivityRezWB_Init {
 		public function check_update_needed(){
 
 			// Hold the version in a seprate option
+			// TODO:
 			if(!get_option("rb_agency_version")) {
-				update_option("rb_agency_version", rb_agency_VERSION);
+				update_option("rb_agency_version", ACTIVITYREZWB_VERSION);
 			} else {
 				// Version Exists, but is it out of date?
-				if(get_option("rb_agency_version") <> rb_agency_VERSION){
+				if(get_option("rb_agency_version") <> ACTIVITYREZWB_VERSION){
 					include_once(WP_PLUGIN_DIR . "/" . basename(dirname(__FILE__)) . "/upgrade.php");
 				} else {
 					// Namaste, version is number is correct
@@ -161,6 +162,7 @@ class ActivityRezWB_Init {
 	 */
 
 		public function check_upgrade_available(){
+			// TODO:
 			//if(!class_exists("RBAgency_Update"))
 				//include_once("update.php");
 
@@ -168,5 +170,31 @@ class ActivityRezWB_Init {
 		}
 
 
+	/*
+	 * Diagnostics
+	 */
+
+		// Check Permalinks
+		public static function permalinks_check(){
+			// Check if missing permalinks
+			if ( ! get_option('permalink_structure') ) {
+				// Check if we are already on settings page
+				if ( get_option( 'arez_webbooker_permalinkignore' ) !== true ) {
+					// Hide if on Settings Page
+					if (isset($_GET["page"]) && $_GET["page"] == 'arez-settings') {
+					} else {
+					echo '<div class="error"><p>WARNING: Your permalinks are not set.  <a href="'. admin_url("admin.php?page=arez-settings") .'">Click here to resolve</a>.</p><span class="dismiss"><a href="'. admin_url("admin.php?page=arez-settings&action=permalink-dismiss") .'">Dismiss</a></div>';
+					}
+				}
+			}
+
+		}
+
+		// Check Permalinks
+		public static function permalinks_change(){
+			global $wp_rewrite;
+			$wp_rewrite->set_permalink_structure('/%category%/%postname%/');
+			$wp_rewrite->flush_rules();
+		}
 
 }

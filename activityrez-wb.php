@@ -129,8 +129,6 @@ If You do not agree to the terms of this License, do not install or use the Soft
  * Diagnostics
  */
 
-	define( 'ACTIVITYREZWB_VERSION_SUPPORTED', version_compare(get_bloginfo('version'), ACTIVITYREZWB_VERSION_WP_MIN, '>=') );
-
-
-
+	// Check Permalinks
+	add_action('admin_notices', array('ActivityRezWB_Init', 'permalinks_check') );
 

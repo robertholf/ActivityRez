@@ -31,6 +31,17 @@ if (!current_user_can('manage_options')) {
 		$status_update = ActivityRezWB_Data::webbooker_update();
 	}
 
+	// Permalink: Dismiss
+	if (isset($_GET["action"]) && $_GET["action"] == 'permalink-dismiss' ) {
+		// Set Option
+		update_option( 'arez_webbooker_permalinkignore', true );
+	}
+
+	if ( (isset($_GET["action"]) && $_GET["action"] ==  'permalink-fix' ) ) {
+		// Change Permalinks
+		ActivityRezWB_Init::permalinks_change();
+	}
+
 
 /* Clean Data */
 
@@ -69,6 +80,7 @@ if (!current_user_can('manage_options')) {
 
 
 ?>
+
 	<div class="arez-content">
 		<div class="arez-frame">
 			<div class="header">
@@ -82,6 +94,26 @@ if (!current_user_can('manage_options')) {
 
 				<div class="masthead">
 
+					<?php
+					/*
+					 * Run Diagnostics 
+					 */
+
+						// Check Permalinks
+						if ( ! get_option('permalink_structure') ) {
+							// Check if they ignored this warning
+							if ( get_option( 'arez_webbooker_permalinkignore' ) !== true ) {
+							echo '<div class="error"><p><strong>WARNING:</strong> Your permalinks are not set.  This could make the plugin not work correctly.  Please select an option below:</p>';
+							echo ' <a href="'. admin_url("admin.php?page=arez-settings&action=permalink-dismiss") .'">Ignore this message</a> | ';
+							echo ' <a href="'. admin_url("options-permalink.php") .'">Fix them yourself</a> | ';
+							echo ' <strong><a href="'. admin_url("admin.php?page=arez-settings&action=permalink-fix") .'">Fix them automatically</a> (Recommended)</strong>';
+							echo '</div>';
+
+							}
+						}
+
+
+					?>
 					<h1>Account</h1>
 					<div id="webbookers" class="postbox"  style="width: 50%">
 						<?php
@@ -166,5 +198,34 @@ if (!current_user_can('manage_options')) {
 		</div><!-- .arez-frame -->
 	</div><!-- .arez-content -->
 
+	<div style="z-index: 9999; position: relative; margin-left: 150px; top: -150px;">
+		<h2>Diagnostic Check</h2>
+		<?php
+
+		// PHP Version
+		echo '<div><strong>'. __("PHP Version", ACTIVITYREZWB_TEXTDOMAIN) .'</strong>: ';
+		echo '  <img src="'. ACTIVITYREZWB_PLUGIN_PATH .'assets/images/success.png" /> <span>'. phpversion() .'</span></div>';
+
+		// WordPress Version
+		echo '<div><strong>'. __("WordPress Version", ACTIVITYREZWB_TEXTDOMAIN) .'</strong>: ';
+			if (version_compare(get_bloginfo('version'), ACTIVITYREZWB_VERSION_WP_MIN, '>=') ) {
+			echo '<img src="'. ACTIVITYREZWB_PLUGIN_PATH .'assets/images/success.png" /> <span>'. get_bloginfo('version') .'</span></div>';
+			} else {
+			echo '<img src="'. ACTIVITYREZWB_PLUGIN_PATH .'assets/images/error.png" /> <span class="red">Upgrade to at least version '. ACTIVITYREZWB_VERSION_WP_MIN .'</span>';
+			}
+
+		// Permalinks
+		echo '<div><strong>'. __("Permalinks", ACTIVITYREZWB_TEXTDOMAIN) .'</strong>: ';
+			if ( ! get_option('permalink_structure') ) {
+			echo '<img src="'. ACTIVITYREZWB_PLUGIN_PATH .'assets/images/error.png" /> <span class="red">Needs fixing. <a href="'. admin_url("admin.php?page=arez-settings&action=permalink-fix") .'">Fix Now</a></span>';
+			} else {
+			echo '<img src="'. ACTIVITYREZWB_PLUGIN_PATH .'assets/images/success.png" /> <span>Set Accurately</span>';
+			}
+		echo '</div>';
+
+		?>
+	</div>
+
 	<div class="clear"></div>
+
 </div>
