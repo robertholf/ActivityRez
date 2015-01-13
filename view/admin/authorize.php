@@ -30,8 +30,6 @@
 		} else {
 			$haswebbookers = false;
 		}
-
-
 ?>
 
 	<div class="arez-content">
@@ -55,8 +53,11 @@
 				}
 				?>
 				<div id="step1" class="masthead">
+				<?php
 
-					<?php
+				/*
+				 * Check if updated
+				 */
 					if( isset($_GET["settings-updated"]) && $_GET['settings-updated'] == true && $status_auth == "success" ) { // Error Check 
 
 						// User Auth Success!  Check for API Key
@@ -82,8 +83,9 @@
 							<?php
 						}
 
-
-
+				/*
+				 * RE-check form
+				 */
 					} elseif( isset($_GET["settings-updated"]) && $_GET['settings-updated'] == true && $status_auth == "error" ) {
 						?>
 						<h1>Please confirm your ActivityRez credentials</h1>
@@ -95,6 +97,10 @@
 						// Show Form
 						ActivityRezWB_Data::remoteAuth_form($username, $password, $server);
 
+
+				/*
+				 * Check form
+				 */
 					} elseif ( !isset( $_GET['settings-updated'] ) ) {
 						?><h1>Enter your ActivityRez credentials to get started</h1><?php
 
