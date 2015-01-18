@@ -245,7 +245,7 @@ class ActivityRezAPI {
 		$params['action'] = "terms";
 		// Return the result;
 		$CurlResult = $this->GET($url,$params);
-		var_dump($CurlResult);
+		//var_dump($CurlResult);
 		$ResultString = json_decode($CurlResult, 1);
 
 		// Assume it only returns "terms" string if successful

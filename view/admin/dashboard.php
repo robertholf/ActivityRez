@@ -14,7 +14,6 @@
 				<h1>Connected!</h1>
 				<?php
 
-
 				?>
 			</div><!-- .masthead -->
 		</div><!-- .wrapper -->
