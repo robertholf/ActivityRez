@@ -61,6 +61,9 @@ Wordpress Admin and reimport the web bookers again.  This will update your local
 
 # Changelog #
 
+# 3.0.0 #
+* Complete rebuild
+
 # 2.5.2 #
 * Bumped CC expiration years to 20+ in future
 
