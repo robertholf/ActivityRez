@@ -144,16 +144,17 @@ class ActivityRezWB_Admin {
 
 			// Get Posted Values
 			$options = get_option( 'arez_options' );
-				$authorized = $options['authorized'];
-				$username = $options['username'];
-				$password = $options['password'];
-				$api_key = $options['api_key'];
+				if (isset($options['authorized'])) {
+					$authorized = $options['authorized'];
+				} else {
+					$authorized = "";
+				}
 
 			// Check if Web Bookers Exist
 			$webbookers_count = ActivityRezWB_Data::webbooker_count();
 
 			// Check where we are at
-			if( ! $options['authorized'] ) {
+			if( ! $authorized ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
 			} elseif( $webbookers_count == 0 ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');

@@ -180,9 +180,9 @@ class ActivityRezWB_Init {
 			$options = get_option('arez_options');
 
 			// Check if missing permalinks
-			if ( ! $options['authorized'] ) {
+			if ( isset($options['authorized']) &&  ! $options['authorized'] ) {
 				// Hide if on Settings Page
-				if ( (isset($_GET["page"]) && ( $_GET["page"] == 'arez') || $_GET["page"] == 'arez-settings') ) {
+				if ( (isset($_GET["page"]) && $_GET["page"] == 'arez') || (isset($_GET["page"]) && $_GET["page"] == 'arez-settings') ) {
 				} else {
 				echo '<div class="updated"><p>ActivityRez Plugin ready for setup.  <a href="'. admin_url("admin.php?page=arez") .'">Click here to get started</a>.</p></div>';
 				}

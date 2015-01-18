@@ -15,7 +15,7 @@ if (!current_user_can('manage_options')) {
 
 	// Reset Session if needed
 	if (isset($_GET["action"]) && $_GET["action"] == 'unlink') {
-		ActivityRezWB_Data::remoteAuthLogout();
+		ActivityRezWB_Data::remote_auth_logout();
 	}
 
 	// Get Translations

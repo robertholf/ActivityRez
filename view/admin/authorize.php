@@ -9,7 +9,7 @@
 
 	// Reset Session if needed
 	if (isset($_GET["action"]) && $_GET["action"] == 'unlink') {
-		ActivityRezWB_Data::remoteAuthLogout();
+		ActivityRezWB_Data::remote_auth_logout();
 	}
 
 
@@ -17,11 +17,19 @@
 
 	// Get Posted Values
 	$options = get_option( 'arez_options' );
-		$authorized = $options['authorized'];
+		if (isset($options['authorized'])) {
+			$authorized = $options['authorized'];
+		} else {
+			$authorized = "";
+		}
 		$server = $options['server'];
 		$username = $options['username'];
 		$password = $options['password'];
-		$api_key = $options['api_key'];
+		if (isset($options['api_key'])) {
+			$api_key = $options['api_key'];
+		} else {
+			$api_key = "";
+		}
 
 	// Are there webbookers already loaded?
 	$webbookers_count = ActivityRezWB_Data::webbooker_count();
@@ -30,6 +38,7 @@
 		} else {
 			$haswebbookers = false;
 		}
+
 ?>
 
 	<div class="arez-content">
@@ -49,7 +58,7 @@
 			if( isset($_GET["action"]) && $_GET["action"] == "authorize" || !empty($username) || isset($_GET['settings-updated']) &&  $_GET['settings-updated'] == true){
 				// Check Status
 				if( isset($_GET["settings-updated"]) && $_GET['settings-updated'] == true ){
-					$status_auth = ActivityRezWB_Data::remoteAuth();
+					$status_auth = ActivityRezWB_Data::remote_auth_instance();
 				}
 				?>
 				<div id="step1" class="masthead">
@@ -61,8 +70,7 @@
 					if( isset($_GET["settings-updated"]) && $_GET['settings-updated'] == true && $status_auth == "success" ) { // Error Check 
 
 						// User Auth Success!  Check for API Key
-						$status_key = ActivityRezWB_Data::remoteKey();
-
+						$status_key = ActivityRezWB_Data::remote_apikey();
 
 						if ( $status_key == "success" ) {
 							// Key Returned.
@@ -95,7 +103,7 @@
 						<?php
 
 						// Show Form
-						ActivityRezWB_Data::remoteAuth_form($username, $password, $server);
+						ActivityRezWB_Data::remote_auth_form($username, $password, $server);
 
 
 				/*
@@ -105,7 +113,7 @@
 						?><h1>Enter your ActivityRez credentials to get started</h1><?php
 
 						// Show Form
-						ActivityRezWB_Data::remoteAuth_form($username, $password, $server);
+						ActivityRezWB_Data::remote_auth_form($username, $password, $server);
 
 					}
 					?>

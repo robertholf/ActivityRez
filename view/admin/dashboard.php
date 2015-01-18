@@ -11,8 +11,11 @@
 		<div class="wrapper">
 
 			<div class="masthead">
-				<h1>OK!</h1>
+				<h1>Connected!</h1>
+				<?php
 
+
+				?>
 			</div><!-- .masthead -->
 		</div><!-- .wrapper -->
 

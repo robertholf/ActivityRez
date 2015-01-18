@@ -36,7 +36,7 @@ if ( WB_REMOTE == true ) {
 		$wbArgs['i18n'] = $_REQUEST['i18N'];
 	}
 	global $wbCacheFields;
-	$wb = $arezApi->bootstrap($wbArgs);//update translation files
+	$wb = $arezApi->bootstrap_temp($wbArgs);//update translation files
 	//die("wb:".print_r($wb,1));
 	$wb = $wb['data'];
 	

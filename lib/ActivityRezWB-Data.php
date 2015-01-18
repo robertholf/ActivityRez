@@ -9,7 +9,9 @@
 class ActivityRezWB_Data {
 
 	// Form to get username and password
-	public static function remoteAuth_form($username, $password, $server){
+	public static function remote_auth_form($username, $password, $server){
+		$username = 'sallystours_wb';
+		$password = '5!e:&x+b8hV+';
 		?>
 		<div id="login">
 			<form method="post" action="options.php">
@@ -35,7 +37,7 @@ class ActivityRezWB_Data {
 	}
 
 	// Check username and password against database
-	public static function remoteAuth(){
+	public static function remote_auth_instance(){
 
 		// Check for saved credentials
 		$options = get_option( 'arez_options' );
@@ -48,7 +50,7 @@ class ActivityRezWB_Data {
 			include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
 			$arezApi = ActivityRezAPI::instance();
 			// Attempt to Authorize
-			$response = $arezApi->r_authArez( $username, $password );
+			$response = $arezApi->auth_nonce( $username, $password );
 
 			// Output Response
 			if( $response['status'] == 0 ) {
@@ -71,7 +73,7 @@ class ActivityRezWB_Data {
 
 
 	// Log Out
-	public static function remoteAuthLogout(){
+	public static function remote_auth_logout(){
 
 		// Check for saved key
 		$options = get_option( 'arez_options' );
@@ -101,22 +103,27 @@ class ActivityRezWB_Data {
 	}
 
 
-
 	// Get API key
-	public static function remoteKey(){
+	public static function remote_apikey(){
 
 		// Check for saved key
 		$options = get_option( 'arez_options' );
+			$username = $options['username'];
+			$password = $options['password'];
 
 		// Is API Key valid?
 		if( !isset( $options['api_key'] ) ){
-			//need the api key, go get it
 
 			// Call the ActivityRez API
 			include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
 			$arezApi = ActivityRezAPI::instance();
+			// Attempt to Authorize
+			$response = $arezApi->auth_nonce( $username, $password );
+
+			// Request API Key
 			$apiKey = $arezApi->fetchApiKey();
 
+			// If Valid Key
 			if( isset($apiKey['status']) && $apiKey['status'] == 1 ){
 				// Key Found!  Save it!
 				$options['api_key'] = $apiKey['api_key'];
@@ -136,6 +143,7 @@ class ActivityRezWB_Data {
 		// Output Response
 		return $status;
 	}
+
 
 	// Get Web Bookers Count
 	public static function webbooker_count(){
@@ -157,7 +165,7 @@ class ActivityRezWB_Data {
 			$arezApi = ActivityRezAPI::instance();
 
 			// Attempt to Authorize
-			$auth = $arezApi->r_authArez( $options['username'], $options['password'] );
+			$auth = $arezApi->auth_nonce( $options['username'], $options['password'] );
 
 			$ResultString = $arezApi->importWebbookers();
 			
@@ -224,7 +232,7 @@ class ActivityRezWB_Data {
 
 		// Authenticate
 		$options = get_option( 'arez_options' );
-		$resp = $arezApi->r_authArez( $options['username'], $options['password'] );
+		$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
 
 		// Cache values
 		global $wbCacheFields;
@@ -263,7 +271,7 @@ class ActivityRezWB_Data {
 
 			// Authenticate
 			$options = get_option( 'arez_options' );
-			$resp = $arezApi->r_authArez( $options['username'], $options['password'] );
+			$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
 
 			// Update translation files
 			$CurlResult = $arezApi->fetchTranslations($webbookerID);
@@ -288,4 +296,22 @@ class ActivityRezWB_Data {
 		return $status;
 	}
 
+
+	public static function activity_fetch( $webbookerID = null ){
+
+		$resources = array('wb_queryActivities'); 
+		//api_include($resources);
+
+		$reseller1ID = ($_REQUEST['reseller1ID']) ? $_REQUEST['reseller1ID'] : 0;
+		$locName = ($_REQUEST['locName']) ? $_REQUEST['locName'] : $locName;
+		$limit = 12;
+
+		$activities = wb_queryActivities($reseller1ID, 1, $limit, null, null, null, null, null, $locName);
+		$activities = json_decode($activities, true);
+
+		echo "TEESET";
+
+	}
+
 }
+
