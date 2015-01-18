@@ -91,6 +91,13 @@ class ActivityRezWB_Data {
 			$options['api_key'] = "";
 			update_option( 'arez_options', $options);
 
+			// Purge
+			$deadpostwalking = get_posts( array( 'post_type'=>'webBooker' ) );
+			foreach( $deadpostwalking as $post ) {
+				// Delete's each post.
+				wp_delete_post( $post->ID, true);
+			}
+
 	}
 
 

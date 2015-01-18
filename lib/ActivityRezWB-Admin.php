@@ -153,7 +153,7 @@ class ActivityRezWB_Admin {
 			$webbookers_count = ActivityRezWB_Data::webbooker_count();
 
 			// Check where we are at
-			if( $options['authorized'] != true ) {
+			if( ! $options['authorized'] ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/authorize.php');
 			} elseif( $webbookers_count == 0 ) {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/admin/setup.php');

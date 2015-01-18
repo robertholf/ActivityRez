@@ -139,7 +139,7 @@ class ActivityRezWB_Init {
 	 * Is this an updated version of the software and needs database upgrade?
 	 */
 
-		public function check_update_needed(){
+		public function update_check(){
 
 			// Hold the version in a seprate option
 			// TODO:
@@ -161,7 +161,7 @@ class ActivityRezWB_Init {
 	 * Is there a newer version of the software available to upgrade to?
 	 */
 
-		public function check_upgrade_available(){
+		public function upgrade_check(){
 			// TODO:
 			//if(!class_exists("RBAgency_Update"))
 				//include_once("update.php");
@@ -173,6 +173,22 @@ class ActivityRezWB_Init {
 	/*
 	 * Diagnostics
 	 */
+
+		// Check Setup
+		public static function setup_check(){
+			// Get Options
+			$options = get_option('arez_options');
+
+			// Check if missing permalinks
+			if ( ! $options['authorized'] ) {
+				// Hide if on Settings Page
+				if ( (isset($_GET["page"]) && ( $_GET["page"] == 'arez') || $_GET["page"] == 'arez-settings') ) {
+				} else {
+				echo '<div class="updated"><p>ActivityRez Plugin ready for setup.  <a href="'. admin_url("admin.php?page=arez") .'">Click here to get started</a>.</p></div>';
+				}
+			}
+
+		}
 
 		// Check Permalinks
 		public static function permalinks_check(){

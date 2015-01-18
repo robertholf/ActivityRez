@@ -130,5 +130,5 @@ If You do not agree to the terms of this License, do not install or use the Soft
  */
 
 	// Check Permalinks
+	add_action('admin_notices', array('ActivityRezWB_Init', 'setup_check') );
 	add_action('admin_notices', array('ActivityRezWB_Init', 'permalinks_check') );
-
