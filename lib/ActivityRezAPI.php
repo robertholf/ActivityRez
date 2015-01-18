@@ -238,8 +238,7 @@ class ActivityRezAPI {
 	public function GetTerms(){
 		// Build the URL
 		$url = $this->base_url;
-		echo $url;
-		echo "HERE";
+
 		// Append the lookup details
 		$params['nonce'] = $this->nonce;
 		$params['service'] = "lookup";
