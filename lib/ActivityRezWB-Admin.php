@@ -42,8 +42,8 @@ class ActivityRezWB_Admin {
 					// Load Shortcode Generator
 					add_action('admin_menu', array('Activities', 'shortcode_display_generator'));
 
-					// Register Settings
-					add_action('admin_init', array('RBAgency', 'do_register_settings') );
+					// Edit Link on Activity
+					add_action('admin_menu', array('Activities', 'site_editlink'));
 
 				*/
 
