@@ -647,7 +647,11 @@ class ActivityRezAPI {
 	private function MakeUrl($url,$params){
 		// Love to  Stephen Young
 		if(!empty($params) && $params){
-			foreach($params as $k=>$v)  $kv[] = "$k=$v"; 
+			foreach($params as $k=>$v)  {
+				if(!is_array($v)){
+					$kv[] = "$k=$v"; 
+				}
+			}
 			$url_params = str_replace(" ","+",implode('&',$kv));
 			$url = trim($url) . '?' . $url_params;
 		}
