@@ -326,7 +326,7 @@ class ActivityRezAPI {
 	 * @param array $args Array of arguments to be passed
 	 * @return array Inventory object is returned.
 	 */
-	public function GetDestinations($args = NULL){
+	public function GetDestinations( $args = array() ){
 		// Build the URL
 		$url = $this->base_url;
 		// Append the lookup details
@@ -366,7 +366,7 @@ class ActivityRezAPI {
 	 * @param array $args Array of arguments to be passed
 	 * @return array Catalog object is returned.
 	 */
-	public function GetDailyView($args = NULL){
+	public function GetDailyView( $args = array() ){
 		// Build the URL
 		$url = $this->base_url;
 		// Append the lookup details
@@ -396,7 +396,7 @@ class ActivityRezAPI {
 	 * @param array $args Array of arguments to be passed
 	 * @return array Inventory object is returned.
 	 */
-	public function GetInventory($args = NULL){
+	public function GetInventory( $args = array() ){
 		// Build the URL
 		$url = $this->base_url;
 		// Append the lookup details
@@ -438,7 +438,7 @@ class ActivityRezAPI {
 	 * @param array $args Array of arguments to be passed
 	 * @return array Activity list object is returned.
 	 */
-	public function GetActivities($args = NULL){
+	public function GetActivities( $args = array() ){
 		// Build the URL
 		$url = $this->base_url;
 		// Append the lookup details
@@ -468,7 +468,7 @@ class ActivityRezAPI {
 	 * @param Array $args Array of arguments to be passed
 	 * @return array Activity detail object is returned.
 	 */
-	public function GetActivity($args = NULL){
+	public function GetActivity( $args = array() ){
 		// Build the URL
 		$url = $this->base_url;
 		// Append the lookup details

@@ -21,26 +21,28 @@
 					// Authenticate
 					$options = get_option( 'arez_options' );
 					$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
-					echo "bootStrap: ";
+					echo "<hr />Get Activities";
+					var_dump($arezApi->GetActivities());
+					echo "<hr />bootStrap: ";
 					var_dump($arezApi->bootStrap());
-					echo "Get Terms: ";
+					echo "<hr />Get Terms: ";
 					var_dump($arezApi->GetTerms());
-					echo "Get Privacy Policy: ";
+					echo "<hr />Get Privacy Policy: ";
 					var_dump($arezApi->GetPrivacyPolicy());
-					echo "Get POS Locations";
+					echo "<hr />Get POS Locations";
 					var_dump($arezApi->GetPOSLocations());
 
-					$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
-					
-					echo "Get Destinations";
+
+					echo "<hr />Get Destinations";
 					var_dump($arezApi->GetDestinations());
-					echo "Get Daily view";
+
+					echo "<hr />Get Daily view";
 					var_dump($arezApi->GetDailyView());
-					echo "Get Inventory";
+
+					echo "<hr />Get Inventory";
 					var_dump($arezApi->GetInventory());
-					echo "Get Activities";
-					var_dump($arezApi->GetActivities());
-					echo "Get Activity";
+
+					echo "<hr />Get Activity";
 					var_dump($arezApi-> GetActivity());
 
 
