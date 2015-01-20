@@ -105,7 +105,7 @@ If You do not agree to the terms of this License, do not install or use the Soft
 	// App Specific
 	include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-App.php');
 		add_action( 'init', array('ActivityRezWB_App', 'post_type'), 0, 1 ); // Define Post Type
-		add_action( 'init', array('ActivityRezWB_App', 'rewrite_slugs', 0, 1 ) ); // Define Paths
+		add_action( 'init', array('ActivityRezWB_App', 'rewrite_slugs'), 0, 1 ); // Define Paths
 
 
 /*
