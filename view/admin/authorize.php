@@ -39,6 +39,7 @@
 			$haswebbookers = false;
 		}
 
+		
 ?>
 
 	<div class="arez-content">

@@ -13,6 +13,36 @@
 			<div class="masthead">
 				<h1>Connected!</h1>
 				<?php
+				
+				// Call the ActivityRez API
+					include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
+					$arezApi = ActivityRezAPI::instance();
+
+					// Authenticate
+					$options = get_option( 'arez_options' );
+					$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
+					echo "bootStrap: ";
+					var_dump($arezApi->bootStrap());
+					echo "Get Terms: ";
+					var_dump($arezApi->GetTerms());
+					echo "Get Privacy Policy: ";
+					var_dump($arezApi->GetPrivacyPolicy());
+					echo "Get POS Locations";
+					var_dump($arezApi->GetPOSLocations());
+
+					$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
+					
+					echo "Get Destinations";
+					var_dump($arezApi->GetDestinations());
+					echo "Get Daily view";
+					var_dump($arezApi->GetDailyView());
+					echo "Get Inventory";
+					var_dump($arezApi->GetInventory());
+					echo "Get Activities";
+					var_dump($arezApi->GetActivities());
+					echo "Get Activity";
+					var_dump($arezApi-> GetActivity());
+
 
 				?>
 			</div><!-- .masthead -->
