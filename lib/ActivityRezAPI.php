@@ -214,13 +214,13 @@ class ActivityRezAPI {
 			$params['data'] = $args;
 			// Return the result;
 			$CurlResult = $this->GET($url,$params);
+			
 			$ResultString = json_decode($CurlResult, 1);
-
 			// Assume it only returns "terms" string if successful
-			if ($ResultString->status == 1) {
-				return $ResultString->terms;
+			if (isset($ResultString["status"]) && $ResultString["status"] == 1) {
+				return $ResultString["data"]; // no terms $ResultString["terms"]
 			} else {
-				return $ResultString->msg;
+				return $ResultString["msg"];
 			}
 		}
 
@@ -249,10 +249,10 @@ class ActivityRezAPI {
 		$ResultString = json_decode($CurlResult, 1);
 
 		// Assume it only returns "terms" string if successful
-		if ($ResultString->status == 1) {
-			return $ResultString->terms;
+		if (isset($ResultString["status"]) && $ResultString["status"] == 1) {
+					return $ResultString["data"]; // no terms $ResultString["terms"]
 		} else {
-			return $ResultString->msg;
+				return $ResultString["msg"];
 		}
 	}
 
@@ -647,7 +647,7 @@ class ActivityRezAPI {
 	private function MakeUrl($url,$params){
 		// Love to  Stephen Young
 		if(!empty($params) && $params){
-			foreach($params as $k=>$v) $kv[] = "$k=$v";
+			foreach($params as $k=>$v)  $kv[] = "$k=$v"; 
 			$url_params = str_replace(" ","+",implode('&',$kv));
 			$url = trim($url) . '?' . $url_params;
 		}
