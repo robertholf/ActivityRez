@@ -25,18 +25,18 @@ class ActivityRezWB_Shortcode {
 				
 				// Load scripts
 				wp_enqueue_script( 'jquery' );
-				wp_register_script( 'knockoutjs', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/lib/knockout.min.js' );
+/*				wp_register_script( 'knockoutjs', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/lib/knockout.min.js' );
 				wp_enqueue_script( 'knockoutjs' );
 				wp_register_script( 'bootstrapjs', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/lib/bootstrap.min.js' );
 				wp_enqueue_script( 'bootstrapjs' );
-
+*/
 				// Get Webbooker script
-				wp_register_script( 'ActivityRezWB_Shortcode_webbooker', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/webbooker.min.js' );
+				wp_register_script( 'ActivityRezWB_Shortcode_webbooker', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/webbooker.js' );
 				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker' );
 				
 				// Activity view
-				wp_register_script( 'ActivityRezWB_Shortcode_activity', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/activity.js');
-				wp_enqueue_script( 'ActivityRezWB_Shortcode_activity' );
+				//wp_register_script( 'ActivityRezWB_Shortcode_activity', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/activity.js');
+				//wp_enqueue_script( 'ActivityRezWB_Shortcode_activity' );
 
 				// load scripts in the footer
 				add_action("wp_footer",array("ActivityRezWB_Shortcode","init_script"));
@@ -55,11 +55,23 @@ class ActivityRezWB_Shortcode {
 				// Authenticate
 				$options = get_option( 'arez_options' );
 				$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
-				// Load bootstrap
-				$bootStrap = array_merge($arezApi->bootStrap(),array("plugin_url" => ACTIVITYREZWB_PLUGIN_URL));	
+
+				// Get WebBooker
+				$wb = $arezApi->getWebBooker(200015);
+				unset($wb["data"]["style"]);
+				unset($wb["data"]["featured_activities"]);
+				unset($wb["data"]["header"]);
+				unset($wb["data"]["footer"]);
+				unset($wb["data"]["terms"]);
+				unset($wb["data"]["contact"]);
+				unset($wb["data"]["privacy"]);
+				unset($wb["data"]["cancellation"]);
+				
+				$webBooker = array_merge($wb["data"],array("plugin_url" => ACTIVITYREZWB_PLUGIN_URL));	
 				
 				echo "<script type=\"text/javascript\">\n";
-				echo "var wb_global_vars = ".json_encode($bootStrap).";\n";
+				echo "var wb_global_vars = ".json_encode($webBooker).";\n";
+				echo " console.log(wb_global_vars);";
 				echo "</script>\n";
 		}
 
