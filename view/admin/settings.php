@@ -64,8 +64,8 @@ if (!current_user_can('manage_options')) {
 
 	// Get Posted Values
 	$options = get_option( 'arez_options' );
-		$authorized = $options['authorized'];
-		$server = $options['server'];
+		$authorized = isset($options['authorized'])?$options['authorized']:"";
+		$server = isset($options['server'])?$options['server']:"";
 		$username = $options['username'];
 		$password = $options['password'];
 		$api_key = $options['api_key'];
