@@ -39,7 +39,7 @@ class ActivityRezWB_App {
 			$args = array(
 				'public' => true,
 				'show_ui' => true,
-				'show_in_menu'=>'', // arez
+				'show_in_menu'=> true, // arez
 				'exclude_from_search'=>true,
 				'capability_type' => 'post',
 				'hierarchical' => true,
@@ -47,8 +47,8 @@ class ActivityRezWB_App {
 				'labels' => $labels,
 				'supports' => array('title')
 			);
-
-			register_post_type( 'webBooker', $args );
+			// (max. 20 characters, can not contain capital letters or spaces)
+			register_post_type( 'webbooker', $args );
 
 		}
 
@@ -103,9 +103,79 @@ class ActivityRezWB_App {
 				$wp_rewrite->flush_rules();
 			}
 
+			// Set Custom Template
+			add_filter('template_include', 'arez_template_include', 1, 1);
+			function arez_template_include( $template ) {
+					if ( get_query_var( 'post_type' ) == "webbooker" ) {
+
+							return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/_main-webbooker.php'; // WP Related
+	
+					}
+
+					return $template;
+			
+
+			}
+
+						// load scripts in the footer
+						add_action("wp_footer",array("ActivityRezWB_App","load_global_vars"));
+						add_action("wp_footer",array("ActivityRezWB_Shortcode","init_script"));
+												
+
+
+
 		}
 
 	// *************************************************************************************************** //
+	/*
+	 * Populate Global vars 
+	*/
+		public static function load_global_vars(){
+				global $post;
+				
+				// Call the ActivityRez API
+				include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
+				$arezApi = ActivityRezAPI::instance();
+
+				// Get Webbooker script
+				wp_register_script( 'ActivityRezWB_Shortcode_webbooker', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/webbooker.js',array(),0,true);
+				wp_register_script( 'ActivityRezWB_Shortcode_webbooker_activity', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/activity-init.js',array(),0,true);
+				
+				// Load scripts
+				wp_enqueue_script( 'jquery' );
+				wp_enqueue_script( 'jquery-ui-datepicker' );
+				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker' );
+				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker_activity' );
+	
+
+				// Authenticate
+				$options = get_option( 'arez_options' );
+				$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
+
+				$webBookerID = get_post_meta($post->ID,'webBookerID',true);
+				// Get WebBooker
+				$wb = $arezApi->getWebBooker($webBookerID);
+				unset($wb["data"]["style"]);
+				unset($wb["data"]["featured_activities"]);
+				unset($wb["data"]["header"]);
+				unset($wb["data"]["footer"]);
+				unset($wb["data"]["terms"]);
+				unset($wb["data"]["contact"]);
+				unset($wb["data"]["privacy"]);
+				unset($wb["data"]["cancellation"]);
+				
+				$webBooker = array_merge($wb["data"],
+											array("plugin_url" => ACTIVITYREZWB_PLUGIN_URL),
+											array("wb_url" => "//".$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] )
+										);	
+				
+				echo "<script type=\"text/javascript\">\n";
+				echo "var wb_global_vars = ".json_encode($webBooker).";\n";
+				echo "if(typeof console == 'undefined'){\n";
+				echo " window.console = { log: function(){} };\n";
+				echo "}\n";
+				echo "</script>\n";
+		}
 
 
 
