@@ -1,5 +1,5 @@
 <?php global $wb; ?>
-<?php $wb['wb_url'] = bloginfo("url");?>
+<?php $wb['wb_url'] = get_bloginfo("url");?>
 		<div id="webbooker-sidebar" class="span4">
 		<?php
 			if ( !dynamic_sidebar('webbooker-sidebar') ){

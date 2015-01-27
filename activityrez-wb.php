@@ -108,8 +108,8 @@ If You do not agree to the terms of this License, do not install or use the Soft
 		add_action( 'init', array('ActivityRezWB_App', 'rewrite_slugs'), 0, 1 ); // Define Paths
 
 	// Shortcode Specific
-	//include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Shortcode.php');
-	//	add_action( 'init', array('ActivityRezWB_Shortcode', 'init') ); // Menu/Internationalization etc.
+	include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Shortcode.php');
+	 	add_action( 'init', array('ActivityRezWB_Shortcode', 'init') ); // Menu/Internationalization etc.
 
 
 /*

@@ -53,6 +53,7 @@ echo ActivityRezWB_Common::header();
 					arez_include( 'home.php' );
 					arez_include( 'password-reset.php' );
 					arez_include( 'dashboard.php' );
+					arez_include( 'search.php' );
 					arez_include( 'checkout.php' );
 					arez_include( 'confirmation.php' );
 					arez_include( 'contact.php' );
@@ -67,7 +68,7 @@ echo ActivityRezWB_Common::header();
 				<?php _e('Loading...','arez'); ?>
 			</div>
 	</div><!-- /webbooker-main -->
-	<?php //arez_include('sidebar.php'); ?>
+	<?php arez_include('sidebar.php'); ?>
 	<div style="clear:both"></div>
 </div><!-- /webbooker -->
 
