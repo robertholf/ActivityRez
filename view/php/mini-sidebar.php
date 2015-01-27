@@ -1,4 +1,5 @@
 <?php global $wb; ?>
+<?php $wb["wb_url"] = bloginfo("url"); ?>
 <div class="webbooker-actions">
 	<ul>
 		<li><a href="<?php echo $wb['wb_url']; ?>/#/Home"><?php _e("Home","arez"); ?></a></li>
