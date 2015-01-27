@@ -26,29 +26,15 @@ class ActivityRezWB_Shortcode {
 				
 				// Load scripts
 				wp_enqueue_script( 'jquery' );
+				wp_enqueue_script( 'jquery-ui-datepicker' );
 				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker' );
 				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker_activity' );
-
-				// Load WebBooker global variables
-				add_action("wp_enqueue_scripts",array("ActivityRezWB_Shortcode","global_vars"));
-
-				
+	
 				
 				
 		}
 
-
-		/*
-		 * Pre-load WebBooker Global variables and load on top of the scripts
-		*/
-		public static function global_vars(){
-
-			   echo "<script type=\"text/javascript\">\n";
-			   echo "var wb_global_vars = null;\n";
-			   echo "</script>\n";
-				
-		}
-
+		
 		/*
 		 * Populate Global vars 
 		*/
@@ -73,10 +59,13 @@ class ActivityRezWB_Shortcode {
 				unset($wb["data"]["privacy"]);
 				unset($wb["data"]["cancellation"]);
 				
-				$webBooker = array_merge($wb["data"],array("plugin_url" => ACTIVITYREZWB_PLUGIN_URL));	
+				$webBooker = array_merge($wb["data"],
+											array("plugin_url" => ACTIVITYREZWB_PLUGIN_URL),
+											array("wb_url" => "//".$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] )
+										);	
 				
 				echo "<script type=\"text/javascript\">\n";
-				echo " wb_global_vars = ".json_encode($webBooker).";\n";
+				echo "var wb_global_vars = ".json_encode($webBooker).";\n";
 				echo "</script>\n";
 		}
 
@@ -105,6 +94,7 @@ class ActivityRezWB_Shortcode {
 				
 				echo "<div class='heading'></div>";
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/activity.php');
+				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/search.php');
 				
 				$output_string  = ob_get_contents();
 				ob_end_clean();
