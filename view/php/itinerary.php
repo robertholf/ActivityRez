@@ -10,11 +10,11 @@
  */
 global $wb;
 ?>
-<div class="popup-error" style="display:none;" data-bind="visible: Itinerary.popupError()">
+<div class="popup-error" style="display:none;" data-bind="visible: WebBooker.Itinerary.popupError()">
 	<?php _e('Window was blocked from opening. Please check your settings.'); ?>
-	<div data-bind="click: Itinerary.popupErrorClose">X</div>
+	<div data-bind="click: WebBooker.Itinerary.popupErrorClose">X</div>
 </div>
-<div id="webbooker-itinerary" data-bind="visible: Itinerary.show, with: Itinerary" style="display:none">
+<div id="webbooker-itinerary" data-bind="visible: WebBooker.Itinerary.show, with: WebBooker.Itinerary" style="display:none">
 	<div class="header gradient-light">
 		<h3><?php _e('Itinerary','arez'); ?></h3>
 	</div>

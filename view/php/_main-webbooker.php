@@ -7,6 +7,7 @@
  * @author Ryan Freeman <ryan@stoked-industries.com>
  */
 global $wb;
+$wb['wb_url'] = bloginfo("url");
 ?>
 <div id="webbooker" class="container-fluid">
 	<div id="home-link">
@@ -34,30 +35,29 @@ global $wb;
 	<div class="cb"></div>
 	<div id="webbooker-main">
 		<?php
+		define("PLUGIN_DIR_URL",ACTIVITYREZWB_PLUGIN_URL."/assets/");
 			$extend = true;
-			if( isset( $_REQUEST['activityID'] ) ) {
-				arez_include('activity.php');
-				$extend = false;
-			} else if ( isset( $_REQUEST['displayItinerary'] ) ) {
-				arez_include('itinerary.php');
-			}
+		//	if( isset( $_REQUEST['activityID'] ) ) {
+		//		arez_include('activity.php');
+		//		$extend = false;
+		//	} else if ( isset( $_REQUEST['displayItinerary'] ) ) {
+		//		arez_include('itinerary.php');
+		//	}
 			
 			if( $extend == true ) {
-				if ( bot_detected() ) {
-					arez_include( 'search-static.php' );
-				} else {
+				//if ( bot_detected() ) {
+				//	arez_include( 'search-static.php' );
+				//} else {
 					arez_include( 'home.php' );
 					arez_include( 'password-reset.php' );
-					arez_include( 'search.php' );
 					arez_include( 'dashboard.php' );
 					arez_include( 'checkout.php' );
 					arez_include( 'confirmation.php' );
-					arez_include( 'itinerary.php' );
 					arez_include( 'contact.php' );
 					arez_include( 'aboutus.php' );
 					arez_include( 'activity.php' );
 					arez_include( '404.php' );
-				}
+				//}
 			}
 		?>
 			<div id="init-loader" data-bind="visible: WebBooker.showInitLoader">
@@ -65,6 +65,6 @@ global $wb;
 				<?php _e('Loading...','arez'); ?>
 			</div>
 	</div><!-- /webbooker-main -->
-	<?php arez_include('sidebar.php'); ?>
+	<?php //arez_include('sidebar.php'); ?>
 	<div style="clear:both"></div>
 </div><!-- /webbooker -->

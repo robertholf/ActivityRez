@@ -18,7 +18,7 @@ class ActivityRezWB_Shortcode {
 		public static function init(){
 				
 				// Assign shortcodes
-				add_shortcode("activityrez_activity",array("ActivityRezWB_Shortcode","get_activity"));
+				add_shortcode("activityrez",array("ActivityRezWB_Shortcode","get_activity"));
 
 				// Get Webbooker script
 				wp_register_script( 'ActivityRezWB_Shortcode_webbooker', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/webbooker.js',array(),0,true);
@@ -34,7 +34,7 @@ class ActivityRezWB_Shortcode {
 				
 		}
 
-		
+
 		/*
 		 * Populate Global vars 
 		*/
@@ -72,7 +72,7 @@ class ActivityRezWB_Shortcode {
 		
 		/*
 		* Get WebBooker Acitivity
-		* Shortcode:  [activityrez_activity]
+		* Shortcode:  [activityrez]
 		*/
 		public static function get_activity($atts, $content = null){
 				ob_start();
@@ -93,8 +93,9 @@ class ActivityRezWB_Shortcode {
 
 				
 				echo "<div class='heading'></div>";
-				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/activity.php');
-				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/search.php');
+				//include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/activity.php');
+				//include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/search.php');
+				include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/_main-webbooker.php');
 				
 				$output_string  = ob_get_contents();
 				ob_end_clean();

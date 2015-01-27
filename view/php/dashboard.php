@@ -10,8 +10,8 @@
 global $wb;
 ?>
 
-<div id="webbooker-dashboard" data-bind="if: Dashboard.show">
-	<div data-bind=" visible: Dashboard.show, with: Dashboard" style="display:none">
+<div id="webbooker-dashboard" data-bind="if: WebBooker.Dashboard.show">
+	<div data-bind=" visible: WebBooker.Dashboard.show, with: Dashboard" style="display:none">
 		<div id="dash-login" data-bind="visible: !WebBooker.Agent.user_id() && showMain()">
 			<div class="header"><h3><?php _e('Log In','arez'); ?></h3></div>
 			<div class="cb"></div>

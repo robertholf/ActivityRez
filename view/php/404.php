@@ -1,4 +1,4 @@
-<div id="webbooker-404" data-bind="visible: show404" style="display:none">
+<div id="webbooker-404" data-bind="visible: WebBooker.show404" style="display:none">
 	<div class="header gradient-light">
 		<h3><?php _e('Page Not Found','arez'); ?></h3>
 	</div>
