@@ -11,6 +11,7 @@ $wb['wb_url'] = get_bloginfo("url");
 							
 echo ActivityRezWB_Common::header();
 ?>
+<div class="heading"></div>
 <div id="webbooker" class="container-fluid">
 	<div id="home-link">
 		<a href="<?php echo (isset($wb['wb_url'])) ? $wb['wb_url'] : ''; ?>/#/Home"><i class="icon-home"></i> <?php _e('Home','arez'); ?></a>
