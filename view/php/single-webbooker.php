@@ -263,5 +263,6 @@ if($wb_include) {
 
 ActivityRezWB_Common::header();
 
+var_dump($wb);
 
 ActivityRezWB_Common::footer();
