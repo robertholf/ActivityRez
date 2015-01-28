@@ -108,8 +108,15 @@ class ActivityRezWB_App {
 			function arez_template_include( $template ) {
 					if ( get_query_var( 'post_type' ) == "webbooker" ) {
 
-							return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/_main-webbooker.php'; // WP Related
-	
+						if ( get_query_var( 'activity_destination' ) ) {
+								var_dump($_REQUEST);
+								return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/single-webbooker.php'; // WP Related
+						
+						}else{
+						
+								return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/_main-webbooker.php'; // WP Related
+						
+						}
 					}
 
 					return $template;
@@ -191,7 +198,7 @@ class ActivityRezWB_App {
 		}
 
 		// sorts countries/languages by i18n(RFC 3066) in ascending order.
-		function sort_country( $co, $i18n, $lang = false ) { //countrySort
+		public static function sort_country( $co, $i18n, $lang = false ) { //countrySort
 			$k = $lang ? 'title' : 'name'; // set array key name
 			
 			// avoid no enhanced functions - depends on PHP server
@@ -217,14 +224,14 @@ class ActivityRezWB_App {
 				}
 			}
 
-			if( !$lang ) $co = setTopCountry( $co, $i18n );
+			if( !$lang ) $co = self::set_country_preference( $co, $i18n );
 			return $co;
 		}
 
 
 
 		// Sorts countries mixed Chinese and Kana characters for Japanese.
-		public function sort_country_i18n( $co ) { // countrySortByJP
+		public static function sort_country_i18n( $co ) { // countrySortByJP
 			// insert position
 			$pos = array( 'PT', 'QA', 'NE', 'SC', 'TH', 'TC', 'TD', 'CF', 'TN', 'BD', 'FM', 'ZA', 'NA', 'RU', 'KH');
 			

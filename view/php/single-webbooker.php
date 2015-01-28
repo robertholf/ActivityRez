@@ -8,7 +8,8 @@
  * @subpackage Web Booking Engine
  * @author Ryan Freeman <ryan@stoked-industries.com>
  */
-
+include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
+				
 global $wp_query, $wb, $query, $currency, $currencySymbol, $testMode, $availableLangs, $post, $langPath, $wbArgs;
 define('IMAGE_SERVER','https://media1.activityrez.com/images/timthumb.php');
 if ( WB_REMOTE == true ) {
@@ -175,8 +176,8 @@ for( $i = 0; $i < count( $wb['wb_countries'] ); $i++ ) {
 	$wb['wb_countries'][$i]['name'] = __( $wb['wb_countries'][$i]['name'], 'arez' );
 	if( !empty( $wb['languages'][$i] )) $wb['languages'][$i]['title'] = __( $wb['languages'][$i]['title'], 'arez' );
 }
-$wb['wb_countries'] = countrySort( $wb['wb_countries'], $wb['i18n'] );
-$wb['languages'] = countrySort( $wb['languages'], $wb['i18n'], true );
+$wb['wb_countries'] = ActivityRezWB_App::sort_country( $wb['wb_countries'], $wb['i18n'] );
+$wb['languages'] = ActivityRezWB_App::sort_country( $wb['languages'], $wb['i18n'], true );
 
 $wbSlim = $wb;
 unset( $wbSlim['style'] );
