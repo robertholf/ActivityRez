@@ -251,7 +251,7 @@ function arez_webbooker_loadScripts(){
 	wp_enqueue_style('ar',ACTIVITYREZWB_PLUGIN_PATH.'css/ar.css');
 }
 if ( !bot_detected() ) {
-	add_action( 'wp_enqueue_scripts', 'arez_webbooker_loadScripts',99 );//load it last
+	//add_action( 'wp_enqueue_scripts', 'arez_webbooker_loadScripts',99 );//load it last
 }
 
 // Let's figure out which WB template to load.
@@ -260,3 +260,8 @@ $wb_include = apply_filters('wbTemplate',$wb_include,$wb);
 if($wb_include) {
 	include_once($wb_include);
 }
+
+ActivityRezWB_Common::header();
+
+
+ActivityRezWB_Common::footer();

@@ -25,10 +25,10 @@ class ActivityRezWB_Shortcode {
 				wp_register_script( 'ActivityRezWB_Shortcode_webbooker_activity', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/activity-init.js',array(),0,true);
 				
 				// Load scripts
-				wp_enqueue_script( 'jquery' );
-				wp_enqueue_script( 'jquery-ui-datepicker' );
-				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker' );
-				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker_activity' );
+				//wp_enqueue_script( 'jquery' );
+				//wp_enqueue_script( 'jquery-ui-datepicker' );
+				//wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker' );
+				//wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker_activity' );
 	
 				
 				

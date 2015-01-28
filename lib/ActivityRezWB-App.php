@@ -109,7 +109,7 @@ class ActivityRezWB_App {
 					if ( get_query_var( 'post_type' ) == "webbooker" ) {
 
 						if ( get_query_var( 'activity_destination' ) ) {
-								var_dump($_REQUEST);
+								//var_dump($_REQUEST);
 								return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/single-webbooker.php'; // WP Related
 						
 						}else{
@@ -124,11 +124,12 @@ class ActivityRezWB_App {
 
 			}
 
+
+						
 						// load scripts in the footer
 						add_action("wp_footer",array("ActivityRezWB_App","load_global_vars"));
 						add_action("wp_footer",array("ActivityRezWB_Shortcode","init_script"));
-												
-
+				
 
 
 		}
@@ -144,16 +145,23 @@ class ActivityRezWB_App {
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
 				$arezApi = ActivityRezAPI::instance();
 
-				// Get Webbooker script
-				wp_register_script( 'ActivityRezWB_Shortcode_webbooker', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/webbooker.js',array(),0,true);
-				wp_register_script( 'ActivityRezWB_Shortcode_webbooker_activity', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/activity-init.js',array(),0,true);
+				if ( get_query_var( 'post_type' ) == "webbooker" ) {
+					$activity_destination = get_query_var( 'activity_destination' );
+					if ( empty($activity_destination) ) {
 				
-				// Load scripts
-				wp_enqueue_script( 'jquery' );
-				wp_enqueue_script( 'jquery-ui-datepicker' );
-				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker' );
-				wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker_activity' );
-	
+						// Get Webbooker script
+						wp_register_script( 'ActivityRezWB_Shortcode_webbooker', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/webbooker.js',array(),0,true);
+						wp_register_script( 'ActivityRezWB_Shortcode_webbooker_activity', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/activity-init.js',array(),0,true);
+						
+						// Load scripts
+						wp_enqueue_script( 'jquery' );
+						wp_enqueue_script( 'jquery-ui-datepicker' );
+						wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker' );
+						wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker_activity' );
+													
+					}
+				}	
+				
 
 				// Authenticate
 				$options = get_option( 'arez_options' );
