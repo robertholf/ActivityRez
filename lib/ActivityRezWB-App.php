@@ -109,7 +109,9 @@ class ActivityRezWB_App {
 					if ( get_query_var( 'post_type' ) == "webbooker" ) {
 
 						if ( get_query_var( 'activity_destination' ) ) {
-								//var_dump($_REQUEST);
+								
+								include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/global.php');
+
 								return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/single-webbooker.php'; // WP Related
 						
 						}else{
@@ -143,10 +145,13 @@ class ActivityRezWB_App {
 				
 				// Call the ActivityRez API
 				include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
+				// Init API
 				$arezApi = ActivityRezAPI::instance();
 
 				if ( get_query_var( 'post_type' ) == "webbooker" ) {
+					
 					$activity_destination = get_query_var( 'activity_destination' );
+					
 					if ( empty($activity_destination) ) {
 				
 						// Get Webbooker script
@@ -705,3 +710,5 @@ function arez_catalog_search_widget($args) {
 <?php
 }
 wp_register_sidebar_widget('arezwb_widget_search', 'Webboker Catalog Search', 'arez_catalog_search_widget');
+
+// *********************************************************************************************

@@ -91,7 +91,7 @@ class ActivityRezAPI {
 
 	public function init_view(){
 		$options = get_option('arez_options');
-		if(WB_REMOTE && !isset( $options['api_key'] ) ){
+		if(ACTIVITYREZWB_REMOTE && !isset( $options['api_key'] ) ){
 			die("Missing API Key, Please Contact Support");
 		}
 		$this->api_key = $options['api_key'];
