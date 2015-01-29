@@ -10,22 +10,32 @@
  */
 global $wb;
 ActivityRezWB_Common::header();
-echo "------Title------<br/>";
-var_dump($wb["activity"]["title"]);
-echo "<br/>---Description-------------";
-var_dump($wb["activity"]["description"]);
-echo "<br/>---Short Description-------------";
-var_dump($wb["activity"]["shortDesc"]);
-echo "<br/>---Media-------------";
-var_dump($wb["activity"]["media"]);
-echo "<br/>---Address-------------";
-var_dump($wb["activity"]["address"]);
-var_dump($wb["activity"]["address_lat"]);
-var_dump($wb["activity"]["address_lng"]);
-echo "<br/>---Instructions-------------";
-var_dump($wb["activity"]["instructions"]);
-echo "<br/>---Tags-------------";
-var_dump($wb["activity"]["tags"]);
+echo "<div id=\"arez-main\">\n";
+echo "<h1>".$wb["activity"]["title"]."</h1>\n";
+echo "<div class=\"arez-media\">";
+echo "<h3>Media</h3>";
+foreach ($wb["activity"]["media"] as $key) {
+	echo "<img src=\"https://media.activityrez.com/media/".$key["name"]."/thumbnail/height/400\" />";
+}
+echo "</div>\n";
+echo "<div class=\"arez-description\">";
+echo "<h3>Description</h3>";
+echo $wb["activity"]["description"];
+echo "</div>\n";
+echo "<div class=\"arez-address\">";
+echo "<h3>Address</h3>";
+echo "<span>".$wb["activity"]["address"]."</span>";
+echo "</div>";
+echo "<div class=\"arez-instruction\">";
+echo "<h3>instructions</h3>";
+echo $wb["activity"]["instructions"];
+echo "</div>";
+//var_dump($wb["activity"]["address_lat"]);
+//var_dump($wb["activity"]["address_lng"]);
+echo "<div class=\"arez-tags\">";
+echo "<h3>Tags</h3>";
+echo implode(",",$wb["activity"]["tags"]);
+echo "</div>";
 
-//var_dump($wb);
+echo "</div>\n";
 ActivityRezWB_Common::footer();
