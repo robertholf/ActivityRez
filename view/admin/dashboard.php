@@ -11,26 +11,30 @@
 		<div class="wrapper">
 
 			<div class="masthead">
-				<h1>Connected!</h1>
 				<?php
-				
-				// Call the ActivityRez API
-					include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
-					$arezApi = ActivityRezAPI::instance();
 
-					// Authenticate
-					$options = get_option( 'arez_options' );
-					$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
-					echo "<hr />Get Activities";
-					var_dump($arezApi->GetActivities());
+				// Get Webbookers
+				$webbookers = get_posts( array( 'post_type'=>'webBooker', 'numberposts'=>-1, 'post_status'=>'publish' ) );
 
+				// Show Results
+				foreach($webbookers as $wb){
+					$meta = get_post_meta( $wb->ID );
 
+					$webbooker_id = 0;
+					if(isset($meta['webBookerID'])){
+						$webbooker_id = $meta['webBookerID'][0];
+					}
+					echo "<h1><a href='/wb/". $wb->post_name ."'>". $wb->post_title ."</a></h1>";
+				}
 				?>
+				<div class="subhead">
+					<h2>Preview Web Bookers</h2>
+				</div>
+
 			</div><!-- .masthead -->
 		</div><!-- .wrapper -->
 
 	</div><!-- .arez-frame -->
 </div><!-- .arez-content -->
-
 
 <div class="clear"></div></div>

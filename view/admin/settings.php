@@ -177,7 +177,7 @@ if (!current_user_can('manage_options')) {
 							</div>
 							<?php
 						}
-
+						/*
 						// Check temporary data
 						$webbookers_temp = get_option( 'arez_webbooker_import' );
 						if ( !empty($webbookers_temp) ) {
@@ -185,7 +185,7 @@ if (!current_user_can('manage_options')) {
 							print_r($webbookers_temp);
 							echo "<a href='?page=arez-settings&action=purgetempdata'>Purge Temp Data</a>";
 						}
-
+						*/
 					?>
 
 					<div class="subhead">
