@@ -109,9 +109,9 @@ If You do not agree to the terms of this License, do not install or use the Soft
 
 	// Shortcode Specific
 	include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezWB-Shortcode.php');
-	 	add_action( 'init', array('ActivityRezWB_Shortcode', 'init') ); // Menu/Internationalization etc.
+		add_action( 'init', array('ActivityRezWB_Shortcode', 'init') ); // App Shortcodes
 
-	
+
 
 /*
  * Hooks
