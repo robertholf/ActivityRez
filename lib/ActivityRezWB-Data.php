@@ -10,8 +10,6 @@ class ActivityRezWB_Data {
 
 	// Form to get username and password
 	public static function remote_auth_form($username, $password, $server){
-		$username = 'sallystours_wb';
-		$password = '5!e:&x+b8hV+';
 		?>
 		<div id="login">
 			<form method="post" action="options.php">

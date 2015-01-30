@@ -39,7 +39,7 @@ class ActivityRezWB_App {
 			$args = array(
 				'public' => true,
 				'show_ui' => true,
-				'show_in_menu'=> true, // arez
+				'show_in_menu'=> false, // arez
 				'exclude_from_search'=>true,
 				'capability_type' => 'post',
 				'hierarchical' => true,
@@ -105,34 +105,24 @@ class ActivityRezWB_App {
 
 			// Set Custom Template
 			add_filter('template_include', 'arez_template_include', 1, 1);
-			function arez_template_include( $template ) {
+				function arez_template_include( $template ) {
 					if ( get_query_var( 'post_type' ) == "webbooker" ) {
 
 						if ( get_query_var( 'activity_destination' ) ) {
-								
-								include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/global.php');
+							include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/global.php');
 
-								return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/single-webbooker.php'; // WP Related
-						
-						}else{
-						
-								return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/_main-webbooker.php'; // WP Related
-						
+							return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/single-webbooker.php'; // WP Related
+						} else {
+							return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/_main-webbooker.php'; // WP Related
 						}
 					}
 
 					return $template;
-			
+				}
 
-			}
-
-
-						
-						// load scripts in the footer
-						add_action("wp_footer",array("ActivityRezWB_App","load_global_vars"));
-						add_action("wp_footer",array("ActivityRezWB_Shortcode","init_script"));
-				
-
+			// load scripts in the footer
+			add_action("wp_footer",array("ActivityRezWB_App","load_global_vars"));
+			add_action("wp_footer",array("ActivityRezWB_Shortcode","init_script"));
 
 		}
 
@@ -149,24 +139,24 @@ class ActivityRezWB_App {
 				$arezApi = ActivityRezAPI::instance();
 
 				if ( get_query_var( 'post_type' ) == "webbooker" ) {
-					
+
 					$activity_destination = get_query_var( 'activity_destination' );
-					
+
 					if ( empty($activity_destination) ) {
-				
+
 						// Get Webbooker script
 						wp_register_script( 'ActivityRezWB_Shortcode_webbooker', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/webbooker.js',array(),0,true);
 						wp_register_script( 'ActivityRezWB_Shortcode_webbooker_activity', ACTIVITYREZWB_PLUGIN_PATH .'assets/js/app/activity-init.js',array(),0,true);
-						
+
 						// Load scripts
 						wp_enqueue_script( 'jquery' );
 						wp_enqueue_script( 'jquery-ui-datepicker' );
 						wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker' );
 						wp_enqueue_script( 'ActivityRezWB_Shortcode_webbooker_activity' );
-													
+
 					}
-				}	
-				
+				}
+
 
 				// Authenticate
 				$options = get_option( 'arez_options' );
@@ -185,10 +175,10 @@ class ActivityRezWB_App {
 				unset($wb["data"]["cancellation"]);
 				
 				$webBooker = array_merge($wb["data"],
-											array("plugin_url" => ACTIVITYREZWB_PLUGIN_URL),
-											array("wb_url" => "//".$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] )
-										);	
-				
+						array("plugin_url" => ACTIVITYREZWB_PLUGIN_URL),
+						array("wb_url" => "//".$_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"] )
+					);
+
 				echo "<script type=\"text/javascript\">\n";
 				echo "var wb_global_vars = ".json_encode($webBooker).";\n";
 				echo "if(typeof console == 'undefined'){\n";
@@ -213,7 +203,7 @@ class ActivityRezWB_App {
 		// sorts countries/languages by i18n(RFC 3066) in ascending order.
 		public static function sort_country( $co, $i18n, $lang = false ) { //countrySort
 			$k = $lang ? 'title' : 'name'; // set array key name
-			
+
 			// avoid no enhanced functions - depends on PHP server
 			if( function_exists('collator_create') && function_exists('collator_sort_with_sort_keys') ) {
 				$old = array();
@@ -232,7 +222,7 @@ class ActivityRezWB_App {
 							}
 						}
 					}
-					if( !$lang && $i18n == 'ja' )	$new = $this->sort_country_i18n( $new );
+					if( !$lang && $i18n == 'ja' ) $new = $this->sort_country_i18n( $new );
 					$co = $new;
 				}
 			}
@@ -247,7 +237,7 @@ class ActivityRezWB_App {
 		public static function sort_country_i18n( $co ) { // countrySortByJP
 			// insert position
 			$pos = array( 'PT', 'QA', 'NE', 'SC', 'TH', 'TC', 'TD', 'CF', 'TN', 'BD', 'FM', 'ZA', 'NA', 'RU', 'KH');
-			
+
 			// find 'HK' as the first row of the kanji group
 			for( $i = count( $co )- 1; $i >= 0; $i-- ) {
 				if( $co[$i]['alpha-2'] == 'HK' ) break;
@@ -286,7 +276,7 @@ class ActivityRezWB_App {
 			for( $i = count( $co )- 1; $i >= 0; $i-- ) {
 				if( $co[$i]['alpha-2'] == $pr ) break;
 			}
-			
+
 			// change order
 			$a  = array_slice( $co, 0,  $i); 
 			if( count( $co ) - $i -1 > 0 ) {

@@ -23,27 +23,6 @@
 					$resp = $arezApi->auth_nonce( $options['username'], $options['password'] );
 					echo "<hr />Get Activities";
 					var_dump($arezApi->GetActivities());
-					echo "<hr />bootStrap: ";
-					var_dump($arezApi->bootStrap());
-					echo "<hr />Get Terms: ";
-					var_dump($arezApi->GetTerms());
-					echo "<hr />Get Privacy Policy: ";
-					var_dump($arezApi->GetPrivacyPolicy());
-					echo "<hr />Get POS Locations";
-					var_dump($arezApi->GetPOSLocations());
-
-
-					echo "<hr />Get Destinations";
-					var_dump($arezApi->GetDestinations());
-
-					echo "<hr />Get Daily view";
-					var_dump($arezApi->GetDailyView());
-
-					echo "<hr />Get Inventory";
-					var_dump($arezApi->GetInventory());
-
-					echo "<hr />Get Activity";
-					var_dump($arezApi-> GetActivity());
 
 
 				?>
