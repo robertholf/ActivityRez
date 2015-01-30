@@ -91,7 +91,7 @@ class ActivityRezWB_Shortcode {
 			echo "<div class='heading'></div>";
 			//include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/activity.php');
 			//include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/search.php');
-			include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/_main-webbooker.php');
+			include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/app/webbooker-main.php');
 
 			$output_string  = ob_get_contents();
 			ob_end_clean();

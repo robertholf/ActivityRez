@@ -20,6 +20,8 @@ class ActivityRezWB_Common {
 			}
 			return false;
 		}
+
+
 	/*
 	 * Get WordPress Template Header
 	 */
@@ -27,18 +29,24 @@ class ActivityRezWB_Common {
 
 			// Call WordPress Header
 			get_header();
+			get_sidebar();
+			echo "<div id=\"primary\" class=\"site-content\">\n";
+			echo "  <div id=\"content\" role=\"main\">\n";
 
-		
 		}
+
+
 	/*
 	 * Get WordPress Template Footer
 	 */
 		public static function footer() {
 
+			echo "  </div><!-- #content -->\n";
+			echo "</div><!-- #primary -->\n";
+
 			// Call WordPress footer
 			get_footer();
 
-		
 		}
 
 

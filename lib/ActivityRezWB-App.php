@@ -108,12 +108,15 @@ class ActivityRezWB_App {
 				function arez_template_include( $template ) {
 					if ( get_query_var( 'post_type' ) == "webbooker" ) {
 
+						// Is there an activity specified?
 						if ( get_query_var( 'activity_destination' ) ) {
-							include_once( ACTIVITYREZWB_PLUGIN_DIR .'view/php/global.php');
 
-							return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/single-webbooker.php'; // WP Related
+							// View Activity Page
+							return  ACTIVITYREZWB_PLUGIN_DIR .'view/app/webbooker-single.php';
 						} else {
-							return  ACTIVITYREZWB_PLUGIN_DIR .'view/php/_main-webbooker.php'; // WP Related
+
+							// View Overview Page
+							return  ACTIVITYREZWB_PLUGIN_DIR .'view/app/webbooker-main.php';
 						}
 					}
 
@@ -292,6 +295,59 @@ class ActivityRezWB_App {
 
 	// *************************************************************************************************** //
 
+	/*
+	 *	Sets top country as a preference.
+	 */
+		function get_activity( ) {
+
+			// TODO: Standardize this
+			global $post;
+
+			// Call API
+			include_once( ACTIVITYREZWB_PLUGIN_DIR .'lib/ActivityRezAPI.php');
+
+				$arezApi = ActivityRezAPI::instance();
+				$arezApi->init_view();
+
+				$wbMeta = get_post_custom( $post->ID );
+
+				$webBookerID = $post->ID;
+				$webBookerID =$wbMeta['webBookerID'][0];
+				if( !$webBookerID || empty( $webBookerID ) ) {
+					die( "Missing Webbooker ID: {$webBookerID}" );
+					exit;
+				}
+
+				$wbArgs = array( 'webBookerID' => $webBookerID );
+
+				if ( array_key_exists( 'activitySlug', $wp_query->query_vars ) ) {
+					$wbArgs['slug'] = $wp_query->query_vars['activitySlug'];
+				}
+				if ( isset( $_REQUEST['i18N'] ) ) {
+					$wbArgs['i18n'] = $_REQUEST['i18N'];
+				}
+
+				$wb = $arezApi->bootstrap_temp($wbArgs);
+				$wb = $wb['data'];
+
+				global $wbCacheFields;
+				foreach($wbCacheFields as $field){
+					if(isset($wbMeta[$field])){
+						$d = @unserialize($wbMeta[$field][0]);
+						if( false === $d ) $wb[$field] = $wbMeta[$field][0];
+						else $wb[$field] = $d;
+					}
+				}
+
+				$wb['plugin_url'] = ACTIVITYREZWB_PLUGIN_PATH;
+				$wb['templ_url'] = get_bloginfo('template_url');
+				$wb['base_url'] = get_site_url();
+				$wb['wb_url'] = get_site_url().'/'.get_post_type_object('webbooker')->rewrite['slug'].'/'.$post->post_name;
+
+				$url = $wb['wb_url'] = 'https://secure.activityrez.com/'. $_SERVER["REQUEST_URI"];
+
+		}
+
 }
 
 
@@ -377,7 +433,7 @@ $wbCacheFields = array(
 	function arezWBTemplate( $template ) {
 		global $post,$l10n,$wp_query, $query;
 		if ( $post->post_type == 'webbooker' ) {
-			$single_webbooker = ACTIVITYREZWB_PLUGIN_DIR . '/php/single-webbooker.php';
+			$single_webbooker = ACTIVITYREZWB_PLUGIN_DIR . '/app/webbooker-single.php';
 			return $single_webbooker;
 		}
 		return $template;
