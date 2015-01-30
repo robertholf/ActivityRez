@@ -1,14 +1,11 @@
 <?php
 /**
- * Bootstrapper for custom Web Bookers.
- *
- * @package ActivityRez
- * @subpackage Web Booking Engine
- * @author Ryan Freeman <ryan@stoked-industries.com>
+ * Web Booking Engine - Main View
  */
+
 global $wb;
 $wb['wb_url'] = get_bloginfo("url");
-							
+
 echo ActivityRezWB_Common::header();
 ?>
 <div class="heading"></div>

@@ -7,7 +7,7 @@
 		<!--<div id="home-link">
 			<i class="icon-home"></i> <a href="#/Home"><strong><?php _e('Home','arez'); ?></strong></a>
 		</div>--><!-- /home-link -->
-			
+
 		<div id="search-filters" class="sidebar-container" data-bind="with: WebBooker.Catalog">
 			<div class="header gradient-light">
 				<h3><?php _e('Search Activities','arez'); ?></h3>
